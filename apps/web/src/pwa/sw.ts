@@ -32,7 +32,9 @@ clientsClaim();
 registerRoute(new NavigationRoute(new StaleWhileRevalidate({
   cacheName: "xp-navigations",
   plugins: [new CacheableResponsePlugin({ statuses: [200] })],
-})));
+}), {
+  denylist: [/^\/api\//],
+}));
 
 // Cache local fonts only. Remote fonts use the page's font-src policy, not the
 // worker's connect-src policy, which deliberately allows only this origin.

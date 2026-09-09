@@ -1,4 +1,4 @@
-import { pwa } from "../src/app-modules";
+import { brand, pwa } from "../src/app-modules";
 /**
  * Generates every committed PWA asset from two sources of truth: the theme preset
  * that compiles `@xp/theme/theme.css`, and `apps/web/brand/icon.svg`. Nothing here
@@ -100,8 +100,8 @@ export function buildManifest(): string {
   const shortcut = [{ src: "/pwa/icon-192.png", sizes: "192x192", type: "image/png" }];
   const manifest = {
     id: manifestId,
-    name: "xpresso_demo2_otpchat",
-    short_name: "xpresso_demo2_otpchat",
+    name: brand.name,
+    short_name: brand.name.replace(/\s+/g, ""),
     description: pwa.description,
     lang: "en",
     dir: "ltr",

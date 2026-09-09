@@ -1,1 +1,2 @@
-export { Chat } from "../modules/chat";
+export { Chat } from "../modules/chat/Chat";
+

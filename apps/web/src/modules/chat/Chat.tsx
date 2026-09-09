@@ -113,6 +113,7 @@ function ChatInner() {
       inspectorDefaultOpen={deviceClass === "DW"}
     >
       <div className="chat-workspace">
+        <h1 className="chat-sr-only">OTP Chat</h1>
         {/* Top Action Bar */}
         <header className="chat-header">
           <div className="chat-header-cluster">

@@ -152,7 +152,7 @@ Environment & Credentials:
 - [x] Phase 4: COMPOSE (Module registration, route wiring, starter deletion) [4/11]
 - [x] Phase 5: SHAPE (5-class form implementations, screens registry) [5/11]
 - [x] Phase 6: SKIN (Theme configuration, PWA assets, icons) [6/11]
-- [ ] Phase 7: BUILD (Thin E2E chat stream, breadth matrix completion) [6/11]
+- [x] Phase 7: BUILD (Cloudflare Worker edge backend, streaming SSE proxy, chat.browser.mjs suite) [7/11]
 - [ ] Phase 8: EVIDENCE (Gate script, TypeScript check, unit & browser test sweep) [6/11]
 - [ ] Phase 9: VERIFY (3-pass adversarial review) [6/11]
 - [ ] Phase 10: SHIP (Cloudflare Worker deployment, DNS record, Access OTP application) [6/11]
@@ -203,7 +203,17 @@ Environment & Credentials:
   KaTeX styles bundled with Vite, zero hardcoded color tokens
   CSP inline script hashes recomputed: node scripts/csp-hashes.mjs -> exit 0
   PWA assets regenerated: pnpm --filter web pwa:assets -> 5 icons + manifest.webmanifest
-  Full build passes: pnpm -r build -> exit 0
+- **BUILD**:
+  ```text
+  apps/web/src/worker.ts: Cloudflare Worker edge backend (/api/me, /api/chat streaming SSE proxy to Featherless AI with User-Agent xpresso-otpchat/1.0.0, secret handling, CSP headers)
+  apps/web/wrangler.toml: configured route xs_demo2_chat.milkies.work/* and zone 78d2442920a4612b381ca27fd643082b
+  apps/web/tests/chat.browser.mjs: browser test suite driving chat screen across device classes (M, DS) and overlay states (sheet-open, panel-open)
+  apps/web/package.json: registered "test:browser:chat"
+  compose-gates.py -> 0 failing gates (exit 0)
+  pnpm -r test -> 15 passed test files, 153 passed tests (exit 0)
+  pnpm --filter web typecheck -> exit 0
+  pnpm -r build -> exit 0
+  scripts/test_e2e.py --milestone M1,M2,M3 -> 157 passed, 0 failed, 2 pending (exit 0)
   ```
 
 ---
@@ -217,7 +227,7 @@ Environment & Credentials:
 ---
 
 ## NEXT
-Advance to BUILD phase: Cloudflare Worker backend (/api/me, /api/chat streaming relay), wrangler.toml routes, and browser test suite apps/web/tests/chat.browser.mjs.
+Advance to EVIDENCE phase: full QA gate run, screenshot capture, and M4 edge deployment.
 
 
 

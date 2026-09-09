@@ -14,8 +14,7 @@ export function Composer({ onOpenModelSelector }: ComposerProps) {
   const currentModel = getModelConfig(activeModelId);
 
   useEffect(() => {
-    // Focus textarea on mount on non-mobile screens
-    if (window.innerWidth >= 840 && textareaRef.current) {
+    if (textareaRef.current) {
       textareaRef.current.focus();
     }
   }, []);

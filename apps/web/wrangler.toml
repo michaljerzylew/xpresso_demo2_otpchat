@@ -1,4 +1,4 @@
-name = "xpresso_demo2_otpchat"
+name = "xpresso-demo2-otpchat"
 main = "src/worker.ts"
 compatibility_date = "2026-09-05"
 
@@ -8,3 +8,6 @@ binding = "ASSETS"
 not_found_handling = "single-page-application"
 run_worker_first = true
 
+[[routes]]
+pattern = "xs_demo2_chat.milkies.work/*"
+zone_id = "78d2442920a4612b381ca27fd643082b"

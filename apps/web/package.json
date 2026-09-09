@@ -14,6 +14,7 @@
     "csp:hashes": "node scripts/csp-hashes.mjs",
     "pwa:assets": "tsx scripts/generate-pwa-assets.mts",
     "test:browser:auth": "XP_BROWSER_CHANNEL=chrome node tests/auth.browser.mjs",
+    "test:browser:chat": "XP_BROWSER_CHANNEL=chrome node tests/chat.browser.mjs",
     "test:browser:configurator": "XP_BROWSER_CHANNEL=chrome node tests/configurator.browser.mjs",
     "test:browser:csp": "XP_BROWSER_CHANNEL=chrome node tests/csp.browser.mjs",
     "test:browser:pwa": "XP_BROWSER_CHANNEL=chrome node tests/pwa.browser.mjs",
