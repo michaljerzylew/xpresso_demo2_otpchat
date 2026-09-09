@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router";
 import { App } from "./App";
+import "katex/dist/katex.min.css";
 import { startThemeMode } from "@xp/theme";
 import { startConfiguration } from "./configurator/boot";
 

@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "xpresso_demo2_otpchat",
-  "short_name": "xpresso_demo2_otpchat",
-  "description": "xpresso_demo2_otpchat workspace",
+  "name": "OTP Chat",
+  "short_name": "OTPChat",
+  "description": "Premier autonomous ChatGPT-class PWA powered by Featherless AI and Cloudflare Access OTP",
   "lang": "en",
   "dir": "ltr",
   "start_url": "/",
@@ -19,7 +19,13 @@
     "productivity",
     "business"
   ],
-  "related_applications": [],
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "/manifest.webmanifest",
+      "id": "https://xs_demo2_chat.milkies.work/"
+    }
+  ],
   "icons": [
     {
       "src": "/pwa/icon-192.png",
@@ -48,10 +54,10 @@
   ],
   "shortcuts": [
     {
-      "name": "xpresso_demo2_otpchat",
-      "short_name": "Start",
-      "description": "Open workspace",
-      "url": "/",
+      "name": "New Chat",
+      "short_name": "New",
+      "description": "Start fresh conversation",
+      "url": "/?action=new",
       "icons": [
         {
           "src": "/pwa/icon-192.png",

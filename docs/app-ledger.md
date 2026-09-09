@@ -151,12 +151,12 @@ Environment & Credentials:
 - [x] Phase 3: MODEL (Entities, fields, IndexedDB persistence target formalized) [3/11]
 - [x] Phase 4: COMPOSE (Module registration, route wiring, starter deletion) [4/11]
 - [x] Phase 5: SHAPE (5-class form implementations, screens registry) [5/11]
-- [ ] Phase 6: SKIN (Theme configuration, PWA assets, icons) [5/11]
-- [ ] Phase 7: BUILD (Thin E2E chat stream, breadth matrix completion) [5/11]
-- [ ] Phase 8: EVIDENCE (Gate script, TypeScript check, unit & browser test sweep) [5/11]
-- [ ] Phase 9: VERIFY (3-pass adversarial review) [5/11]
-- [ ] Phase 10: SHIP (Cloudflare Worker deployment, DNS record, Access OTP application) [5/11]
-- [ ] Phase 11: REPORT (Final release notes, GitHub repo publishing, v1.0.0 tag) [5/11]
+- [x] Phase 6: SKIN (Theme configuration, PWA assets, icons) [6/11]
+- [ ] Phase 7: BUILD (Thin E2E chat stream, breadth matrix completion) [6/11]
+- [ ] Phase 8: EVIDENCE (Gate script, TypeScript check, unit & browser test sweep) [6/11]
+- [ ] Phase 9: VERIFY (3-pass adversarial review) [6/11]
+- [ ] Phase 10: SHIP (Cloudflare Worker deployment, DNS record, Access OTP application) [6/11]
+- [ ] Phase 11: REPORT (Final release notes, GitHub repo publishing, v1.0.0 tag) [6/11]
 
 ---
 
@@ -197,6 +197,14 @@ Environment & Credentials:
   pnpm --filter web typecheck -> exit 0
   bash scripts/check_no_hardcoded_colors.sh -> PASS
   ```
+- **SKIN**:
+  ```text
+  apps/web/index.html title, description, and apple-mobile-web-app-title set to OTP Chat
+  KaTeX styles bundled with Vite, zero hardcoded color tokens
+  CSP inline script hashes recomputed: node scripts/csp-hashes.mjs -> exit 0
+  PWA assets regenerated: pnpm --filter web pwa:assets -> 5 icons + manifest.webmanifest
+  Full build passes: pnpm -r build -> exit 0
+  ```
 
 ---
 
@@ -209,7 +217,8 @@ Environment & Credentials:
 ---
 
 ## NEXT
-Advance to SKIN phase: styling refinement, KaTeX font bundling, PWA manifest and icons regeneration.
+Advance to BUILD phase: Cloudflare Worker backend (/api/me, /api/chat streaming relay), wrangler.toml routes, and browser test suite apps/web/tests/chat.browser.mjs.
+
 
 
 
