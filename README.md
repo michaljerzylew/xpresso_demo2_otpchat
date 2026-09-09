@@ -1,4 +1,5 @@
 # xpresso_demo2_otpchat
+> App Ledger: [docs/app-ledger.md](docs/app-ledger.md)
 
 A bare workspace with a starter screen, six local authentication screens, the configurator, the component library, seven packages, theme, motion and QA. No product modules, records or reference screenshots are included.
 
