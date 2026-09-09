@@ -1065,6 +1065,33 @@
   color: var(--xp-success);
 }
 
+.chat-user-logout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  min-block-size: 28px;
+  border: 1px solid var(--xp-border);
+  border-radius: var(--radius-s);
+  background: var(--xp-surface-muted);
+  color: var(--xp-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  margin-inline-start: auto;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color var(--xp-dur-ui) var(--xp-ease-out),
+              color var(--xp-dur-ui) var(--xp-ease-out),
+              border-color var(--xp-dur-ui) var(--xp-ease-out);
+}
+
+.chat-user-logout-btn:hover {
+  background: var(--xp-danger-soft);
+  color: var(--xp-danger);
+  border-color: var(--xp-danger);
+}
+
 .chat-sr-only {
   position: absolute;
   inline-size: 1px;

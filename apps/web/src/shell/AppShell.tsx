@@ -5,7 +5,7 @@ import { useDeviceClass, useDeviceClassBusy, useDeviceClassLock } from "@xp/runt
 import { resolveBottomRegion } from "@xp/shells/regions";
 import { MotionProvider } from "@xp/motion";
 import "@xp/motion/styles/motion.css";
-import { ChevronLeft, ChevronRight, Ellipsis, PanelRight, LogIn } from "lucide-react";
+import { ChevronLeft, ChevronRight, Ellipsis, PanelRight, LogIn, LogOut } from "lucide-react";
 import { ThemeMenu } from "./ThemeControl";
 import { resolveSections, isHomePath, type RouteSection } from "./sections";
 import { globalSearch, modules, resolveModule, resolveSection, secondaryTitles } from "./navigation";
@@ -21,7 +21,7 @@ function Navigation({ icons = false, close }: { icons?: boolean; close?: () => v
   const { pathname, search } = useLocation();
   const active = resolveModule(pathname);
   return <nav aria-label={icons ? "Workspace rail" : "Main navigation"} className={icons ? "workspace-links icon-links" : "workspace-links"}>
-    <NavLink to={"/login" + globalSearch(search)} onClick={close} aria-label="Account access" title={icons ? "Account access" : undefined} className="auth-nav-entry"><LogIn aria-hidden="true" /><span>Account access</span></NavLink>
+    <a href="/logout" onClick={close} aria-label="Sign out" title={icons ? "Sign out" : undefined} className="auth-nav-entry"><LogOut aria-hidden="true" /><span>Sign out</span></a>
     {secondaryNavigation.map(link => <NavLink key={link.path} to={link.path + globalSearch(search)} onClick={close} aria-label={link.label}><PanelRight aria-hidden="true" /><span>{link.label}</span></NavLink>)}
     {modules.map(({ id, path, label, icon: Icon }) => <Link key={path} to={path + globalSearch(search)} onClick={close} aria-label={label} title={icons ? label : undefined} aria-current={active?.id === id ? "page" : undefined}><Icon aria-hidden="true" /><span>{label}</span></Link>)}
   </nav>;

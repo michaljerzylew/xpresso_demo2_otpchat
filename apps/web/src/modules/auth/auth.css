@@ -50,3 +50,56 @@
 [data-device-class="M"] .auth-actions .kit-button[type="submit"] { grid-row: 2; }
 [data-device-class="M"] .auth-actions .kit-button[type="button"] { grid-row: 1; }
 [data-device-class="M"] .auth-heading h1 { font-size: 1.5rem; }
+
+/* Cloudflare Access OTP Active Card on /login */
+.auth-otp-notice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-s);
+  border: 1px solid var(--xp-primary);
+  border-radius: var(--radius-m);
+  background: var(--xp-primary-soft);
+  color: var(--xp-ink);
+  margin-block: var(--space-xs);
+}
+
+.auth-otp-notice-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+}
+
+.auth-otp-notice-icon {
+  inline-size: 20px;
+  block-size: 20px;
+  color: var(--xp-primary);
+  flex-shrink: 0;
+  margin-block-start: 2px;
+}
+
+.auth-otp-notice-header strong {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--xp-ink);
+}
+
+.auth-otp-notice-header p {
+  margin: 2px 0 0;
+  font-size: 0.8125rem;
+  color: var(--xp-muted);
+}
+
+.auth-otp-notice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-block-start: var(--space-2xs);
+}
+
+.auth-otp-notice-actions .kit-button {
+  min-block-size: 38px;
+  text-decoration: none;
+}
+

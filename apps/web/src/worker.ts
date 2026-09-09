@@ -43,6 +43,24 @@ export default {
     const url = new URL(request.url);
     const pathname = url.pathname;
 
+    // --- 0. Endpoint: Logout (/logout, /api/logout, /cdn-cgi/access/logout) ---
+    if (pathname === '/logout' || pathname === '/api/logout' || pathname === '/cdn-cgi/access/logout') {
+      const headers = new Headers();
+      headers.set('Location', 'https://milkies.cloudflareaccess.com/cdn-cgi/access/logout');
+      headers.append(
+        'Set-Cookie',
+        'CF_Authorization=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Secure; SameSite=None'
+      );
+      headers.append(
+        'Set-Cookie',
+        'CF_AppSession=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Secure; SameSite=None'
+      );
+      return new Response(null, {
+        status: 302,
+        headers,
+      });
+    }
+
     // --- 1. Endpoint: GET /api/me ---
     if (pathname === '/api/me') {
       if (request.method !== 'GET') {

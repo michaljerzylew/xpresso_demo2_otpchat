@@ -21,6 +21,7 @@ import {
   Copy,
   Check,
   ChevronDown,
+  LogOut,
 } from "lucide-react";
 
 function ChatInner() {
@@ -150,6 +151,14 @@ function ChatInner() {
             >
               <Plus aria-hidden="true" className="chat-icon-m" />
             </button>
+            <a
+              href="/logout"
+              className="chat-action-btn"
+              title="Sign out of Cloudflare Access"
+              aria-label="Sign out"
+            >
+              <LogOut aria-hidden="true" className="chat-icon-m" />
+            </a>
           </div>
         </header>
 

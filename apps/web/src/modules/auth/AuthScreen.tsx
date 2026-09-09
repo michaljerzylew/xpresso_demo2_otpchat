@@ -2,7 +2,7 @@ import { brand } from "../../app-modules";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useDeviceClass } from "@xp/runtime";
-import { ArrowLeft, ArrowRight, CheckCircle2, ShieldCheck, Link2Off } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, ShieldCheck, Link2Off, LogOut } from "lucide-react";
 import { Button, Input, PasswordInput, Layer, Badge } from "../kit";
 import { authDemo } from "../../data/auth";
 import { authHref, blankValues, checkCode, normalizeEmail, passwordChecks, safeDestination, validate, type AuthErrors, type AuthValues } from "./logic";
@@ -109,6 +109,27 @@ export function AuthScreenView({ screen }: { screen: AuthScreen }) {
   const completedText = screen === "forgot-password" ? "Reset link ready" : screen === "reset-password" ? "Password updated" : screen === "verify-email" ? "Email verified" : "You're signed in";
   return <AuthArrival screen={screen}><section className="auth-screen" data-auth-screen={screen} data-auth-state={success ? "saved" : loading ? "loading" : failure ? "error" : fixture === "empty" ? "empty" : "default"}>
     <div className="auth-heading"><Badge tone="primary">{screen === "two-factor" ? "Account protection" : screen === "verify-email" ? "Email confirmation" : "Team access"}</Badge><h1>{success ? completedText : expired ? "Request a fresh reset link" : titles[screen]}</h1>{!success && !expired && <p>{recovery ? "Use a recovery code" : descriptions[screen]}</p>}</div>
+    {screen === "login" && !success && (
+      <div className="auth-otp-notice" role="region" aria-label="Cloudflare Access OTP Status">
+        <div className="auth-otp-notice-header">
+          <ShieldCheck aria-hidden="true" className="auth-otp-notice-icon" />
+          <div>
+            <strong>Cloudflare Access OTP Active</strong>
+            <p>You are already authenticated via Zero Trust OTP. Manual password login is not required.</p>
+          </div>
+        </div>
+        <div className="auth-otp-notice-actions">
+          <Link to="/" className="kit-button" data-tone="primary" data-variant="solid">
+            Open OTP Chat
+            <ArrowRight aria-hidden="true" />
+          </Link>
+          <a href="/logout" className="kit-button" data-variant="quiet" title="Sign out of Cloudflare Access">
+            <LogOut aria-hidden="true" />
+            <span>Sign out</span>
+          </a>
+        </div>
+      </div>
+    )}
     {success ? <div className="auth-success" ref={successRef} tabIndex={-1} role="status" aria-label={completedText}><CheckCircle2 aria-hidden="true" /><p>{screen === "forgot-password" ? `If ${values.email || session.email} has an account, a reset link would be sent. This demo sends no email.` : screen === "reset-password" ? "Your local demo password has changed. Use it the next time you sign in." : `${session.name}, your ${brand.name} demo account is ready.`}</p><Link className="kit-button" data-tone="primary" data-variant="solid" to={screen === "forgot-password" ? href("/reset-password", { token: authDemo.resetToken }) : screen === "reset-password" ? href("/login") : screen === "verify-email" ? href("/two-factor") : href(safeDestination(params.get("next")))}>{screen === "forgot-password" ? "Open demo reset link" : screen === "reset-password" ? "Return to sign in" : screen === "verify-email" ? "Continue to account protection" : "Open workspace"}<ArrowRight aria-hidden="true" /></Link></div> : expired ? <div className="auth-success" role="alert"><Link2Off aria-hidden="true" /><p>This link is missing, expired or already used. Request another to choose a new password.</p><Link className="kit-button" data-tone="primary" data-variant="solid" to={href("/forgot-password")}>Get a new reset link</Link></div> : <form ref={formRef} className="auth-form" noValidate onSubmit={submit}>
       <div className="auth-fields" data-registration-form={screen === "register" ? registrationForms[deviceClass] : undefined}>
         {paged && <div className="auth-step"><span>Step {step + 1} of 2 · {step ? "Account security" : "Your details"}</span>{step === 1 && <Button type="button" variant="quiet" onClick={() => changeStep(0)}><ArrowLeft aria-hidden="true" />Edit details</Button>}</div>}

@@ -10,6 +10,7 @@ import {
   Trash2,
   MessageSquare,
   ShieldCheck,
+  LogOut,
   X,
 } from "lucide-react";
 
@@ -223,16 +224,22 @@ export function SessionList({ onSelectSession }: SessionListProps) {
         )}
       </div>
 
-      {/* 4. User Profile Footer */}
+      {/* 4. User Profile Footer with Direct Cloudflare Access Logout */}
       <div className="chat-sidebar-user">
         <div className="chat-user-avatar">{user?.initials || "ML"}</div>
         <div className="chat-user-meta">
           <span className="chat-user-name">{user?.name || "Michał Lew"}</span>
           <span className="chat-user-email">{user?.email || "michaljerzylew@gmail.com"}</span>
         </div>
-        <div className="chat-user-badge" title="Cloudflare Access Authenticated">
-          <ShieldCheck aria-hidden="true" className="chat-icon-s" />
-        </div>
+        <a
+          href="/logout"
+          className="chat-user-logout-btn"
+          title="Sign out of Cloudflare Access"
+          aria-label="Sign out"
+        >
+          <LogOut aria-hidden="true" className="chat-icon-s" />
+          <span className="chat-logout-text">Log out</span>
+        </a>
       </div>
     </div>
   );
