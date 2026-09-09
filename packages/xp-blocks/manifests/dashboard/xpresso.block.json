@@ -1,0 +1,35 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "dashboard",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "glance",
+  "contract": {
+    "kind": "content",
+    "exportName": "Dashboard",
+    "sourceVariants": 9,
+    "presets": 2,
+    "compositions": ["priority-compact", "bento-wide"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S4", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 48, "moduleMaxSvh": 220 },
+    "TP": { "form": "rail", "targetFloorPx": 48 },
+    "TL": { "form": "grid-2", "targetFloorPx": 44 },
+    "DS": { "form": "grid-6", "maxWidthRem": 80 },
+    "DW": { "form": "grid-6", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One priority manifest keeps every source-owned dashboard job reachable while compact classes mount a primary module plus one selected work group and wide classes restore a bounded multi-track bento.",
+  "interaction": {
+    "oneManifestOwner": true,
+    "oneCompactChartPanel": true,
+    "collectionDetailFocusReturn": true,
+    "fixtureOwnedFilters": true
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-stat-value"],
+  "budgets": { "mobile_screens": 2.2, "touchTargetCoarse": 48, "horizontalOverflow": "none" },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

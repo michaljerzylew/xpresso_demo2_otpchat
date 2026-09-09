@@ -1,0 +1,37 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "bento-grid",
+  "version": "0.3.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "content",
+    "exportName": "Bento",
+    "sourceVariants": 28,
+    "presets": [
+      "uniform-feature", "editorial-mosaic", "metric-mosaic", "integration-proof",
+      "dark-product-mosaic", "product-proof", "commerce-mosaic", "workflow-mosaic",
+      "finance-workspace", "team-workflow", "talent-mosaic", "theme-workspace",
+      "ecosystem-proof", "design-system-mosaic",
+      "illustrated-feature-mosaic", "community-mosaic", "service-mosaic", "analytics-mosaic"
+    ],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "rail", "targetFloorPx": 48 },
+    "TP": { "form": "grid-2", "targetFloorPx": 48 },
+    "TL": { "form": "pane", "targetFloorPx": 44 },
+    "DS": { "form": "grid-4", "targetFloorPx": 44 },
+    "DW": { "form": "grid-5", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One art-directed composition owner preserves 130 ranked source tiles while role-routed compact rails and wide 12-track mosaics keep every payload reachable without hidden twins.",
+  "interaction": { "oneStateOwner": true, "manualRails": true, "overlays": true, "autoplay": false, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "local-only", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "One ranked tile inventory changes from a compact rail to a two-column field and then a 12-track mosaic without duplicate state owners." }
+}

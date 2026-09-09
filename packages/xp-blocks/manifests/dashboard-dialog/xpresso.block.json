@@ -1,0 +1,45 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "dashboard-dialog",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "overlay",
+  "contract": {
+    "kind": "content",
+    "exportName": "DashboardDialog",
+    "sourceVariants": 26,
+    "modalPresets": 25,
+    "popoutPresets": 1,
+    "intentCounts": { "confirm": 3, "pick": 8, "edit": 13, "search": 1, "popout": 1 },
+    "profiles": ["P1", "P2", "P3", "P4", "P5", "P6", "P7"]
+  },
+  "fluid": false,
+  "forms": {
+    "M": { "form": "takeover", "targetFloorPx": 48 },
+    "TP": { "form": "sheet", "targetFloorPx": 44 },
+    "TL": { "form": "drawer-side", "targetFloorPx": 44 },
+    "DS": { "form": "dialog" },
+    "DW": { "form": "dialog" }
+  },
+  "whyPolymorphic": "One typed content model resolves by semantic intent and load to a native modal or contextual Popout without source-slug layout branching.",
+  "engine": "swap",
+  "interaction": {
+    "oneOverlayOwner": true,
+    "dirtyDismissGuard": true,
+    "keyboardInset": true,
+    "focusReturn": true,
+    "activityFeedRoleMenu": false
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-s", "--role-body", "--xp-keyboard-inset"],
+  "budgets": {
+    "horizontalOverflow": "none",
+    "mobilePrimaryAction": "visible",
+    "mobileTargetPx": 48,
+    "tabletTargetPx": 44
+  },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "Modal, drawer, sheet, takeover and contextual feed roles vary while fixture content and action ownership remain invariant."
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "consent-surface",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "shell",
+    "exportName": "ConsentSurface",
+    "sourceVariants": 3
+  },
+  "fluid": false,
+  "engine": "swap",
+  "forms": {
+    "M": { "form": "sheet" },
+    "TP": { "form": "band" },
+    "TL": { "form": "popover" },
+    "DS": { "form": "popover" },
+    "DW": { "form": "popover" }
+  },
+  "whyPolymorphic": "Ambient legal consent must become a shallow bottom sheet, floating portrait band, or corner card without duplicating its decision owner.",
+  "interaction": {
+    "overlays": ["pick"],
+    "singleDecisionOwner": true,
+    "hostPersistence": true
+  },
+  "tokens": [
+    "--xp-bottom-owner-height",
+    "--xp-bottom-safe-area",
+    "--xp-bottom-clearance",
+    "--tap-min",
+    "--role-body",
+    "--role-card-title",
+    "--space-xs-s",
+    "--space-s-m"
+  ],
+  "budgets": {
+    "mobile_screens": 0.25,
+    "touchTargetCoarse": 48,
+    "destinationsReachableTaps": 2
+  },
+  "baseline": {
+    "javascriptOff": false,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "The unresolved region becomes an intent-pick sheet or popover while the same category and decision model remains the sole semantic owner."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "user-schedule",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "content",
+    "exportName": "EventDiscovery",
+    "sourceVariants": 2,
+    "presets": 2,
+    "compositions": ["event-discovery", "schedule-panel"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 48, "moduleMaxSvh": 160 },
+    "TP": { "form": "grid-2", "targetFloorPx": 48 },
+    "TL": { "form": "pane", "targetFloorPx": 44 },
+    "DS": { "form": "grid-3", "targetFloorPx": 44 },
+    "DW": { "form": "grid-4", "maxWidthRem": 80 }
+  },
+  "whyPolymorphic": "Event discovery changes from a poster deck to bounded media rows while the personal schedule preserves a complete seven-day control and fixed meeting actions on every class.",
+  "interaction": {
+    "dateFacetAlwaysReachable": true,
+    "weekDaysVisibleAt320": 7,
+    "fixedTrailingMeetingAction": true,
+    "overlayOwner": "AdaptiveOverlay"
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title"],
+  "budgets": { "mobile_screens": 1.6, "touchTargetCoarse": 44, "mobileTargetPx": 48, "horizontalOverflow": "none" },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

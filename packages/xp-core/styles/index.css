@@ -1,0 +1,6 @@
+@import "../tokens/dist/xp-tokens.css";
+@import "./dist/detection.css";
+@import "./slots.css";
+@import "./algebra.css";
+
+@layer xp.algebra, xp.shell, xp.block, xp.enhance;

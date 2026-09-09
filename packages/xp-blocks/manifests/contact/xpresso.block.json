@@ -1,0 +1,31 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "contact",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "Contact",
+    "sourceVariants": 16,
+    "presets": ["photo-info-grid", "dark-info-card", "hero-overlap", "map-services", "illustrated-offices", "channel-photo-overlap", "office-photo-band", "page-shell-split", "hero-contact-panel", "compact-contact-card", "photo-collage", "office-client-proof", "testimonial-form", "dashboard-proof", "portrait-contact", "profile-availability"],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 44 },
+    "TP": { "form": "stack", "targetFloorPx": 44 },
+    "TL": { "form": "grid-2", "targetFloorPx": 44 },
+    "DS": { "form": "pane", "targetFloorPx": 24 },
+    "DW": { "form": "pane", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One Contact owner keeps sixteen exact directory, channel, form, shell and proof jobs while five native forms adapt composition without cloning forms, state or content.",
+  "interaction": { "oneStateOwner": true, "keyboardSelection": true, "touchSelection": true, "autoplay": false, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "owned-rails-only", "remoteMedia": 0, "mobileTargetPx": 44, "desktopTargetPx": 24 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

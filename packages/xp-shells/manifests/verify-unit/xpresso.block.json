@@ -1,0 +1,40 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "verify-unit",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "block",
+    "exportName": "VerifyUnit",
+    "sourceVariants": 6,
+    "presets": ["email-verification"],
+    "semanticOwners": 1,
+    "controller": "VerifyUnit"
+  },
+  "fluid": true,
+  "engine": "css",
+  "slotRange": { "min": "S1", "max": "S6" },
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 44 },
+    "TP": { "form": "stack", "targetFloorPx": 44 },
+    "TL": { "form": "stack", "targetFloorPx": 44 },
+    "DS": { "form": "stack", "targetFloorPx": 24 },
+    "DW": { "form": "stack", "targetFloorPx": 24 }
+  },
+  "whyPolymorphic": "One verification state owner preserves inbox, continuation, resend and edit behavior while six existing AuthShell presets relocate each source's proof across five device classes.",
+  "interaction": {
+    "singleFormOwner": true,
+    "absoluteResendDeadline": true,
+    "visibilityFastPath": true,
+    "boundedPolling": true,
+    "singleFlight": true,
+    "staleResultGuard": true,
+    "singleNavigation": true,
+    "hostVerifiedHttpsInboxOnly": true
+  },
+  "tokens": ["--xp-class", "--tap-min", "--role-body", "--space-xs-s", "--space-s-m"],
+  "budgets": { "coarseTargetPx": 44, "fineTargetPx": 24, "heldDwSlots": [240, 320, 420, 560, 720, 960], "photoSeats": 1, "photoHeld": 1 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true, "statusAnnouncements": true, "visibleFocus": true }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "footer",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "navigate",
+  "contract": {
+    "kind": "content",
+    "exportName": "Footer",
+    "sourceVariants": 14,
+    "presets": ["compact", "columns", "display"],
+    "oneSemanticOwner": true,
+    "megaFooterGroupSeam": { "min": 0, "max": 12 },
+    "megaExtensionRegions": ["contact", "group-sections", "support-panel", "value-prop-strip", "tags", "products"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "disclosure", "targetFloorPx": 48 },
+    "TP": { "form": "grid-2", "targetFloorPx": 48 },
+    "TL": { "form": "grid-3", "targetFloorPx": 44 },
+    "DS": { "form": "grid-4", "targetFloorPx": 44 },
+    "DW": { "form": "grid-5", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One source-owned navigation tree becomes a single-open compact accordion only when its local slot cannot keep footer columns readable, while display, newsletter and identity anatomy remain in the same semantic footer owner.",
+  "interaction": {
+    "singleAccordion": true,
+    "newsletterStates": ["idle", "submitting", "error", "success"],
+    "manualRailBoundaryState": true,
+    "marqueePauseOwner": true,
+    "hiddenTwins": false
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--xp-bottom-clearance"],
+  "budgets": { "horizontalOverflow": "identity-rail-only", "mobileTargetPx": 48, "safeAreaBottom": true },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "Collapsed accordion groups are hidden from the accessibility tree and restored by their controlling trigger." }
+}

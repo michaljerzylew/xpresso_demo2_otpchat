@@ -1,0 +1,328 @@
+/* Issue #41. The panel is chrome, the app is the subject: hairlines and one dense row shape,
+   with the ramps and the guard badges as the only saturated things on the surface. */
+
+.xp-configurator {
+  /* Positioned so the visually-hidden controls below are contained. An absolutely positioned
+     element with no positioned ancestor is laid out against the initial containing block, and
+     its static position deep inside a scrolled panel then stretched the whole document. */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+  min-block-size: 0;
+  background: var(--xp-surface);
+}
+.cfg-visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* The panel is portalled out of the shell when it is a sheet or a drawer, so it carries its own
+   control surface instead of inheriting the workspace's. Docked and sheeted look identical. */
+.xp-configurator :is(.cfg-action, .cfg-icon, .cfg-preset),
+.xp-configurator .cfg-row__control select,
+.xp-configurator .cfg-more textarea {
+  font: inherit;
+  color: var(--xp-ink);
+  background: var(--xp-surface-raised);
+  border: 1px solid var(--xp-border);
+  border-radius: var(--radius-s);
+  padding: var(--space-3xs) var(--space-2xs);
+  min-block-size: 44px;
+  min-inline-size: 0;
+  cursor: pointer;
+}
+[data-xp-input="fine"] .xp-configurator :is(.cfg-action, .cfg-icon, .cfg-preset),
+[data-xp-input="fine"] .xp-configurator .cfg-row__control select { min-block-size: 32px; }
+.xp-configurator .cfg-more textarea { cursor: text; }
+.xp-configurator :is(.cfg-action, .cfg-icon, .cfg-preset, .cfg-more > summary):hover { background: var(--xp-surface-muted); }
+.xp-configurator :is(.cfg-action, .cfg-icon):disabled { color: var(--xp-muted); background: var(--xp-surface-muted); cursor: default; }
+.xp-configurator :focus-visible { outline: 2px solid var(--xp-focus); outline-offset: 2px; }
+.xp-configurator svg { inline-size: 16px; block-size: 16px; flex-shrink: 0; stroke-width: 1.75; }
+.xp-configurator .cfg-icon svg { inline-size: 18px; block-size: 18px; }
+.xp-configurator .xp-segmented { inline-size: auto; max-inline-size: 100%; }
+/* The primitives live in @layer xp.primitives, so the shell's unlayered control rule for sheet
+   surfaces outranks them however specific they are, and a segmented control inside a sheet loses
+   its selected fill. Restating it here, unlayered, is the only way to hand it back. */
+.xp-configurator .xp-segmented__item { border: 0; background: transparent; color: var(--xp-muted); }
+.xp-configurator .xp-segmented__item:hover:not([data-state="checked"]) { background: var(--xp-surface-muted); }
+.xp-configurator .xp-segmented__item[data-state="checked"] { color: var(--xp-surface); background: var(--xp-ink); box-shadow: none; font-weight: 600; }
+
+.cfg-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  padding: var(--space-2xs) var(--space-s);
+  border-block-end: 1px solid var(--xp-border);
+  background: var(--xp-surface-raised);
+}
+.cfg-head h2 { font-size: 15px; font-weight: 650; }
+.cfg-head p { margin-block-start: 2px; font-size: 12px; color: var(--xp-muted); }
+.cfg-history { display: flex; gap: var(--space-3xs); flex-shrink: 0; }
+
+.cfg-body { flex: 1; min-block-size: 0; overflow: auto; overscroll-behavior: contain; }
+
+.cfg-group { padding: var(--space-xs) var(--space-s) var(--space-s); border-block-end: 1px solid var(--xp-border); }
+.cfg-group:last-child { border-block-end: 0; }
+.cfg-group__head { margin-block-end: var(--space-2xs); }
+.cfg-group__head h3 { font-size: 13px; font-weight: 650; color: var(--xp-ink); }
+.cfg-group__head p { margin-block-start: 2px; font-size: 12px; line-height: 1.45; color: var(--xp-muted); }
+
+/* One row shape: name on the left, live value on the right, control below or beside. */
+.cfg-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--space-xs);
+  row-gap: 2px;
+  padding-block: var(--space-3xs);
+}
+.cfg-row__label { font-size: 13px; color: var(--xp-ink); }
+.cfg-row__value { font-size: 13px; color: var(--xp-muted); font-variant-numeric: tabular-nums; }
+.cfg-row__control { grid-column: 1 / -1; min-inline-size: 0; }
+.cfg-row:not(:has(.cfg-row__value)) .cfg-row__control { grid-column: 2; grid-row: 1; justify-self: end; }
+.cfg-row__hint { grid-column: 1 / -1; font-size: 12px; color: var(--xp-muted); }
+
+.xp-configurator .cfg-slider {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  inline-size: 100%;
+  block-size: 44px;
+  min-block-size: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+}
+[data-xp-input="fine"] .xp-configurator .cfg-slider { block-size: 26px; min-block-size: 26px; }
+.cfg-slider::-webkit-slider-runnable-track { block-size: 4px; border-radius: 2px; background: var(--xp-surface-muted); }
+.cfg-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  inline-size: 18px;
+  block-size: 18px;
+  margin-block-start: -7px;
+  border-radius: 50%;
+  border: 2px solid var(--xp-surface-raised);
+  background: var(--xp-primary);
+}
+.cfg-slider::-moz-range-track { block-size: 4px; border-radius: 2px; background: var(--xp-surface-muted); }
+.cfg-slider::-moz-range-thumb {
+  inline-size: 14px;
+  block-size: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--xp-surface-raised);
+  background: var(--xp-primary);
+}
+
+/* Two columns everywhere: six presets make three even rows in a 268px drawer, in a 344px docked
+   pane and in a full-width sheet alike, with no orphan row and no six-row column. */
+.cfg-presets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; margin-block-end: var(--space-2xs); }
+.xp-configurator .cfg-preset {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  min-block-size: 44px;
+  border: 1px solid var(--xp-border);
+  border-radius: var(--radius-s);
+  background: var(--xp-surface-raised);
+  color: var(--xp-ink);
+  font-size: 13px;
+  text-align: start;
+}
+[data-xp-input="fine"] .xp-configurator .cfg-preset { min-block-size: 34px; }
+.xp-configurator .cfg-preset[data-state="checked"] { border-color: var(--xp-primary); background: var(--xp-primary-soft); color: var(--xp-primary); font-weight: 600; }
+.cfg-preset__swatches { display: flex; flex-shrink: 0; }
+.cfg-preset__swatches span { inline-size: 9px; block-size: 18px; border: 1px solid var(--xp-border); border-inline-start-width: 0; }
+.cfg-preset__swatches span:first-child { border-inline-start-width: 1px; border-start-start-radius: 3px; border-end-start-radius: 3px; }
+.cfg-preset__swatches span:last-child { border-start-end-radius: 3px; border-end-end-radius: 3px; }
+/* Never truncated and never hyphenated mid-word: "Grap/hite" is worse than either. The tile's
+   own gap, padding and swatch strip are fixed, so the label keeps its room at every spacing
+   scale, and only a genuine overflow would break a word. */
+.cfg-preset__name { min-inline-size: 0; overflow-wrap: break-word; hyphens: none; }
+.cfg-basis { font-size: 12px; color: var(--xp-muted); margin-block-end: var(--space-2xs); }
+
+.cfg-family { padding-block: var(--space-2xs); border-block-start: 1px solid var(--xp-border); }
+.cfg-family__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2xs); }
+.cfg-family__head h4 { font-size: 13px; font-weight: 600; }
+
+.cfg-ramp { display: flex; block-size: 20px; margin-block: var(--space-3xs); border: 1px solid var(--xp-border); border-radius: var(--radius-s); overflow: hidden; }
+.cfg-ramp__tone { flex: 1; }
+
+.cfg-guard { display: inline-flex; align-items: center; gap: 4px; padding: 2px var(--space-3xs); border-radius: var(--radius-s); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; }
+.cfg-guard[data-state="pass"] { color: var(--xp-success); background: var(--xp-success-soft); }
+.cfg-guard[data-state="fail"] { color: var(--xp-danger); background: var(--xp-danger-soft); }
+/* The glyph carries the verdict too, so the badge never speaks by colour alone. */
+.cfg-guard[data-state="pass"]::after { content: "\2713"; }
+.cfg-guard[data-state="fail"]::after { content: "\2715"; }
+
+.cfg-guard-report { margin-block-start: var(--space-2xs); font-size: 12px; }
+.cfg-guard-report[data-state="pass"] { color: var(--xp-muted); }
+.cfg-guard-report[data-state="fail"] { padding: var(--space-2xs); border-radius: var(--radius-s); color: var(--xp-ink); background: var(--xp-danger-soft); }
+.cfg-guard-report ul { margin-block-start: var(--space-3xs); display: grid; gap: 2px; }
+.cfg-guard-report li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: var(--space-2xs); font-variant-numeric: tabular-nums; }
+.cfg-guard-report__pair { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cfg-guard-report__mode, .cfg-guard-report__ratio { color: var(--xp-muted); }
+
+.cfg-specimen { margin-block-start: var(--space-2xs); padding: var(--space-2xs); border: 1px solid var(--xp-border); border-radius: var(--radius-s); }
+.cfg-specimen p { font-size: 15px; line-height: 1.4; }
+.cfg-specimen__sans { font-family: var(--xp-font-sans); }
+.cfg-specimen__serif { font-family: var(--xp-font-serif); }
+.cfg-specimen__mono { font-family: var(--xp-font-mono); font-size: 13px; color: var(--xp-muted); }
+
+.cfg-more { border-block-start: 1px solid var(--xp-border); }
+.xp-configurator .cfg-more > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2xs);
+  min-block-size: 44px;
+  padding-block: var(--space-3xs);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+[data-xp-input="fine"] .xp-configurator .cfg-more > summary { min-block-size: 32px; }
+.cfg-more > summary::-webkit-details-marker { display: none; }
+.cfg-more > summary::after { content: "+"; font-size: 15px; font-weight: 400; color: var(--xp-muted); }
+.cfg-more[open] > summary::after { content: "\2212"; }
+.cfg-more__meta { margin-inline-start: auto; margin-inline-end: var(--space-2xs); font-weight: 400; font-size: 12px; color: var(--xp-muted); }
+.cfg-more textarea { inline-size: 100%; font-family: var(--xp-font-mono); font-size: 12px; }
+.cfg-paste { display: block; font-size: 12px; color: var(--xp-muted); }
+.cfg-code { max-block-size: 220px; overflow-y: auto; padding: var(--space-2xs); border: 1px solid var(--xp-border); border-radius: var(--radius-s); background: var(--xp-surface-muted); font-family: var(--xp-font-mono); font-size: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+.cfg-actions { display: flex; flex-wrap: wrap; gap: var(--space-3xs); margin-block-end: var(--space-3xs); }
+.xp-configurator .cfg-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3xs);
+  flex: 1 1 auto;
+  min-inline-size: 136px;
+  min-block-size: 44px;
+  font-size: 13px;
+}
+[data-xp-input="fine"] .xp-configurator .cfg-action { min-block-size: 34px; }
+.xp-configurator .cfg-icon { display: grid; place-items: center; inline-size: 44px; block-size: 44px; min-block-size: 44px; padding: 0; }
+[data-xp-input="fine"] .xp-configurator .cfg-icon { inline-size: 32px; block-size: 32px; min-block-size: 32px; }
+.cfg-status { min-block-size: 1.4em; font-size: 12px; color: var(--xp-success); }
+.cfg-problem { font-size: 12px; color: var(--xp-danger); }
+
+.cfg-tabs { display: flex; flex-direction: column; min-block-size: 0; flex: 1; }
+.cfg-tabs__list { display: flex; gap: 2px; margin: var(--space-2xs) var(--space-s); padding: 3px; background: var(--xp-surface-muted); border-radius: var(--radius-m); }
+.xp-configurator .cfg-tabs__trigger {
+  flex: 1;
+  min-inline-size: 0;
+  min-block-size: 44px;
+  border: 0;
+  border-radius: calc(var(--radius-m) - 3px);
+  background: transparent;
+  color: var(--xp-muted);
+  font-size: 13px;
+}
+.xp-configurator .cfg-tabs__trigger[data-state="active"] { background: var(--xp-surface-raised); color: var(--xp-ink); font-weight: 600; }
+.cfg-tabs__panel:focus-visible { outline: 2px solid var(--xp-focus); outline-offset: -2px; }
+
+/* Panel geometry per shell region: docked pane, side drawer or bottom sheet. */
+/*
+ * A pane only scrolls if its grid row has a definite height, and an auto row takes its height from
+ * the tallest item, so a pane taller than the viewport stretches the row instead of scrolling in
+ * it. A zero base height keeps the pane out of intrinsic row sizing; `min-block-size` then
+ * stretches it back to the row the stage actually has. Scoped to this route: the shell's other
+ * routes are shorter than a viewport, so the row never grows and nothing changes for them.
+ */
+.workspace .route-panes:has(.cfg-surface) > :is(.route-detail, .route-inspector) { block-size: 0; min-block-size: 100%; }
+.workspace .route-panes:has(.xp-configurator) { grid-template-columns: minmax(0, 1fr); }
+.workspace .route-panes[data-inspector="true"]:has(.xp-configurator) { grid-template-columns: minmax(0, 1fr) 344px; }
+.workspace .route-inspector:has(.xp-configurator) { padding: 0; background: var(--xp-surface); }
+.sheet-body:has(.xp-configurator) { padding: 0; }
+.workspace-sheet .xp-configurator { block-size: 100%; }
+.workspace-sheet .cfg-tabs__list { position: sticky; inset-block-start: 0; z-index: 1; background: var(--xp-surface); }
+/* The sheet's own header carries the title, the history controls and the close control, so the
+   panel adds no chrome of its own inside one: a second band would eat scarce sheet height. */
+.sheet-header .cfg-history { display: flex; gap: var(--space-3xs); }
+
+/* The preview strip: real viewports, scaled into one band, scrolled sideways. */
+.cfg-strip { display: grid; gap: var(--space-2xs); }
+.cfg-strip__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-s); flex-wrap: wrap; }
+.cfg-strip__head h2 { font-size: 15px; font-weight: 650; }
+.cfg-strip__route { display: flex; align-items: center; gap: var(--space-3xs); font-size: 13px; color: var(--xp-muted); }
+.cfg-strip__rail { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-s); }
+/* min-content, so the tile is exactly as wide as its scaled frame: a caption that grew with the
+   Open action would otherwise set the tile's width and leave an empty strip beside the frame. */
+.cfg-preview { flex: 0 0 auto; margin: 0; inline-size: min-content; }
+.cfg-preview__viewport { position: relative; display: block; overflow: hidden; border: 1px solid var(--xp-border); border-radius: var(--radius-m); background: var(--xp-surface); }
+.cfg-preview__viewport[data-ready="false"] { background: var(--xp-surface-muted); min-inline-size: 3rem; min-block-size: 3rem; }
+.cfg-preview__pending { position: absolute; inset: 0; display: grid; place-items: center; padding: var(--space-3xs); font-size: 12px; color: var(--xp-muted); }
+.cfg-preview iframe { display: block; border: 0; }
+.cfg-strip__toggle { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2xs); align-self: flex-start; font-size: 13px; font-weight: 600; }
+.cfg-preview figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 2px var(--space-3xs); padding-block-start: var(--space-3xs); font-size: 12px; font-weight: 600; color: var(--xp-ink); }
+.cfg-preview figcaption b { font-weight: 600; }
+.cfg-preview figcaption span { font-weight: 400; font-variant-numeric: tabular-nums; color: var(--xp-muted); }
+/* A thumbnail that cannot be opened is a picture of the app, not a look at it. */
+.cfg-preview__open { margin-inline-start: auto; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-3xs); min-block-size: 44px; min-inline-size: 44px; padding-inline: var(--space-3xs); border-radius: var(--radius-s); color: var(--xp-primary); font-size: 12px; font-weight: 600; text-decoration: none; }
+[data-xp-input="fine"] .cfg-preview__open { min-block-size: 28px; }
+.cfg-preview__open svg { inline-size: 14px; block-size: 14px; }
+.cfg-strip__note { font-size: 12px; color: var(--xp-muted); }
+
+/* Specimen: the theme on the parts a workspace repeats, so the panel is not the only proof. */
+.cfg-specimen-card { border: 1px solid var(--xp-border); border-radius: var(--radius-m); background: var(--xp-surface-raised); padding: var(--space-s); }
+.cfg-specimen-card > header { margin-block-end: var(--space-s); }
+.cfg-specimen-card h2 { font-size: 15px; font-weight: 650; }
+.cfg-specimen-card > header p { margin-block-start: 2px; font-size: 13px; color: var(--xp-muted); }
+.cfg-specimen-card__grid { display: grid; gap: var(--space-m); grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); }
+.cfg-sample { display: grid; gap: var(--space-2xs); align-content: start; }
+.cfg-sample h3 { font-size: 13px; font-weight: 650; }
+.cfg-sample p { font-size: 14px; max-inline-size: var(--measure-body); }
+.cfg-sample__muted { color: var(--xp-muted); }
+.cfg-sample__buttons { display: flex; gap: var(--space-2xs); flex-wrap: wrap; }
+.workspace .cfg-sample__primary { border-color: var(--xp-primary); background: var(--xp-primary); color: var(--xp-on-primary); font-weight: 600; }
+.workspace .cfg-sample__primary:hover { background: var(--xp-primary); }
+.cfg-sample__field { display: grid; gap: var(--space-3xs); font-size: 13px; color: var(--xp-muted); max-inline-size: 20rem; }
+.cfg-chips { display: flex; flex-wrap: wrap; gap: var(--space-3xs); }
+.cfg-chip { padding: 2px var(--space-2xs); border-radius: var(--radius-xl); font-size: 12px; font-weight: 600; }
+.cfg-chip[data-family="primary"] { color: var(--xp-primary); background: var(--xp-primary-soft); }
+.cfg-chip[data-family="accent"] { color: var(--xp-accent); background: var(--xp-accent-soft); }
+.cfg-chip[data-family="success"] { color: var(--xp-success); background: var(--xp-success-soft); }
+.cfg-chip[data-family="warning"] { color: var(--xp-warning); background: var(--xp-warning-soft); }
+.cfg-chip[data-family="danger"] { color: var(--xp-danger); background: var(--xp-danger-soft); }
+.cfg-elevation { display: grid; grid-template-columns: repeat(auto-fit, minmax(4.5rem, 1fr)); gap: var(--space-s); max-inline-size: 22rem; }
+.cfg-elevation__card { display: grid; place-items: center; block-size: 3rem; border-radius: var(--radius-m); background: var(--xp-surface); font-size: 12px; color: var(--xp-muted); }
+.cfg-elevation__card[data-size="s"] { box-shadow: var(--xp-shadow-s); }
+.cfg-elevation__card[data-size="m"] { box-shadow: var(--xp-shadow-m); }
+.cfg-elevation__card[data-size="l"] { box-shadow: var(--xp-shadow-l); }
+.cfg-surface { gap: var(--space-m); }
+.cfg-nested { font-size: 13px; color: var(--xp-muted); }
+
+/* The configurator's pane is the route's point, so its trigger is a labelled control. */
+.workspace .pane-actions:has(span) button { inline-size: auto; padding-inline: var(--space-2xs); gap: var(--space-3xs); display: inline-flex; align-items: center; font-size: 13px; font-weight: 600; }
+.cfg-surface header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+.cfg-surface > header > p:first-child { font-size: 12px; font-weight: 600; color: var(--xp-muted); }
+.cfg-surface > header > p:last-child { margin-block-start: var(--space-3xs); font-size: 14px; color: var(--xp-muted); max-inline-size: var(--measure-body); }
+.cfg-surface code { font-family: var(--xp-font-mono); font-size: 13px; padding: 1px 4px; border-radius: 4px; background: var(--xp-surface-muted); color: var(--xp-ink); }
+
+/* Screenshot review fixes. */
+/* The inspector's own h2 rule draws a rule under any heading it contains; the panel's title
+   already has the header's border, so it must not carry a second one. */
+.route-inspector .xp-configurator :is(h2, h3, h4) { padding-block-end: 0; border-block-end: 0; margin-block: 0; }
+.route-inspector .xp-configurator .cfg-head h2 { font-size: 15px; }
+.route-inspector .xp-configurator .cfg-group__head h3 { font-size: 13px; }
+/* A three-way segmented control never fits beside its label in a 344px pane. */
+.cfg-row:not(:has(.cfg-row__value)) .cfg-row__control:has(.xp-segmented) { grid-column: 1 / -1; grid-row: auto; justify-self: stretch; }
+.xp-configurator .cfg-row__control .xp-segmented { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); inline-size: 100%; }
+.xp-configurator .cfg-row__control .xp-segmented__item { padding-inline: var(--space-2xs); font-size: 13px; }
+
+/* A TP sheet is as wide as the window; dense controls must not stretch across it, and six
+   presets should land in two even rows rather than five and an orphan. */
+.workspace-sheet :is(.cfg-group, .cfg-tabs__list, .cfg-head) { max-inline-size: 36rem; }

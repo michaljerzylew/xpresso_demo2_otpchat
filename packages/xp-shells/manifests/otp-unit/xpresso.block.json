@@ -1,0 +1,39 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "otp-unit",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "block",
+    "exportName": "OtpUnit",
+    "sourceVariants": 6,
+    "presets": ["authenticator-access", "sms-reset", "sms-account-verify"],
+    "semanticOwners": 1,
+    "controller": "OtpUnit"
+  },
+  "fluid": true,
+  "engine": "css",
+  "slotRange": { "min": "S1", "max": "S6" },
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 44 },
+    "TP": { "form": "stack", "targetFloorPx": 44 },
+    "TL": { "form": "stack", "targetFloorPx": 44 },
+    "DS": { "form": "stack", "targetFloorPx": 24 },
+    "DW": { "form": "stack", "targetFloorPx": 24 }
+  },
+  "whyPolymorphic": "One controlled six-digit input owns entry, automatic commit, recovery, resend and result while six existing AuthShell presets preserve each source's trust anatomy across five device classes.",
+  "interaction": {
+    "singleFormOwner": true,
+    "oneTimeCodeAutocomplete": true,
+    "numericInputMode": true,
+    "automaticCommitGraceMs": 250,
+    "sameOriginPostFallback": true,
+    "absoluteResendDeadline": true,
+    "staleResultGuard": true
+  },
+  "tokens": ["--xp-class", "--tap-min", "--role-body", "--space-xs-s", "--space-s-m"],
+  "budgets": { "coarseTargetPx": 44, "fineTargetPx": 24, "heldDwSlots": [240, 320, 420, 560, 720, 960], "photoSeats": 1, "photoHeld": 1 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true, "persistentLabel": true, "statusAnnouncements": true }
+}

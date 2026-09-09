@@ -1,0 +1,52 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "morph-slot",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "overlay",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "MorphSlot"
+  },
+  "fluid": false,
+  "engine": "swap",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=morph-slot"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": false,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "Renderer roles vary by presentation; consumer content and accessible names must remain invariant."
+  },
+  "forms": {
+    "M": {
+      "form": "takeover"
+    },
+    "TP": {
+      "form": "sheet"
+    },
+    "TL": {
+      "form": "dialog"
+    },
+    "DS": {
+      "form": "pane"
+    },
+    "DW": {
+      "form": "inspector"
+    }
+  },
+  "whyPolymorphic": "One headless core mounts exactly one renderer while preserving the consumer contract."
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "marketing-shell",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "navigate",
+  "contract": { "kind": "shell", "exportName": "MarketingShell", "sourceVariants": 14 },
+  "fluid": false,
+  "engine": "swap",
+  "forms": {
+    "M": { "form": "tab-bar" },
+    "TP": { "form": "tabs" },
+    "TL": { "form": "top-bar" },
+    "DS": { "form": "top-bar" },
+    "DW": { "form": "mega-panel" }
+  },
+  "whyPolymorphic": "Marketing navigation preserves ranked information architecture through compact tabs, measured top bars and a wide mega-capable surface.",
+  "interaction": { "singleNavTree": true, "priorityOverflow": true },
+  "tokens": ["--xp-class", "--xp-navigation-height", "--xp-bottom-clearance", "--tap-min"],
+  "budgets": { "destinationsReachableTaps": 2, "mobileTopBarPx": 64 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "Tabs, top bars and disclosure-based mega panels vary in roles while all destination and utility names remain available." }
+}

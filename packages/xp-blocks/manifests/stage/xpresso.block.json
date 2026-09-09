@@ -1,0 +1,42 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "stage",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "Stage",
+    "sourceVariants": 41,
+    "presets": [
+      "gallery-strip",
+      "search-scene",
+      "metric-montage",
+      "portrait-split",
+      "device-showcase",
+      "trust-stage",
+      "product-stage",
+      "content-rail",
+      "system-canvas",
+      "immersive-scene"
+    ],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "stack", "inputPhysics": "touch-launch-band-owned-rail", "targetFloorPx": 48 },
+    "TP": { "form": "stack", "inputPhysics": "touch-launch-band-wide-owned-rail", "targetFloorPx": 48 },
+    "TL": { "form": "grid-2", "inputPhysics": "touch-split-attachment-owned-rail", "targetFloorPx": 44 },
+    "DS": { "form": "grid-2", "inputPhysics": "keyboard-pointer-split-stage", "targetFloorPx": 44 },
+    "DW": { "form": "grid-2", "inputPhysics": "keyboard-pointer-wide-stage", "targetFloorPx": 44, "maxWidthRem": 112 }
+  },
+  "whyPolymorphic": "One Stage owner keeps claim, actions, proof, media and interactive attachment truth while five class-authored forms change launch geometry and six local slot anchors change continuous sizing.",
+  "interaction": { "oneStateOwner": true, "keyboardSelection": true, "touchSelection": true, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-display"],
+  "budgets": { "horizontalOverflow": "owned-rails-only", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

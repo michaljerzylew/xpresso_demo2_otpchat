@@ -1,0 +1,37 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "step-pane",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "content",
+    "exportName": "StepPane",
+    "sourceVariants": 2,
+    "plannedMultiStepSources": 3,
+    "presets": ["form", "choice-form", "review", "success"],
+    "dependencies": ["FieldGroup", "ChoiceSet", "SectionedForm"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "stack", "paneForm": "single", "targetFloorPx": 48 },
+    "TP": { "form": "stack", "paneForm": "bounded", "targetFloorPx": 48 },
+    "TL": { "form": "grid-2", "paneForm": "label-pane", "targetFloorPx": 44 },
+    "DS": { "form": "grid-2", "paneForm": "pane-context", "targetFloorPx": 44 },
+    "DW": { "form": "grid-2", "paneForm": "pane-context", "targetFloorPx": 44 }
+  },
+  "whyPolymorphic": "One active semantic pane keeps its heading, validation and scroll owner while local slot geometry admits a bounded context column without duplicated content.",
+  "interaction": {
+    "oneActivePane": true,
+    "oneScrollOwner": true,
+    "oneHeadingOwner": true,
+    "focusTarget": true,
+    "validationSummary": true
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title"],
+  "budgets": { "mobile_screens": 1, "touchTargetCoarse": 48, "horizontalOverflow": "none" },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

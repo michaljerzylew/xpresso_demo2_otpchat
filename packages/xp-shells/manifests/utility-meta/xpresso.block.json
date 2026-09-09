@@ -1,0 +1,16 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "utility-meta",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "navigate",
+  "contract": { "kind": "chrome", "exportName": "UtilityMeta" },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "interaction": { "compactProjection": "tabbar-more" },
+  "tokens": ["--xp-class", "--tap-min"],
+  "budgets": { "horizontalOverflow": "none" },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

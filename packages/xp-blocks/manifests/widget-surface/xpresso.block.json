@@ -1,0 +1,30 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "widget-surface",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "glance",
+  "contract": {
+    "kind": "content",
+    "exportName": "WidgetSurface",
+    "sourceVariants": 20,
+    "presets": 6,
+    "compositions": ["metric-rows", "entity-rows", "mini-table", "interactive", "tabbed", "twin-list"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 48, "moduleMaxSvh": 86 },
+    "TP": { "form": "stack", "targetFloorPx": 48 },
+    "TL": { "form": "cluster", "targetFloorPx": 44 },
+    "DS": { "form": "grid-1", "maxWidthRem": 80 },
+    "DW": { "form": "cluster", "maxWidthRem": 80 }
+  },
+  "whyPolymorphic": "Dense lists, tables, interactive payment flows, tabs, equal twin lists and searchable detail keep one semantic owner while their internal form changes discretely with the actual widget slot.",
+  "interaction": { "oneStateOwner": true, "fixtureOwnedActions": true, "focusReturn": true, "keyboardTabs": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-stat-value"],
+  "budgets": { "mobile_screens": 0.86, "touchTargetCoarse": 48, "horizontalOverflow": "none" },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

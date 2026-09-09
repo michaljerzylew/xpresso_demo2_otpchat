@@ -1,0 +1,30 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "empty-surface",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "glance",
+  "contract": {
+    "kind": "content",
+    "exportName": "EmptySurface",
+    "sourceVariants": 10,
+    "presets": 10,
+    "compositions": ["message", "quota-band", "chart-frame", "semantic-skeleton", "project-browser"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 48, "moduleMaxSvh": 100 },
+    "TP": { "form": "grid-2", "targetFloorPx": 48 },
+    "TL": { "form": "grid-3", "targetFloorPx": 44 },
+    "DS": { "form": "grid-3" },
+    "DW": { "form": "grid-3", "maxWidthRem": 80 }
+  },
+  "whyPolymorphic": "One empty-data owner caps repeated proof on compact classes, restores source-shaped context on wide classes and keeps every control, count and zero state accessible without vertical scrolling.",
+  "interaction": { "internalScroll": false, "realSelectionControls": true, "oneAccordionOwner": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title"],
+  "budgets": { "mobile_screens": 1, "touchTargetCoarse": 48, "horizontalOverflow": "none" },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

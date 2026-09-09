@@ -1,0 +1,34 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "status-page",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "StatusPage",
+    "sourceVariants": 5,
+    "runnableVariants": 4,
+    "heldVariants": ["error-page-01"],
+    "presets": ["orbit-panel", "lost-figure", "passage-background", "companion-outline", "signal-panel"],
+    "oneSemanticOwner": true,
+    "oneRecoveryAction": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "stack", "inputPhysics": "coarse-cover", "targetFloorPx": 48 },
+    "TP": { "form": "pane", "inputPhysics": "coarse-stack", "targetFloorPx": 48 },
+    "TL": { "form": "grid-2", "inputPhysics": "coarse-landscape", "targetFloorPx": 48 },
+    "DS": { "form": "grid-2", "inputPhysics": "keyboard-pointer-compact", "targetFloorPx": 24 },
+    "DW": { "form": "grid-2", "inputPhysics": "keyboard-pointer-bounded", "targetFloorPx": 24, "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One StatusPage keeps the status heading, explanation, recovery destination and identity projection singular while device class changes recovery composition and the local S1-S6 slot controls continuous geometry.",
+  "interaction": { "oneStateOwner": true, "realAnchor": true, "secondaryAction": false, "hiddenTwins": false, "fixedAction": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "mobileScreens": 1, "horizontalOverflow": "none", "remoteMedia": 0, "mobileTargetPx": 48 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true, "reducedData": true, "stressScroll": true },
+  "a11y": { "treeInvariant": true, "mainCount": 1, "headingCount": 1, "actionCount": 1 }
+}

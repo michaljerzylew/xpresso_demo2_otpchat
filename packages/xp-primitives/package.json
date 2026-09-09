@@ -1,0 +1,47 @@
+{
+  "name": "@xp/primitives",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": ["**/*.css"],
+  "exports": {
+    ".": "./src/index.ts",
+    "./base": "./src/base.ts",
+    "./adaptive-overlay": "./src/adaptive-overlay.tsx",
+    "./metric-tile": "./src/metric-tile.tsx",
+    "./segmented-control": "./src/segmented-control.tsx",
+    "./styles.css": "./styles/index.css",
+    "./manifests/*": "./manifests/*/xpresso.block.json"
+  },
+  "scripts": {
+    "build": "tsc --noEmit -p tsconfig.json",
+    "manifests:build": "node manifests/build-manifests.mjs",
+    "manifests:check": "node manifests/build-manifests.mjs --check && tsx ../xp-core/manifests/check-manifests.mjs manifests",
+    "test": "pnpm typecheck && pnpm manifests:check",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@xp/runtime": "workspace:*",
+    "@stepperize/react": "7.0.0",
+    "@tanstack/react-table": "8.21.3",
+    "cmdk": "1.1.1",
+    "embla-carousel-react": "8.6.0",
+    "input-otp": "1.4.2",
+    "radix-ui": "1.6.7",
+    "sonner": "2.0.8",
+    "use-file-upload": "1.1.0",
+    "vaul": "1.1.2"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "tsx": "4.20.6",
+    "typescript": "5.9.2"
+  }
+}

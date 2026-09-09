@@ -1,0 +1,28 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "app-bar",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "navigate",
+  "contract": { "kind": "chrome", "exportName": "AppBar", "sourceVariants": 18 },
+  "fluid": false,
+  "engine": "swap",
+  "forms": {
+    "M": { "form": "strip" },
+    "TP": { "form": "band" },
+    "TL": { "form": "top-bar" },
+    "DS": { "form": "top-bar" },
+    "DW": { "form": "mega-panel" }
+  },
+  "whyPolymorphic": "Breadcrumbs become compact route context, search changes containment and action density follows each native chrome anatomy.",
+  "slots+": { "relocations": [
+    { "part": "context", "target": "appbar-context", "when": ["M", "TP", "TL", "DS", "DW"] },
+    { "part": "trailing", "target": "appbar-trailing", "when": ["M", "TP", "TL", "DS", "DW"] },
+    { "part": "greeting", "target": "greeting-band", "when": ["M", "TP"] }
+  ] },
+  "interaction": { "searchEveryClass": true, "priorityOverflow": true },
+  "tokens": ["--xp-class", "--xp-navigation-height", "--tap-min"],
+  "budgets": { "mobileBarPx": 56, "mobileInteractiveTargets": 4 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "Search containment and compact route semantics change while full route text, action names and account identity stay available." }
+}

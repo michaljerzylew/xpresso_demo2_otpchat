@@ -1,0 +1,40 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "filter-bar",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "content",
+    "exportName": "FilterBar",
+    "sourceVariants": 5,
+    "presets": ["summary", "field-rail"],
+    "stateOwner": "CategoryFilter",
+    "fieldRailSeats": 4
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "rail", "targetFloorPx": 48 },
+    "TP": { "form": "rail", "targetFloorPx": 44 },
+    "TL": { "form": "band", "targetFloorPx": 44 },
+    "DS": { "form": "band", "targetFloorPx": 44 },
+    "DW": { "form": "band", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One controlled summary or four-seat field rail keeps applied values intact while local width changes a touch-native horizontal track into one wide row.",
+  "interaction": {
+    "oneStateOwner": true,
+    "localHorizontalScrollOwner": true,
+    "separateRemoveTargets": true,
+    "immediateFieldRailCommit": true
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label"],
+  "budgets": {
+    "horizontalOverflow": "local-only",
+    "mobileTargetPx": 48,
+    "tabletTargetPx": 44
+  },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

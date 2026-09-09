@@ -1,0 +1,28 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "app-shell",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "navigate",
+  "contract": { "kind": "shell", "exportName": "AppShell", "sourceVariants": 18 },
+  "fluid": false,
+  "engine": "swap",
+  "forms": {
+    "M": { "form": "tab-bar" },
+    "TP": { "form": "tab-bar" },
+    "TL": { "form": "nav-rail" },
+    "DS": { "form": "drawer-side" },
+    "DW": { "form": "pane" }
+  },
+  "whyPolymorphic": "Application chrome changes navigation anatomy and slot manufacturing instead of shrinking one desktop sidebar.",
+  "slots+": { "relocations": [
+    { "part": "context", "target": "appbar-context", "when": ["M", "TP", "TL", "DS", "DW"] },
+    { "part": "widget", "target": "dashboard-feed-card", "when": ["M", "TP", "DS"] },
+    { "part": "widgetWide", "target": "inspector-pane", "when": ["DW"] }
+  ] },
+  "interaction": { "singleNavTree": true, "bottomArbitration": true },
+  "tokens": ["--xp-class", "--xp-navigation-height", "--xp-bottom-clearance", "--xp-available-svh", "--tap-min"],
+  "budgets": { "fixedChromeMobileScreens": 0.16, "destinationsReachableTaps": 2 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "Tab bar, rail and sidebar landmarks differ while every named destination, action and widget remains reachable." }
+}

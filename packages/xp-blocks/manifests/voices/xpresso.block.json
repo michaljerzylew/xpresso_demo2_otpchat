@@ -1,0 +1,81 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "voices",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "content",
+    "exportName": "Voices",
+    "sourceVariants": 24,
+    "presets": [
+      "split-quote-rail",
+      "review-wall",
+      "spotlight-streams",
+      "classic-quote-rail",
+      "avatar-detail-selector",
+      "dual-row-stream",
+      "breakout-avatar-rail",
+      "logo-bubble-stream",
+      "video-proof-reel",
+      "photo-split-rail",
+      "constellation-rail",
+      "results-proof-bento",
+      "brand-proof-deck",
+      "photo-rating-rail",
+      "editorial-photo-rail",
+      "portrait-proof-selector",
+      "media-proof-spotlight",
+      "editorial-split-rail",
+      "pastel-card-rail",
+      "sticky-dual-stream",
+      "support-proof-stream",
+      "metrics-review-stack",
+      "logo-proof-tabs",
+      "social-proof-wall"
+    ],
+    "oneSemanticOwner": true,
+    "mediaResolver": {
+      "required": true,
+      "fixtureKeysAreNotUrls": true
+    }
+  },
+  "fluid": true,
+  "slotRange": {
+    "min": "S1",
+    "max": "S6"
+  },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "rail", "targetFloorPx": 48 },
+    "TP": { "form": "rail", "targetFloorPx": 48 },
+    "TL": { "form": "pane", "targetFloorPx": 44 },
+    "DS": { "form": "grid-3", "targetFloorPx": 44 },
+    "DW": { "form": "grid-4", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One attributed proof owner changes rail, wall, stream, selector, video, result and social geometry across five device classes while preserving one finite record order, one state owner and complete compact reachability.",
+  "interaction": {
+    "oneStateOwner": true,
+    "manualCompactAccess": true,
+    "boundaryControls": true,
+    "keyboardSelection": true,
+    "touchSelection": true,
+    "ambientMotionOptional": true,
+    "hiddenTwins": false
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": {
+    "horizontalOverflow": "owned-browser-only",
+    "remoteMedia": 0,
+    "mobileTargetPx": 48,
+    "desktopTargetPx": 44
+  },
+  "baseline": {
+    "javascriptOff": false,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "Selectors expose one selected detail while the same ordered fixture remains available through semantic choices; collection forms preserve one record node per item."
+  }
+}

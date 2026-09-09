@@ -1,0 +1,52 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "popout",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "overlay",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "Popout"
+  },
+  "fluid": false,
+  "engine": "swap",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=popout"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": false,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "Feed and form content keep document semantics while only their containing overlay role changes by class."
+  },
+  "forms": {
+    "M": {
+      "form": "takeover"
+    },
+    "TP": {
+      "form": "drawer-side"
+    },
+    "TL": {
+      "form": "drawer-side"
+    },
+    "DS": {
+      "form": "drawer-side"
+    },
+    "DW": {
+      "form": "drawer-side"
+    }
+  },
+  "whyPolymorphic": "Arbitrary feed content becomes a full-height touch sheet or end-edge surface without acquiring menu semantics."
+}

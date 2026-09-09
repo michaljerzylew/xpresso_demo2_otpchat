@@ -1,0 +1,44 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "category-nav",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "commerce",
+    "exportName": "CategoryNav",
+    "sourceVariants": 12,
+    "presets": [
+      "merchandise-bento",
+      "editorial-pair",
+      "utility-image-rail",
+      "icon-count-list",
+      "circular-image-rail",
+      "image-icon-rail",
+      "compact-offer-cards",
+      "cutout-promo-deck",
+      "audience-split-cards",
+      "asymmetric-promo-bento",
+      "capsule-campaign",
+      "icon-catalog-grid"
+    ],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "rail", "targetFloorPx": 48 },
+    "TP": { "form": "rail", "targetFloorPx": 48 },
+    "TL": { "form": "pane", "targetFloorPx": 44 },
+    "DS": { "form": "grid-3", "targetFloorPx": 44 },
+    "DW": { "form": "grid-4", "maxWidthRem": 90 }
+  },
+  "whyPolymorphic": "One destination owner changes among finite rails, editorial pairs, icon lists, grids, decks, bento and capsule compositions without cloning destination or action identity.",
+  "interaction": { "oneStateOwner": true, "manualCompactAccess": true, "boundaryControls": true, "keyboardSelection": true, "touchSelection": true, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "owned-browser-only", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

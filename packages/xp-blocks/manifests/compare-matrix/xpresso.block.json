@@ -1,0 +1,23 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "compare-matrix",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "compare",
+  "contract": {
+    "kind": "content",
+    "exportName": "CompareMatrix",
+    "sourceVariants": 5,
+    "presets": ["mixed-preferred", "annotated-preferred", "boolean-actions", "commerce-promo", "advice"],
+    "ladder": { "M": "duel-rows", "TP": "duel-rows", "TL": "snap-columns", "DS": "table", "DW": "table" }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "whyPolymorphic": "One matrix state owner projects complete paired rows in compact classes and a semantic locally scrollable table on wall classes without deleting values.",
+  "engine": "swap",
+  "interaction": { "oneStateOwner": true, "candidatePicker": true, "wholeCandidateRail": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-s-m", "--role-label"],
+  "budgets": { "horizontalOverflow": "local-only", "mobileTargetPx": 48, "tabletTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "Compact definition rows and wide semantic tables expose the same candidates, attributes, values and advice through form-native structures." }
+}

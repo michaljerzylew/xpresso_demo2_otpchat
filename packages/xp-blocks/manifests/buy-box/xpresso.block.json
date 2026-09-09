@@ -1,0 +1,30 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "buy-box",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "content",
+    "exportName": "BuyBox",
+    "sourceVariants": 10,
+    "forms": ["band", "pane"],
+    "stateOwner": "ProductOverviewCore"
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "band", "targetFloorPx": 48 },
+    "TP": { "form": "band", "targetFloorPx": 48 },
+    "TL": { "form": "pane", "targetFloorPx": 44 },
+    "DS": { "form": "pane", "targetFloorPx": 24 },
+    "DW": { "form": "pane", "targetFloorPx": 24 }
+  },
+  "whyPolymorphic": "The same product decisions and action nodes relocate from a compact commerce band to a wide decision pane while price, selection and commit state remain owned once.",
+  "interaction": { "singleSelect": true, "quantity": true, "derivedPrice": true, "onePrimaryOwner": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--xp-safe-bottom"],
+  "budgets": { "horizontalOverflow": "none", "touchTargetCoarse": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "Compact classes relocate the sole primary action into StickyActionBar; pane classes keep the same action inline." }
+}

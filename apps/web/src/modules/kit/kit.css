@@ -1,0 +1,196 @@
+/* This application uses theme roles only. Class changes anatomy; local containers own geometry. */
+.kit { display: grid; align-content: start; gap: var(--space-s); min-inline-size: 0; color: var(--xp-ink); font-size: .875rem; }
+.kit-page-header h1 { font-size: 1.5rem; letter-spacing: -.025em; font-weight: 650; }
+.kit-state h2, .kit h2, .kit-inspector h2, .kit-floating h2, .kit-dialog h2 { font-size: 1rem; font-weight: 650; }
+.kit-card h3, .kit h3, .kit-inspector h3 { font-size: .9375rem; font-weight: 600; }
+.kit-page-header p, .kit-card p, .kit-state p, .kit p, .kit-inspector p { margin: 0; line-height: 1.5; }
+.kit-page-header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-s); padding-inline-end: var(--space-l); }
+.kit-page-header p, .kit-muted { color: var(--xp-muted); }
+.kit-page-header > .kit-field { min-inline-size: 9rem; }
+.kit-compact-browser { display: grid; gap: var(--space-s); min-inline-size: 0; }
+.kit-compact-tools { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xs); }
+.kit-inline { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs); }
+.kit-section-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--space-xs); }
+.kit-specimen { display: grid; align-content: start; gap: var(--space-s); min-inline-size: 0; }
+.kit-specimen > .kit-field { max-inline-size: 28rem; }
+.kit-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2xs); min-block-size: var(--xp-control-height, 44px); min-inline-size: 36px; padding: var(--space-3xs) var(--space-xs); border: 1px solid var(--xp-border); border-radius: var(--radius-s); color: var(--xp-ink); background: var(--xp-surface-raised); font: inherit; font-size: 13.5px; font-weight: 500; line-height: 1.3; cursor: pointer; }
+.kit-button[data-tone="primary"] { color: var(--xp-primary); }
+.kit-button[data-tone="danger"] { color: var(--xp-danger); }
+.kit-button[data-tone="primary"][data-variant="solid"] { color: var(--xp-on-primary); background: var(--xp-primary); border-color: var(--xp-primary); }
+.kit-button[data-variant="quiet"] { border-color: transparent; background: transparent; }
+.kit-button[aria-pressed="true"] { background: var(--xp-primary-soft); color: var(--xp-primary); }
+/* State outranks every tone/variant, including solid primary and shell active rules. */
+.kit-button[data-tone][data-variant]:disabled { color: var(--xp-muted); background: var(--xp-surface-muted); border-color: var(--xp-border); opacity: .65; cursor: not-allowed; }
+/* Geometry contract, kit-wide and not per specimen: a command control and a status surface are
+   sized by their own content, never by the container. Every kit container is a grid, and a grid
+   item stretches unless told otherwise, which is how one unbounded action reached 1218px on DW.
+   The rule sits on the component roots, so it holds with no `.kit` ancestor too. Row-shaped
+   controls opt back in below: a list row and a menu row are meant to span their container. */
+:is(.kit-button, .kit-toast):not(.kit-row) { justify-self: start; }
+:is(.kit-button, .kit-chip, .kit-card, .kit-state, .kit-row) svg, .kit svg, .kit-layer-body svg, .kit-floating svg, .kit-dialog svg, .kit-toast svg { inline-size: 16px; block-size: 16px; flex-shrink: 0; }
+.kit-badge, .kit-chip { display: inline-flex; align-items: center; gap: var(--space-3xs); inline-size: fit-content; padding: 2px 8px; border-radius: 999px; font-size: .75rem; line-height: 1.5; font-weight: 500; color: var(--xp-muted); background: var(--xp-surface-muted); white-space: nowrap; }
+.kit-chip[data-tone="primary"], .kit-badge[data-tone="primary"] { color: var(--xp-primary); background: var(--xp-primary-soft); }
+.kit-chip[data-tone="success"], .kit-badge[data-tone="success"] { color: var(--xp-success); background: var(--xp-success-soft); }
+.kit-chip[data-tone="warning"], .kit-badge[data-tone="warning"] { color: var(--xp-warning); background: var(--xp-warning-soft); }
+.kit-chip[data-tone="danger"], .kit-badge[data-tone="danger"] { color: var(--xp-danger); background: var(--xp-danger-soft); }
+.kit-dot { inline-size: 6px; block-size: 6px; border-radius: 999px; background: currentColor; }
+/* Negative margins keep sibling chip heights equal while the real button box overhangs them:
+   24px for fine-pointer classes, increased to 44px on M and TP below. */
+.kit-chip .kit-button { padding: 0; min-block-size: 24px; min-inline-size: 24px; margin-block: calc((24px - 1rem) / -2); border-color: transparent; background: transparent; }
+.kit-avatar { position: relative; display: inline-grid; place-items: center; flex: 0 0 36px; inline-size: 36px; block-size: 36px; border-radius: 999px; font-size: .75rem; font-weight: 600; color: var(--xp-primary); background: var(--xp-primary-soft); }
+.kit-presence { position: absolute; inset-inline-end: 0; inset-block-end: 0; inline-size: 8px; block-size: 8px; border: 2px solid var(--xp-surface-raised); border-radius: 999px; background: var(--xp-success); }
+.kit-card { display: grid; gap: var(--space-s); padding: var(--space-s); border: 1px solid var(--xp-border); border-radius: var(--radius-m); background: var(--xp-surface-raised); box-shadow: var(--xp-shadow-s); min-inline-size: 0; }
+.kit-row { display: flex; align-items: center; gap: var(--space-xs); min-inline-size: 0; text-align: start; }
+.kit-row-copy { display: grid; gap: var(--space-3xs); min-inline-size: 0; flex: 1; }
+.kit-row-copy strong { font-weight: 550; white-space: normal; overflow-wrap: anywhere; }
+.kit-row-copy > span { font-size: .8125rem; color: var(--xp-muted); }
+.kit-field { display: grid; gap: var(--space-2xs); min-inline-size: 0; }
+.kit-field .xp-field__label { font-size: .8125rem; color: var(--xp-ink); font-weight: 500; }
+.kit-field .xp-field-control { inline-size: 100%; min-inline-size: 0; min-block-size: var(--xp-control-height, 44px); padding: var(--space-3xs) var(--space-xs); font: inherit; border: 1px solid var(--xp-border); border-radius: var(--radius-s); background: var(--xp-surface-raised); color: var(--xp-ink); box-sizing: border-box; }
+.kit-field .xp-field-control::placeholder { color: var(--xp-muted); }
+.kit-field .xp-field-control:focus-visible { outline: none; border-color: var(--xp-primary); box-shadow: 0 0 0 3px var(--xp-primary-soft); }
+@media (forced-colors: active) {
+  .kit-field .xp-field-control:focus-visible { outline: 2px solid Highlight; outline-offset: 2px; }
+}
+.kit-field .xp-field-control:disabled { background: var(--xp-surface-muted); color: var(--xp-muted); opacity: 1; }
+.kit-field .xp-field-control[aria-invalid] { border-color: var(--xp-danger); }
+.kit-field .xp-field__help, .kit-field .xp-field__error { font-size: .8125rem; line-height: 1.5; color: var(--xp-muted); }
+.kit-field .xp-field__error { color: var(--xp-danger); }
+.kit-form { display: grid; gap: var(--space-s); max-inline-size: 32rem; }
+.kit-tab-list { display: flex; border-block-end: 1px solid var(--xp-border); gap: var(--space-xs); margin-block-end: var(--space-s); }
+.kit-tab { min-block-size: 40px; padding: var(--space-2xs) var(--space-xs); font: inherit; background: transparent; color: var(--xp-muted); border: 0; border-block-end: 2px solid transparent; }
+.kit-tab[data-state="active"] { color: var(--xp-primary); border-block-end-color: var(--xp-primary); }
+.kit-tab:disabled { color: var(--xp-muted); cursor: not-allowed; }
+.kit-tab-panel:focus-visible { outline: 2px solid var(--xp-focus); outline-offset: 2px; }
+.kit-segments, .workspace .xp-segmented.kit-segments { inline-size: 100%; max-inline-size: 32rem; }
+.kit-segments .xp-segmented__item { font-size: .875rem; border-radius: var(--radius-s); min-block-size: var(--xp-control-height, 44px); }
+.kit-segments .xp-segmented__item:disabled { opacity: 1; color: var(--xp-muted); }
+.kit-table { inline-size: 100%; border-collapse: collapse; table-layout: fixed; }
+.kit-table caption { text-align: start; color: var(--xp-muted); font-size: .8125rem; padding-block-end: var(--space-xs); }
+.kit-table th { text-align: start; font-weight: 500; color: var(--xp-muted); background: var(--xp-surface-muted); }
+.kit-table thead th { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+.kit-table th, .kit-table td { padding: var(--space-xs); border-block-end: 1px solid var(--xp-border); }
+.kit-table thead th:first-child { inline-size: 62%; }
+.kit-table thead th:last-child { inline-size: 100px; }
+/* One header for the whole table; a section is named by a colgroup row inside its own body. */
+.kit-table-group th { font-weight: 550; color: var(--xp-ink); background: var(--xp-surface-muted); }
+.kit-table-group th span { margin-inline-start: var(--space-2xs); font-weight: 400; color: var(--xp-muted); }
+.kit-table th .kit-button { padding: 0; min-block-size: 28px; color: inherit; }
+.xp-record-deck { display: grid; gap: var(--space-xs); }
+.xp-record-deck__navigation { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2xs); font-size: .8125rem; }
+.xp-record-deck__navigation button { min-block-size: 44px; min-inline-size: 44px; padding: var(--space-2xs); color: var(--xp-ink); background: var(--xp-surface-raised); border: 1px solid var(--xp-border); border-radius: var(--radius-s); font: inherit; }
+.xp-record-deck__navigation button:disabled { color: var(--xp-muted); background: var(--xp-surface-muted); }
+.kit-state { display: grid; justify-items: start; align-content: center; gap: var(--space-xs); min-block-size: 200px; padding: var(--space-m); border: 1px dashed var(--xp-border); border-radius: var(--radius-m); }
+.kit-state > p { color: var(--xp-muted); max-inline-size: 45ch; }
+.kit-state[data-kit-state="error"] > svg { color: var(--xp-danger); }
+.kit-skeleton { display: grid; gap: var(--space-xs); inline-size: min(100%, 24rem); }
+.kit-skeleton span { display: block; block-size: 12px; background: var(--xp-surface-muted); border-radius: var(--radius-s); }
+.kit-skeleton span:nth-child(2) { inline-size: 75%; }
+.kit-skeleton span:last-child { inline-size: 45%; }
+.kit-toast { max-inline-size: 24rem; display: flex; align-items: center; gap: var(--space-xs); padding: var(--space-xs); color: var(--xp-ink); background: var(--xp-surface-raised); border: 1px solid var(--xp-border); border-radius: var(--radius-m); }
+.kit-toast > span { flex: 1; }
+.kit-toast > svg { color: var(--xp-success); }
+.kit-inspector { display: grid; align-content: start; gap: var(--space-s); font-size: .875rem; min-inline-size: 0; }
+.kit-inspector > p { color: var(--xp-muted); }
+.kit-inspector-section { border-block-start: 1px solid var(--xp-border); }
+.kit-inspector-section summary { cursor: pointer; min-block-size: 44px; align-content: center; font-weight: 550; }
+.kit-inspector-section > div { padding-block-end: var(--space-xs); }
+.kit-inspector ul { list-style: none; padding: 0; margin: 0; }
+.kit-inspector a { display: grid; gap: var(--space-3xs); min-block-size: 44px; padding-block: var(--space-xs); text-decoration: none; color: var(--xp-ink); overflow-wrap: anywhere; }
+.kit-inspector a span { color: var(--xp-muted); font-size: .75rem; }
+.kit-inspector a strong { font-weight: 500; }
+/* The record page carries the record; the route inspector carries its links. The field grid reads
+   its own container, so one column on a phone and several in a wide pane come from the same rule. */
+.kit-record-summary { max-inline-size: 48rem; }
+.kit-record-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 16rem)); gap: var(--space-xs); margin: 0; }
+.kit-record-fields > div { display: grid; gap: var(--space-3xs); min-inline-size: 0; }
+.kit-record-fields dt { color: var(--xp-muted); font-size: .75rem; }
+.kit-record-fields dd { margin: 0; overflow-wrap: anywhere; }
+.kit-record-actions { display: grid; gap: var(--space-s); padding-block: var(--space-s); border-block-start: 1px solid var(--xp-border); }
+.kit-layer-body { display: grid; gap: var(--space-s); padding-block-start: var(--space-s); }
+.kit-floating, .kit-dialog { display: grid; gap: var(--space-s); padding: var(--space-m); color: var(--xp-ink); background: var(--xp-surface-raised); border: 1px solid var(--xp-border); border-radius: var(--radius-l); box-shadow: var(--xp-shadow-l); font: .875rem/1.5 var(--xp-font-sans); z-index: 60; }
+.kit-floating { max-inline-size: min(24rem, var(--radix-popover-content-available-width)); }
+.kit-dialog { position: fixed; inset-block-start: 50%; inset-inline-start: 50%; translate: -50% -50%; inline-size: min(32rem, calc(100% - 32px)); box-sizing: border-box; }
+.kit-dialog > p { color: var(--xp-muted); }
+.kit-layer-close { position: absolute; inset-block-start: var(--space-xs); inset-inline-end: var(--space-xs); }
+.kit-dialog h2 { padding-inline-end: var(--space-l); }
+.kit-scrim { position: fixed; inset: 0; background: color-mix(in srgb, var(--xp-shadow-color) 58%, transparent); z-index: 59; }
+/* Menu rows carry no chrome until hover/focus; dismiss shares the surface header. */
+.kit-menu { display: grid; gap: var(--space-3xs); }
+.kit-menu .kit-button { justify-self: stretch; justify-content: start; min-block-size: 28px; border-color: transparent; background: transparent; padding: var(--space-3xs) var(--space-xs); }
+.kit-menu .kit-button[data-tone][data-variant]:disabled { border-color: transparent; background: transparent; }
+.kit-floating[data-kind="menu"] { gap: var(--space-2xs); padding: var(--space-xs); border-radius: var(--radius-m); }
+.kit-floating[data-kind="menu"] > header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-s); padding-inline-start: var(--space-xs); }
+.kit-floating[data-kind="menu"] .kit-floating-dismiss { min-inline-size: 24px; min-block-size: 24px; padding: 0; }
+[data-xp-class="TP"] .kit-floating[data-kind="menu"] .kit-floating-dismiss { min-inline-size: 44px; min-block-size: 44px; }
+/* Same specificity as the kit-wide start rule, and later, so the dismiss keeps the trailing edge. */
+.kit-floating .kit-floating-dismiss { justify-self: end; }
+.kit-link { display: flex; align-items: center; min-block-size: 44px; color: var(--xp-primary); }
+[data-xp-class="M"] .kit-button, [data-xp-class="TP"] .kit-button,
+[data-xp-class="M"] .kit-field .xp-field-control, [data-xp-class="TP"] .kit-field .xp-field-control,
+[data-xp-class="M"] .kit-segments .xp-segmented__item, [data-xp-class="TP"] .kit-segments .xp-segmented__item { min-block-size: 44px; min-inline-size: 44px; }
+/* The coarse-pointer target on a chip's remove control is a hit area that overhangs the chip, so a
+   removable chip is chip-height in every class while the measured box stays 44x44 on M and TP. */
+[data-xp-class="M"] .kit-chip .kit-button, [data-xp-class="TP"] .kit-chip .kit-button { margin-block: calc((44px - 1rem) / -2); }
+.kit[data-kit-class="M"] .kit-page-header > .kit-badge { display: none; }
+.kit[data-kit-class="TP"] .kit-specimen { max-inline-size: 38rem; }
+.workspace .kit-tab { border: 0; border-radius: 0; border-block-end: 2px solid transparent; background: transparent; min-block-size: 40px; }
+.workspace .kit-tab[data-state="active"] { border-block-end-color: var(--xp-primary); }
+/* Selection changes ink and surface atomically; the shell's pointer press still supplies feedback. */
+.workspace :is(.kit-button, .kit-tab), .workspace .kit-segments .xp-segmented__item, .workspace .xp-record-deck__navigation button, .workspace .kit-inspector a, .workspace .kit-link, .workspace[data-module="kit"] .section-navigation a { transition: none; }
+.workspace .kit-table th .kit-button { border: 0; background: transparent; min-block-size: 28px; padding: 0; }
+.kit-table th, .kit-table td { box-sizing: border-box; }
+/* Density on the pointer-precise classes (vision §4: per-class density tokens, never per-screen
+   hacks). These two rules named the kit's own route, so every other module's table kept the 15px
+   block padding, the visible caption and the 44px coarse-pointer control: a venue service table ran
+   77px a row and showed three of eleven sittings above the fold at 1366x768, on the screen whose
+   whole job is scanning. The caption stays the table's accessible name and only leaves the picture,
+   the way the calendar's month grid already does. The QA gate's floor on a fine pointer is 24px, so
+   a 32px in-table control clears it with room; M and TP keep their 44px targets untouched. */
+.workspace:is([data-device-class="TL"], [data-device-class="DS"], [data-device-class="DW"]) .kit-table caption { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.workspace:is([data-device-class="TL"], [data-device-class="DS"], [data-device-class="DW"]) .kit-table th { padding-block: var(--space-2xs); }
+/* A data row's own content is two lines, 46px of title and secondary text. The remaining height is
+   padding, and on a scanning table it is what the reader pays for every record they cannot see. */
+.workspace:is([data-device-class="TL"], [data-device-class="DS"], [data-device-class="DW"]) .kit-table td { padding-block: var(--space-3xs); }
+.workspace:is([data-device-class="TL"], [data-device-class="DS"], [data-device-class="DW"]) .kit-table tbody tr { height: 44px; }
+.workspace:is([data-device-class="TL"], [data-device-class="DS"], [data-device-class="DW"]) .kit-table td .kit-button { min-block-size: 32px; }
+.kit-section-strip { min-inline-size: 0; border-block-end: 1px solid var(--xp-border); }
+.kit-section-strip .section-navigation { display: flex; gap: var(--space-2xs); margin: 0; padding: var(--space-2xs) var(--space-s); overflow-x: auto; }
+.kit-section-strip .section-navigation h2 { display: none; }
+.kit-section-strip .section-navigation a { flex: 0 0 auto; min-block-size: 44px; }
+@container xp-slot (inline-size < 35rem) { .kit-tab-list { gap: 0; } .kit-tab { padding-inline: var(--space-2xs); font-size: .8125rem; } .kit-table thead th:first-child { inline-size: 50%; } }
+@media (hover: hover) and (pointer: fine) { .kit-button:not(:disabled):hover { background: var(--xp-primary-soft); color: var(--xp-primary); } .kit-inspector a:hover { color: var(--xp-primary); } }
+@media (hover: hover) and (pointer: fine) { .kit-table tbody tr:hover { background: var(--xp-surface-muted); } }
+
+.kit-password { position: relative; min-inline-size: 0; }
+.kit-password .xp-field-control { padding-inline-end: 52px; }
+.kit-password-toggle { position: absolute; inset-inline-end: 0; inset-block: 0; min-inline-size: 44px; min-block-size: 100%; padding: 0; }
+
+/* Issue #56 additions: the two components the helpdesk needed and the kit did not have. */
+.kit-field-multiline .xp-field-control { min-block-size: 5rem; resize: vertical; line-height: 1.5; }
+.kit-toggle { display: flex; align-items: center; justify-content: space-between; gap: var(--space-s); min-block-size: 44px; padding-block: var(--space-2xs); cursor: pointer; }
+.kit-toggle-copy { display: grid; gap: var(--space-3xs); min-inline-size: 0; }
+.kit-toggle-copy strong { font-size: .875rem; font-weight: 550; }
+.kit-toggle-copy > span { font-size: .8125rem; color: var(--xp-muted); }
+/* The native checkbox IS the switch: it keeps focus, keyboard and switch semantics, and the wrapping
+   label supplies the 44px hit area the coarse-pointer rule asks for. */
+:is(.workspace, .workspace-sheet, .more-popover) .kit-toggle input {
+  appearance: none; position: relative; flex: 0 0 44px; inline-size: 44px; block-size: 26px; min-block-size: 26px;
+  margin: 0; padding: 0; border: 1px solid var(--xp-border); border-radius: 999px; background: var(--xp-surface-muted); cursor: pointer;
+}
+:is(.workspace, .workspace-sheet, .more-popover) .kit-toggle input::before {
+  content: ""; position: absolute; inset-block-start: 3px; inset-inline-start: 3px; inline-size: 18px; block-size: 18px;
+  border-radius: 999px; background: var(--xp-muted);
+}
+:is(.workspace, .workspace-sheet, .more-popover) .kit-toggle input:checked { background: var(--xp-primary); border-color: var(--xp-primary); }
+:is(.workspace, .workspace-sheet, .more-popover) .kit-toggle input:checked::before { inset-inline-start: 21px; background: var(--xp-on-primary); }
+:is(.workspace, .workspace-sheet, .more-popover) .kit-toggle input:disabled { background: var(--xp-surface-muted); cursor: not-allowed; }
+.kit-toggle:has(input:disabled) .kit-toggle-copy strong { color: var(--xp-muted); }
+/* A switch inside a row that already names the thing keeps its accessible name and drops the copy. */
+.kit-toggle[data-label="hidden"] { gap: 0; }
+.kit-toggle[data-label="hidden"] .kit-toggle-copy { position: absolute; inline-size: 1px; block-size: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+.kit-presence[data-presence="away"] { background: var(--xp-warning); }
+.kit-presence[data-presence="offline"] { background: var(--xp-muted); }
+.kit-button[data-tone="accent"] { color: var(--xp-accent); }
+.kit-chip[data-tone="accent"], .kit-badge[data-tone="accent"] { color: var(--xp-accent); background: var(--xp-accent-soft); }

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "integration-proof",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "IntegrationProof",
+    "sourceVariants": 10,
+    "presets": ["split-descriptive-list", "overlap-identity-cluster", "summary-card-directory", "linked-accent-cards", "static-identity-strip", "connect-card-directory", "single-proof-marquee", "dual-connect-lanes", "staggered-232-wall", "eight-node-hub-orbit"],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "rail", "targetFloorPx": 44 },
+    "TP": { "form": "grid-2", "targetFloorPx": 44 },
+    "TL": { "form": "grid-3", "targetFloorPx": 44 },
+    "DS": { "form": "grid-3", "targetFloorPx": 24 },
+    "DW": { "form": "grid-4", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One IntegrationProof owner preserves ten exact discovery, connection, proof, lane, wall and hub jobs while five native forms change interaction geometry without duplicate records or state owners.",
+  "interaction": { "oneStateOwner": true, "keyboardSelection": true, "touchSelection": true, "autoplay": false, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "owned-rails-only", "remoteMedia": 0, "mobileTargetPx": 44, "desktopTargetPx": 24 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

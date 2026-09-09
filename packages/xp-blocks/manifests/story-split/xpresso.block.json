@@ -1,0 +1,18 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "story-split",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "read",
+  "contract": { "kind": "content", "exportName": "StorySplit", "sourceVariants": 13, "presets": ["principles-tabs", "image-tabs", "editorial-proof", "achievement-checklist", "trust-story", "kinetic-selfie", "paired-stories", "manual-story-rail", "services-expert", "ratings-metrics", "portrait-field", "profile-toolkit", "group-pager"], "mediaResolver": { "required": false, "fixtureKeysAreNotUrls": true }, "dependencies": ["AdaptiveOverlay"] },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": { "M": { "form": "rail" }, "TP": { "form": "rail" }, "TL": { "form": "grid-2" }, "DS": { "form": "grid-2" }, "DW": { "form": "grid-2" } },
+  "whyPolymorphic": "One story and selection owner supports tab, rail, profile and pager presets without compact and wide DOM twins.",
+  "interaction": { "oneStateOwner": true, "keyboardTabs": true, "manualMotionOnly": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s"],
+  "budgets": { "horizontalOverflow": "owned-rail-only", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

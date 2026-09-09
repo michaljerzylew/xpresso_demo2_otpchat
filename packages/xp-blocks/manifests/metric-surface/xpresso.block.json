@@ -1,0 +1,36 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "metric-surface",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "compare",
+  "contract": {
+    "kind": "content",
+    "exportName": "MetricSurface",
+    "sourceVariants": 51,
+    "presets": 7,
+    "compositions": ["single-stat", "split", "ranked", "composite", "interactive", "detail-rich", "full-panel"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 48, "moduleMaxSvh": 100 },
+    "TP": { "form": "rail", "targetFloorPx": 48 },
+    "TL": { "form": "grid-2", "targetFloorPx": 44 },
+    "DS": { "form": "grid-2" },
+    "DW": { "form": "pane", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One typed metric owner keeps values, series, peers, records and selected state invariant while compact classes use pinned detail or takeover and wide classes expose analytical split compositions.",
+  "interaction": {
+    "oneStateOwner": true,
+    "fixtureOwnedActions": true,
+    "keyboardScrub": true,
+    "coarsePointerDetail": true,
+    "focusReturn": true
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-stat-value"],
+  "budgets": { "horizontalOverflow": "none", "mobileTargetPx": 48 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

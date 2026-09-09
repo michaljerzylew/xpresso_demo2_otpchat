@@ -1,0 +1,59 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "chat-surface",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "block",
+    "exportName": "ChatSurface",
+    "controllerName": "ChatSurfaceController",
+    "packet": "chat-surface-contract-v1",
+    "sourceVariants": 4,
+    "presets": ["email-assist", "team-support", "assistant-home", "companion-onboarding"],
+    "semanticOwners": 1,
+    "pageCounts": [3, 3, 2, 3],
+    "actionCounts": [13, 21, 17, 12],
+    "controlCounts": [4, 3, 1, 1],
+    "messageCounts": [3, 3, 1, 3],
+    "mediaCounts": [2, 4, 2, 2],
+    "identityCounts": [1, 7, 5, 5],
+    "localizedHolds": []
+  },
+  "fluid": true,
+  "engine": "swap",
+  "slotRange": { "min": "S1", "max": "S6" },
+  "formOverrides": {
+    "M": { "form": "takeover", "anatomy": "full-screen-chat", "targetFloorPx": 48 },
+    "TP": { "form": "sheet", "anatomy": "bottom-chat-sheet", "targetFloorPx": 48 },
+    "TL": { "form": "popover", "anatomy": "bottom-end-chat-popover", "targetFloorPx": 48 },
+    "DS": { "form": "popover", "anatomy": "bottom-end-chat-popover", "targetFloorPx": 32 },
+    "DW": { "form": "popover", "anatomy": "bottom-end-popover-or-granted-pane", "targetFloorPx": 32 }
+  },
+  "whyPolymorphic": "One persistent assistance session changes presentation physics by device class while preserving its page, thread, draft, validation and unread state.",
+  "interaction": {
+    "singleControllerOwner": true,
+    "adaptiveOverlay": true,
+    "deviceClassLock": true,
+    "hostGrantedPaneOnly": true,
+    "focusReturn": true,
+    "validation": true,
+    "sendRetry": true,
+    "mediaFallback": true,
+    "ssrLauncherTruth": true
+  },
+  "tokens": ["--xp-class", "--tap-min", "--role-body", "--space-xs-s", "--space-s-m"],
+  "budgets": {
+    "coarseTargetPx": 48,
+    "fineTargetPx": 32,
+    "requiredSlots": [240, 320, 420, 560, 720, 960],
+    "pages": 11,
+    "actions": 63,
+    "controls": 9,
+    "messages": 10,
+    "mediaSeats": 10,
+    "codeIdentities": 18
+  },
+  "baseline": { "javascriptOff": "launcher-only", "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

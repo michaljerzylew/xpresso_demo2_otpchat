@@ -1,0 +1,31 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "value-prop-strip",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "glance",
+  "contract": {
+    "kind": "content",
+    "exportName": "ValuePropStrip",
+    "sourceVariants": 1,
+    "presets": ["commerce-seams"],
+    "oneSemanticOwner": true,
+    "itemSeam": { "min": 2, "max": 4 }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "rail", "targetFloorPx": 44 },
+    "TP": { "form": "rail", "targetFloorPx": 44 },
+    "TL": { "form": "band", "targetFloorPx": 44 },
+    "DS": { "form": "band", "targetFloorPx": 44 },
+    "DW": { "form": "band", "targetFloorPx": 44 }
+  },
+  "whyPolymorphic": "One value-proposition set becomes a bounded manual rail only when its local container cannot preserve complete peer summaries in an inline band.",
+  "interaction": { "manualRail": true, "keyboardScroll": true, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--space-xs-s", "--space-s-m"],
+  "budgets": { "horizontalOverflow": "manual-rail-only", "mobileTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

@@ -1,0 +1,11 @@
+.start-screen {
+  display: grid;
+  justify-items: start;
+  align-content: center;
+  gap: 1rem;
+  min-block-size: 100%;
+  padding: clamp(1.5rem, 5cqi, 5rem);
+}
+.start-screen h1 { margin: 0; color: var(--xp-ink); font-size: clamp(1.5rem, 4cqi, 3rem); overflow-wrap: anywhere; }
+.start-screen p { margin: 0; color: var(--xp-muted); }
+.start-screen a { min-block-size: 44px; }

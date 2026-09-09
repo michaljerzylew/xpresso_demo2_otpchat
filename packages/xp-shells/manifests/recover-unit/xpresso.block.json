@@ -1,0 +1,50 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "recover-unit",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "block",
+    "exportName": "RecoverUnit",
+    "sourceVariants": 6,
+    "presets": ["recovery-link"],
+    "semanticOwners": 1,
+    "fieldCounts": [1, 1, 1, 1, 1, 1],
+    "sentActionCounts": [3, 3, 3, 3, 3, 3],
+    "controller": "AuthFlowController"
+  },
+  "fluid": true,
+  "engine": "swap",
+  "slotRange": { "min": "S1", "max": "S6" },
+  "formOverrides": {
+    "M": { "form": "sheet", "targetFloorPx": 44 },
+    "TP": { "form": "pane", "targetFloorPx": 44 },
+    "TL": { "form": "stack", "targetFloorPx": 44 },
+    "DS": { "form": "stack", "targetFloorPx": 24 },
+    "DW": { "form": "stack", "targetFloorPx": 24 }
+  },
+  "whyPolymorphic": "One recovery state owner becomes a contextual compact overlay or an inline shell-slot swap while preserving the address, cooldown and sent actions across class changes.",
+  "interaction": {
+    "singleFormOwner": true,
+    "managedLoginTrigger": true,
+    "namespacedHistoryMarker": true,
+    "maskedAnnouncement": true,
+    "deterministicCooldownSeconds": 30,
+    "pendingSubmissionLock": true,
+    "sameOriginPostFallback": true
+  },
+  "tokens": ["--xp-class", "--tap-min", "--role-body", "--space-xs-s", "--space-s-m"],
+  "budgets": {
+    "coarseTargetPx": 44,
+    "fineTargetPx": 24,
+    "heldDwSlots": [240, 320, 420, 560, 720, 960],
+    "photoSeats": 1,
+    "photoHeld": 1
+  },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "M and TP keep credentials mounted beneath one modal recovery owner; TL, DS and DW replace the shell form slot with that same recovery owner."
+  }
+}

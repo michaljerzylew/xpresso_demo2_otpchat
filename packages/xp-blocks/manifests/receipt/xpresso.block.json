@@ -1,0 +1,39 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "receipt",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "read",
+  "contract": {
+    "kind": "content",
+    "exportName": "Receipt",
+    "sourceVariants": 5,
+    "presets": ["compact-dialog", "split-dialog", "delivery-table", "post-purchase", "tabbed-tracker"],
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true },
+    "dependencies": ["AdaptiveOverlay", "Tabs", "Money", "SummaryRowKind"],
+    "overlayHostOwnsDismissal": true
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "stack", "receiptForm": "ticket", "targetFloorPx": 48 },
+    "TP": { "form": "stack", "receiptForm": "labelled-rows", "targetFloorPx": 48 },
+    "TL": { "form": "pane", "receiptForm": "grouped-pane-or-table", "targetFloorPx": 44 },
+    "DS": { "form": "pane", "receiptForm": "grouped-pane-or-table", "targetFloorPx": 44 },
+    "DW": { "form": "pane", "receiptForm": "grouped-pane-or-table", "targetFloorPx": 44 }
+  },
+  "whyPolymorphic": "One Receipt state owner preserves calculated totals, selected view and order semantics while device class and local slot choose ticket, row, pane, table or tabbed forms.",
+  "interaction": {
+    "oneStateOwner": true,
+    "calculatedMinorUnits": true,
+    "liveQuantities": true,
+    "selectedPanelOnly": true,
+    "overlayHostActionProjection": true,
+    "printExpandsAllViews": true
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--xp-safe-bottom"],
+  "budgets": { "horizontalOverflow": "table-only", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "Delivery sources use a semantic table only in wide slots; compact classes expose the same values as labelled item rows." }
+}

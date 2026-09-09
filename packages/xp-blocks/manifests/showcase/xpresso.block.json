@@ -1,0 +1,37 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "showcase",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "content",
+    "exportName": "Showcase",
+    "sourceVariants": 18,
+    "presets": [
+      "gallery-detail", "proof-cards", "filtered-cards", "staggered-wall",
+      "filtered-bento", "filtered-snap", "spotlight-rail", "filtered-summaries",
+      "capability-collage", "split-pair", "alternating-studies", "manual-coverflow",
+      "featured-related", "project-trio", "category-browser", "pastel-grid",
+      "project-resume", "preview-grid"
+    ],
+    "compositions": ["wall", "rail", "case", "capability", "featured", "accordion"],
+    "oneSemanticOwner": true
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "rail", "targetFloorPx": 48 },
+    "TP": { "form": "rail", "targetFloorPx": 48 },
+    "TL": { "form": "pane", "targetFloorPx": 44 },
+    "DS": { "form": "grid-3", "targetFloorPx": 44 },
+    "DW": { "form": "grid-4", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One project state owner preserves each source job while compact classes become bounded rails or focused case panes and wide classes recover wall, split, featured and disclosure compositions.",
+  "interaction": { "filters": true, "manualRails": true, "lightbox": true, "singleDisclosure": true, "autoplay": false, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title"],
+  "budgets": { "mobile_screens": 1.2, "mobileTargetPx": 48, "tabletTargetPx": 44, "horizontalOverflow": "local-only" },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "The same project records use class-native rail, grid, detail and disclosure structures without duplicate state owners." }
+}

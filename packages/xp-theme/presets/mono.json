@@ -1,0 +1,50 @@
+{
+  "fonts": {
+    "sans": [
+      "ui-sans-serif",
+      "system-ui",
+      "sans-serif"
+    ],
+    "serif": [
+      "ui-serif",
+      "Georgia",
+      "serif"
+    ],
+    "mono": [
+      "ui-monospace",
+      "SFMono-Regular",
+      "monospace"
+    ],
+    "webfonts": []
+  },
+  "colors": {
+    "primary": {
+      "hue": 0,
+      "chroma": 0
+    },
+    "neutral": {
+      "hue": 0,
+      "chroma": 0
+    },
+    "accent": {
+      "hue": 0,
+      "chroma": 0
+    },
+    "success": {
+      "hue": 150,
+      "chroma": 0
+    },
+    "warning": {
+      "hue": 85,
+      "chroma": 0
+    },
+    "danger": {
+      "hue": 25,
+      "chroma": 0
+    }
+  },
+  "spacingScale": 0.95,
+  "radiusScale": 0,
+  "shadowScale": 0,
+  "density": 0.9
+}

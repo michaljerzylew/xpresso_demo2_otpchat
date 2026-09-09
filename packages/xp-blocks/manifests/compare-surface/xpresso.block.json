@@ -1,0 +1,24 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "compare-surface",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "compare",
+  "contract": {
+    "kind": "content",
+    "exportName": "CompareSurface",
+    "sourceVariants": 7,
+    "presets": ["mixed-preferred", "filtered-offers", "annotated-preferred", "boolean-actions", "paired-routes", "commerce-promo", "advice"],
+    "semanticOwners": ["CompareMatrix", "CompareOffers", "CompareJourney"],
+    "dispatcherOwnsState": false
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "whyPolymorphic": "A nonsemantic dispatcher selects the single typed comparison owner while device class changes interaction form and local slot size changes only geometry.",
+  "engine": "swap",
+  "interaction": { "oneStateOwner": true, "noHiddenTwins": true, "localScrollOnly": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-s-m", "--role-label"],
+  "budgets": { "horizontalOverflow": "local-only", "mobileTargetPx": 48, "tabletTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "Matrix tables, offer records and route radio groups require different native structures while preserving one fixture and one active state owner." }
+}

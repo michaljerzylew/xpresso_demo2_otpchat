@@ -1,0 +1,45 @@
+@layer xp.shell {
+  .xp-otp-unit{--otp-ink:var(--xp-auth-ink,oklch(.2 .018 258));--otp-muted:var(--xp-auth-muted,oklch(.47 .018 258));--otp-border:var(--xp-auth-border,oklch(.82 .018 258));--otp-panel:var(--xp-auth-panel,oklch(1 0 0));--otp-accent:var(--xp-auth-accent,oklch(.52 .18 254));--otp-danger:oklch(.48 .19 28);container:otp-unit/inline-size;min-inline-size:0;inline-size:100%;color:var(--otp-ink)}
+  .xp-otp-unit *,.xp-otp-unit *::before,.xp-otp-unit *::after{box-sizing:border-box}
+  .xp-otp__surface,.xp-otp__form,.xp-otp__recovery,.xp-otp__result{display:grid;min-inline-size:0}
+  .xp-otp__surface{gap:1rem;inline-size:100%;max-inline-size:30rem;margin-inline:auto}
+  .xp-otp__form,.xp-otp__recovery,.xp-otp__result{gap:.9rem}
+  .xp-otp__form p,.xp-otp__recovery p,.xp-otp__result p,.xp-otp__recovery h2,.xp-otp__result h2{margin:0;overflow-wrap:anywhere}
+  .xp-otp__target{font-variant-numeric:tabular-nums;font-weight:700;letter-spacing:.035em}
+  .xp-otp__label,.xp-otp__recovery label{font-size:.95rem;font-weight:680}
+  .xp-otp__control{position:relative;isolation:isolate;inline-size:min(100%,19rem);min-block-size:3rem}
+  .xp-otp__control [data-input-otp-container]{inline-size:100%;max-inline-size:100%}
+  .xp-otp__control>input{position:absolute!important;z-index:2!important;inset:0!important;inline-size:100%!important;block-size:100%!important;margin:0!important;opacity:0!important;cursor:text}
+  .xp-otp__slots{display:grid;grid-template-columns:repeat(6,minmax(0,2.75rem));gap:.25rem;inline-size:max-content;max-inline-size:100%}
+  .xp-otp__slot{position:relative;display:grid;place-items:center;inline-size:2.75rem;block-size:3rem;border:1px solid var(--otp-border);border-radius:.55rem;background:var(--otp-panel);font-size:1.2rem;font-weight:730;font-variant-numeric:tabular-nums;line-height:1}
+  .xp-otp__slot[data-filled]{border-color:color-mix(in srgb,var(--otp-accent) 60%,var(--otp-border))}
+  .xp-otp__slot[data-active]{outline:3px solid color-mix(in srgb,var(--otp-accent) 38%,transparent);outline-offset:2px;border-color:var(--otp-accent)}
+  .xp-otp__slot i{position:absolute;inline-size:1px;block-size:1.25rem;background:currentColor;animation:xp-otp-caret 1s steps(2,end) infinite}
+  .xp-otp__status,.xp-otp__meta,.xp-otp__announcement{color:var(--otp-muted);font-size:.9rem;line-height:1.45}
+  .xp-otp__status:empty{display:none}
+  .xp-otp__error{padding:.7rem .8rem;border-radius:.55rem;background:color-mix(in srgb,var(--otp-danger) 8%,transparent);color:var(--otp-danger);font-weight:620}
+  .xp-otp__meta{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .65rem}
+  .xp-otp__meta button,.xp-otp__recovery-trigger{min-block-size:2.75rem;border:0;padding:.55rem 0;background:transparent;color:var(--otp-accent);font:inherit;font-weight:680;text-align:start;text-decoration:underline;text-underline-offset:.18em;cursor:pointer}
+  .xp-otp__meta button:disabled,.xp-otp__recovery-trigger:disabled{color:var(--otp-muted);cursor:not-allowed;text-decoration:none}
+  .xp-otp__commit,.xp-otp__recovery-actions button,.xp-otp__result a{display:flex;align-items:center;justify-content:center;min-block-size:2.75rem;border:1px solid var(--otp-accent);border-radius:.65rem;padding:.7rem 1rem;background:var(--otp-accent);color:white;font:inherit;font-weight:700;text-align:center;text-decoration:none}
+  .xp-otp__commit:disabled{cursor:wait;opacity:.72}
+  .xp-otp__recovery{padding:1rem;border:1px solid var(--otp-border);border-radius:.8rem;background:var(--otp-panel)}
+  .xp-otp__recovery header{display:grid;gap:.45rem}
+  .xp-otp__recovery input{inline-size:100%;min-block-size:2.75rem;border:1px solid var(--otp-border);border-radius:.6rem;padding:.7rem .8rem;background:var(--otp-panel);color:inherit;font:inherit}
+  .xp-otp__recovery-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.55rem}
+  .xp-otp__recovery-actions button+button{background:transparent;color:var(--otp-accent)}
+  .xp-otp__result{padding:1.15rem;border:1px solid var(--otp-border);border-radius:.8rem;background:var(--otp-panel)}
+  .xp-otp__announcement{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  .xp-otp-unit :where(input,button,a):focus-visible{outline:3px solid color-mix(in srgb,var(--otp-accent) 55%,transparent);outline-offset:2px}
+  .xp-otp-unit .xp-auth-shell[data-photo-kind="dark-wave"] .xp-auth-shell__proof-mark{display:none}
+  .xp-otp-unit[data-text-scale="extreme"]{font-size:48px;line-height:1.3}.xp-otp-unit[data-text-scale="extreme"] .xp-otp__surface{max-inline-size:100%;gap:16px}.xp-otp-unit[data-text-scale="extreme"] :where(button,a,input){min-block-size:72px;max-inline-size:100%;white-space:normal}.xp-otp-unit[data-text-scale="extreme"] .xp-otp__control{inline-size:284px;max-inline-size:100%;min-block-size:48px}.xp-otp-unit[data-text-scale="extreme"] .xp-otp__slots{grid-template-columns:repeat(6,44px);gap:4px}.xp-otp-unit[data-text-scale="extreme"] .xp-otp__slot{inline-size:44px;block-size:48px;font-size:32px}.xp-otp-unit[data-text-scale="extreme"] .xp-otp__meta{align-items:flex-start;flex-direction:column}
+  @keyframes xp-otp-caret{50%{opacity:0}}
+  @media (prefers-color-scheme:dark){.xp-otp-unit{--otp-ink:oklch(.94 .01 258);--otp-muted:oklch(.74 .018 258);--otp-panel:oklch(.225 .02 258);--otp-border:oklch(.4 .022 258);--otp-accent:oklch(.73 .13 248);--otp-danger:oklch(.76 .14 28)}.xp-otp-unit .xp-auth-shell[data-photo-kind="dark-wave"] .xp-auth-person__fallback{color:oklch(.98 .01 250)}}
+  @media (prefers-reduced-motion:reduce){.xp-otp-unit *{scroll-behavior:auto!important;transition-duration:.001ms!important;animation-duration:.001ms!important;animation-iteration-count:1!important}.xp-otp__slot i{animation:none}}
+  @container otp-unit (inline-size < 20rem){.xp-otp__surface{gap:.75rem}.xp-otp__control,.xp-otp__slots{inline-size:100%}.xp-otp__slots{grid-template-columns:repeat(6,minmax(0,1fr))}.xp-otp__slot{inline-size:100%;min-inline-size:0}.xp-otp__recovery-actions{grid-template-columns:1fr}}
+  @container otp-unit (20rem <= inline-size < 26rem){.xp-otp__surface{gap:.85rem}.xp-otp__control{inline-size:100%}}
+  @container otp-unit (26rem <= inline-size < 34rem){.xp-otp__surface{gap:.9rem}}
+  @container otp-unit (34rem <= inline-size < 42rem){.xp-otp__surface{max-inline-size:29rem}}
+  @container otp-unit (42rem <= inline-size < 56rem){.xp-otp__surface{max-inline-size:28rem}}
+  @container otp-unit (inline-size >= 56rem){.xp-otp__surface{max-inline-size:27rem}}
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "segmented-control",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "compare",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "SegmentedControl"
+  },
+  "fluid": false,
+  "engine": "css",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=segmented-control"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": true,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": true
+  },
+  "forms": {
+    "M": {
+      "form": "strip"
+    },
+    "TP": {
+      "form": "strip"
+    },
+    "TL": {
+      "form": "strip"
+    },
+    "DS": {
+      "form": "cluster"
+    },
+    "DW": {
+      "form": "cluster"
+    }
+  },
+  "whyPolymorphic": "Exclusive choices fill the touch lane on compact devices and contract to an inline control on desktops."
+}

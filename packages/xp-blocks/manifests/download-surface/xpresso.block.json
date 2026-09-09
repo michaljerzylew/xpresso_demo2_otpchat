@@ -1,0 +1,32 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "download-surface",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "DownloadSurface",
+    "sourceVariants": 5,
+    "presets": ["promo-slab-store-pair", "release-panel-consent", "platform-deck", "promo-slab-desktop-proof", "release-panel-requirements"],
+    "oneSemanticOwner": true,
+    "platformResolution": "controlled-hint-confirm-override",
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "stack", "inputPhysics": "touch-disclosure", "targetFloorPx": 48 },
+    "TP": { "form": "pane", "inputPhysics": "touch-action-band", "targetFloorPx": 44 },
+    "TL": { "form": "grid-3", "inputPhysics": "touch-pointer-handoff", "targetFloorPx": 44 },
+    "DS": { "form": "grid-3", "inputPhysics": "keyboard-pointer-handoff", "targetFloorPx": 24 },
+    "DW": { "form": "grid-3", "inputPhysics": "keyboard-pointer-handoff", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One DownloadSurface state owner preserves platform resolution, explicit override, consent, disclosure, action result and handoff feedback while device class changes interaction physics and local S1-S6 space changes anatomy.",
+  "interaction": { "oneStateOwner": true, "platformOverride": true, "consentGate": true, "downloadFeedback": true, "qrHandoff": true, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "none", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 24 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

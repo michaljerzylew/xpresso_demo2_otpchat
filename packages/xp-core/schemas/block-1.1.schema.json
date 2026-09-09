@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xpresso.studio/schemas/block-1.1.json",
+  "title": "Xpresso block manifest v1.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "name", "version", "formsVocab", "job", "contract", "fluid", "engine", "tokens", "budgets", "baseline", "a11y"],
+  "properties": {
+    "$schema": { "const": "https://xpresso.studio/schemas/block-1.1.json" },
+    "name": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "formsVocab": { "const": "1.1" },
+    "job": { "enum": ["glance", "browse", "compare", "read", "act", "navigate", "hero", "overlay"] },
+    "contract": { "type": "object" },
+    "fluid": { "type": "boolean" },
+    "slotRange": { "$ref": "#/$defs/rootBandRange" },
+    "forms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["M", "TP", "TL", "DS", "DW"],
+      "properties": {
+        "M": { "$ref": "#/$defs/formCell" },
+        "TP": { "$ref": "#/$defs/formCell" },
+        "TL": { "$ref": "#/$defs/formCell" },
+        "DS": { "$ref": "#/$defs/formCell" },
+        "DW": { "$ref": "#/$defs/formCell" }
+      }
+    },
+    "formOverrides": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "M": { "$ref": "#/$defs/formCell" },
+        "TP": { "$ref": "#/$defs/formCell" },
+        "TL": { "$ref": "#/$defs/formCell" },
+        "DS": { "$ref": "#/$defs/formCell" },
+        "DW": { "$ref": "#/$defs/formCell" }
+      }
+    },
+    "whyPolymorphic": { "type": "string", "minLength": 12 },
+    "engine": { "enum": ["css", "swap", "server"] },
+    "arrangements": {
+      "type": "object",
+      "additionalProperties": { "enum": ["Stack", "Box", "Center", "Cluster", "Sidebar", "Switcher", "Cover", "Deck", "Frame", "Rail", "Pager", "Imposter"] }
+    },
+    "compositions": { "type": "array", "maxItems": 3, "items": { "type": "string" }, "uniqueItems": true },
+    "absorptionOrder": { "type": "array", "items": { "type": "string" } },
+    "quantity": { "type": "object" },
+    "innerContainers": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "bands"],
+        "properties": {
+          "name": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$" },
+          "bands": { "$ref": "#/$defs/innerBandRange" }
+        }
+      }
+    },
+    "slots+": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relocations"],
+      "properties": {
+        "relocations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/relocation" }
+        }
+      }
+    },
+    "adjacency": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "exposes": { "$ref": "#/$defs/capabilityList" },
+        "suppressesWhenPresent": { "$ref": "#/$defs/capabilityList" },
+        "suppressesPartsWhenPresent": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["part", "capabilities"],
+            "properties": {
+              "part": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$" },
+              "capabilities": { "$ref": "#/$defs/capabilityList" }
+            }
+          }
+        },
+        "projectionEligibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["capability", "eligiblePresets", "standalonePresets"],
+          "properties": {
+            "capability": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$" },
+            "eligiblePresets": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+            "standalonePresets": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } }
+          }
+        },
+        "conflictsWith": { "$ref": "#/$defs/capabilityList" }
+      }
+    },
+    "interaction": { "type": "object" },
+    "tokens": { "type": "array", "items": { "type": "string", "pattern": "^--[a-z0-9-]+$" }, "uniqueItems": true },
+    "budgets": { "type": "object" },
+    "baseline": { "type": "object" },
+    "a11y": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["treeInvariant"],
+      "properties": {
+        "treeInvariant": { "type": "boolean" },
+        "roleExemption": { "type": "string", "pattern": "^[^\\r\\n]{12,180}$" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "treeInvariant": { "const": false } }, "required": ["treeInvariant"] },
+          "then": { "required": ["roleExemption"] }
+        },
+        {
+          "if": { "properties": { "treeInvariant": { "const": true } }, "required": ["treeInvariant"] },
+          "then": { "not": { "required": ["roleExemption"] } }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "fluid": { "const": false } }, "required": ["fluid"] },
+      "then": {
+        "required": ["forms", "whyPolymorphic"],
+        "not": { "required": ["formOverrides"] }
+      }
+    },
+    {
+      "if": { "properties": { "fluid": { "const": true } }, "required": ["fluid"] },
+      "then": {
+        "required": ["slotRange"],
+        "not": { "required": ["forms"] }
+      }
+    },
+    {
+      "if": { "required": ["formOverrides"] },
+      "then": {
+        "properties": { "fluid": { "const": true } },
+        "required": ["fluid", "slotRange"]
+      }
+    }
+  ],
+  "$defs": {
+    "rootBand": { "enum": ["S1", "S2", "S3", "S4", "S5", "S6"] },
+    "innerBand": { "enum": ["T1", "T2", "T3", "S1", "S2", "S3", "S4", "S5", "S6"] },
+    "rootBandRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "max"],
+      "properties": {
+        "min": { "$ref": "#/$defs/rootBand" },
+        "max": { "$ref": "#/$defs/rootBand" }
+      }
+    },
+    "innerBandRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "max"],
+      "properties": {
+        "min": { "$ref": "#/$defs/innerBand" },
+        "max": { "$ref": "#/$defs/innerBand" }
+      }
+    },
+    "formCell": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["form"],
+      "properties": {
+        "form": {
+          "anyOf": [
+            { "enum": ["band", "rail", "stack", "cluster", "pager", "sheet", "dialog", "popover", "drawer-side", "pane", "inspector", "tabs", "accordion", "disclosure", "tab-bar", "nav-rail", "top-bar", "mega-panel", "takeover", "marquee", "toast", "strip"] },
+            { "type": "string", "pattern": "^grid-[1-9]\\d*$" }
+          ]
+        }
+      }
+    },
+    "relocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["part", "target", "when"],
+      "properties": {
+        "part": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9]*$" },
+        "target": {
+          "enum": ["sticky-bar", "appbar-context", "appbar-trailing", "tabbar-badge", "tabbar-more", "settings-projection", "footer-projection", "brand-pane", "context-pane", "inspector-pane", "dashboard-feed-card", "dashboard-kpi-chip", "greeting-band"]
+        },
+        "when": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["M", "TP", "TL", "DS", "DW"] }
+        }
+      }
+    },
+    "capabilityList": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$" }
+    }
+  }
+}

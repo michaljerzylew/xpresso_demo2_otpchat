@@ -1,0 +1,54 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "register-unit",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "block",
+    "exportName": "RegisterUnit",
+    "sourceVariants": 6,
+    "presets": [
+      "username-email-confirm-provider-last",
+      "name-secret-provider-first",
+      "email-confirm-provider-trio-first",
+      "email-confirm-provider-single-first"
+    ],
+    "semanticOwners": 1,
+    "fieldCounts": [4, 4, 3, 3, 3, 3],
+    "providerCounts": [1, 1, 1, 1, 3, 1],
+    "revealCounts": [2, 2, 1, 1, 2, 2]
+  },
+  "fluid": true,
+  "engine": "css",
+  "slotRange": { "min": "S1", "max": "S6" },
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 44 },
+    "TP": { "form": "stack", "targetFloorPx": 44 },
+    "TL": { "form": "stack", "targetFloorPx": 44 },
+    "DS": { "form": "stack", "targetFloorPx": 24 },
+    "DW": { "form": "stack", "targetFloorPx": 24 }
+  },
+  "whyPolymorphic": "One native registration form progressively pages its existing fieldsets on M while every larger class keeps the complete form and lets AuthShell own proof relocation.",
+  "interaction": {
+    "singleFormOwner": true,
+    "mobileProgressiveEnhancement": true,
+    "nativeAutofill": true,
+    "namespacedHistoryMarker": true,
+    "pendingSubmissionLock": true,
+    "sameOriginPostFallback": true
+  },
+  "tokens": ["--xp-class", "--tap-min", "--role-body", "--space-xs-s", "--space-s-m"],
+  "budgets": {
+    "coarseTargetPx": 44,
+    "fineTargetPx": 24,
+    "heldDwSlots": [240, 320, 420, 560, 720, 960],
+    "photoSeats": 1,
+    "photoHeld": 1
+  },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "Hydrated M marks the inactive fieldset inert; the no-JS baseline and TP/TL/DS/DW expose the same single complete form owner."
+  }
+}

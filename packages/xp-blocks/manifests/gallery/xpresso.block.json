@@ -1,0 +1,31 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "gallery",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "Gallery",
+    "sourceVariants": 10,
+    "presets": ["balanced-section-mosaic", "filtered-project-rail", "thumbnail-spotlight", "four-tile-proof-wall", "culinary-anchor-wall", "split-architecture-wall", "dual-panorama-rail", "measured-floral-rail", "center-focus-rail", "interlocked-maker-wall"],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "rail", "targetFloorPx": 44 },
+    "TP": { "form": "rail", "targetFloorPx": 44 },
+    "TL": { "form": "grid-2", "targetFloorPx": 44 },
+    "DS": { "form": "grid-3", "targetFloorPx": 24 },
+    "DW": { "form": "grid-3", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One Gallery owner preserves ten exact media collections while wall and story intent, five private compositions and one shared lightbox project native geometry and input physics across five device classes.",
+  "interaction": { "oneStateOwner": true, "keyboardSelection": true, "touchSelection": true, "autoplay": false, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "owned-rails-only", "remoteMedia": 0, "mobileTargetPx": 44, "desktopTargetPx": 24 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

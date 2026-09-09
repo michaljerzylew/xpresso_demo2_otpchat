@@ -1,0 +1,42 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "metric-tile",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "glance",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "MetricTile",
+    "slotForms": {
+      "S1": "metric-chip",
+      "S2": "metric-compact",
+      "S3": "metric-full"
+    }
+  },
+  "fluid": true,
+  "engine": "css",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=metric-tile"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": true,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": true
+  },
+  "slotRange": {
+    "min": "S1",
+    "max": "S6"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "@xp/shells",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": ["**/*.css"],
+  "exports": {
+    ".": "./src/index.ts",
+    "./regions": "./src/regions.ts",
+    "./regions.css": "./styles/regions.css",
+    "./auth": "./src/auth-model.ts",
+    "./auth.css": "./styles/auth.css",
+    "./register.css": "./styles/register.css",
+    "./recover.css": "./styles/recover-unit.css",
+    "./reset.css": "./styles/reset-unit.css",
+    "./otp.css": "./styles/otp-unit.css",
+    "./verify.css": "./styles/verify-unit.css",
+    "./meeting.css": "./styles/meeting.css",
+    "./chat-surface.css": "./styles/chat-surface.css",
+    "./styles.css": "./styles/index.css",
+    "./manifests/*": "./manifests/*/xpresso.block.json"
+  },
+  "scripts": {
+    "build": "tsc --noEmit -p tsconfig.json",
+    "manifests:check": "tsx ../xp-core/manifests/check-manifests.mjs manifests",
+    "test": "tsx --test tests/*.test.mjs && pnpm manifests:check",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@xp/primitives": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "tsx": "4.20.6",
+    "typescript": "5.9.2"
+  }
+}

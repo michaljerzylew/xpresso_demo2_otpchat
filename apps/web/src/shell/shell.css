@@ -1,0 +1,464 @@
+/* Issue #39: the display cutouts enter the app here and nowhere else. index.html
+   sets viewport-fit=cover, so every inset is the shell's to spend. */
+:root {
+  --xp-safe-top: env(safe-area-inset-top, 0px);
+  --xp-safe-right: env(safe-area-inset-right, 0px);
+  --xp-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --xp-safe-left: env(safe-area-inset-left, 0px);
+  --xp-control-height: 44px;
+}
+:root[data-xp-class="TL"] { --xp-control-height: 40px; }
+:root:is([data-xp-class="DS"], [data-xp-class="DW"]) { --xp-control-height: 36px; }
+
+/* The skip link is the shell's own chrome. Issue #74 dropped the vendored shell
+   skins from the bundle, so the two rules the app used from them live here, on the
+   app's semantic tokens. The class name stays `xp-shell-skip`: AppShell renders it
+   and the evidence suite exempts it from the 44px tap-target rule. */
+.xp-shell-skip {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.xp-shell-skip:focus-visible {
+  position: fixed;
+  inset-block-start: var(--space-xs);
+  inset-inline-start: var(--space-xs);
+  z-index: 80;
+  inline-size: auto;
+  block-size: auto;
+  margin: 0;
+  padding: var(--space-xs) var(--space-s);
+  overflow: visible;
+  clip: auto;
+  color: var(--xp-on-primary);
+  background: var(--xp-primary);
+  border-radius: var(--radius-s);
+}
+
+.workspace {
+  /* svh is the conservative height while browser chrome is expanded; dvh tracks it live. */
+  display: flex; block-size: 100svh; block-size: 100dvh; overflow: hidden;
+  color: var(--xp-ink); background: var(--xp-surface);
+  font: 14px/1.5 var(--xp-font-sans);
+  -webkit-tap-highlight-color: transparent;
+  --xp-bottom-safe-area: var(--xp-safe-bottom);
+}
+.workspace *, .device-preview *, .device-switcher, .device-switcher * { box-sizing: border-box; }
+.workspace :is(button, input, select, textarea, .settings-static-control), .device-switcher select {
+  min-inline-size: 0;
+  font: inherit; min-block-size: max(var(--tap-min), var(--xp-control-height));
+  border: 1px solid var(--xp-border); border-radius: var(--radius-s);
+  background: var(--xp-surface-raised); color: var(--xp-ink); padding: var(--space-3xs) var(--space-xs);
+}
+/* No 300ms tap delay on anything interactive, and no grey flash on tap. */
+.workspace :is(button, a, label, summary, input, select, textarea, [role="button"], [role="tab"]),
+.device-switcher, .device-switcher select, .device-preview { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.workspace button { cursor: pointer; font-size: 13.5px; font-weight: 500; }
+.workspace button:disabled { cursor: default; color: var(--xp-muted); background: var(--xp-surface-muted); }
+.workspace :is(button, a):active { background: var(--xp-primary-soft); }
+.workspace :focus-visible, .device-preview :focus-visible { outline: 2px solid var(--xp-focus); outline-offset: 2px; }
+.workspace a { color: var(--xp-primary); }
+.workspace-stage { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; }
+.workspace-header { display: flex; align-items: center; justify-content: space-between; gap: calc(var(--space-s) * 1); min-block-size: 72px; padding: calc(var(--space-s) * 0.75) calc(var(--space-s) * 1.5); border-block-end: 1px solid var(--xp-border); background: var(--xp-surface-raised); }
+.workspace-heading { display: flex; align-items: baseline; gap: calc(var(--space-s) * 1); }
+.workspace-heading strong { font-size: 16px; }
+.workspace-heading span { color: var(--xp-muted); font-size: 13px; }
+.workspace-tools { display: flex; align-items: center; gap: calc(var(--space-s) * 0.75); }
+.workspace-content { flex: 1; min-block-size: 0; min-inline-size: 0; overflow: auto; overscroll-behavior: contain; }
+.workspace-rail { flex: 0 0 calc(var(--space-s) * 4); display: flex; flex-direction: column; gap: calc(var(--space-s) * 1); padding: calc(var(--space-s) * 0.5); border-inline-end: 1px solid var(--xp-border); background: var(--xp-surface); }
+.workspace-mark { display: grid; place-items: center; font-size: 24px; font-weight: 750; block-size: 48px; text-decoration: none; }
+/* Navigation owns the remaining height; the footer never overlays a navigation target. */
+.workspace-sidebar { flex: 0 0 calc(var(--space-s) * 13.5); display: flex; flex-direction: column; min-block-size: 0; padding: calc(var(--space-s) * 1.25) calc(var(--space-s) * 1); background: var(--xp-surface); border-inline-end: 1px solid var(--xp-border); }
+.workspace-sidebar-navigation { flex: 1; min-block-size: 0; overflow-y: auto; overscroll-behavior: contain; padding-block-end: var(--space-xs); scroll-padding-block: var(--space-xs); }
+.workspace-brand { display: flex; align-items: center; gap: var(--space-xs); margin-block-end: var(--space-xs); min-inline-size: 0; }
+.workspace-brand-mark { display: grid; place-items: center; flex: 0 0 28px; block-size: 28px; border-radius: var(--radius-s); background: var(--xp-primary); color: var(--xp-on-primary); font-size: 14px; font-weight: 600; }
+.workspace-brand > div { min-inline-size: 0; }
+.workspace-brand strong { display: block; font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.workspace-brand p { margin: 0; color: var(--xp-muted); font-size: 12px; }
+/* A section tree taller than its window scrolls inside it. macOS overlay scrollbars fade before an
+   idle reader can discover that, so each navigation scrollport keeps a visible one, as the inbox
+   reading regions do. It appears only while that window actually overflows. The scrollports are the
+   navigation track and, on DS, the module and section windows inside it (Issues 56, 60 and 102). */
+.workspace-sidebar-navigation::-webkit-scrollbar,
+.workspace-sidebar-navigation :is(.workspace-links, .section-navigation-links)::-webkit-scrollbar { width: 8px; }
+.workspace-sidebar-navigation::-webkit-scrollbar-thumb,
+.workspace-sidebar-navigation :is(.workspace-links, .section-navigation-links)::-webkit-scrollbar-thumb { background: var(--xp-muted); border: 2px solid var(--xp-surface); border-radius: var(--radius-s); }
+.workspace-sidebar-navigation::-webkit-scrollbar-track,
+.workspace-sidebar-navigation :is(.workspace-links, .section-navigation-links)::-webkit-scrollbar-track { background: var(--xp-surface); }
+.workspace-sidebar > p { color: var(--xp-muted); font-size: 13px; margin-block: calc(var(--space-s) * 0.25) calc(var(--space-s) * 2); }
+.workspace-context { flex-shrink: 0; margin-block-start: auto; border-block-start: 1px solid var(--xp-border); padding-block-start: calc(var(--space-s) * 1); background: var(--xp-surface); font-size: 13px; color: var(--xp-muted); }
+.workspace-context h2 { color: var(--xp-ink); font-size: 14px; font-weight: 600; }
+.workspace-context p { margin-block-start: calc(var(--space-s) * 0.5); }
+.workspace-links { display: flex; flex-direction: column; gap: calc(var(--space-s) * 0.5); }
+.workspace-links a { display: flex; align-items: center; gap: calc(var(--space-s) * 0.75); padding: calc(var(--space-s) * 0.625) calc(var(--space-s) * 0.75); min-block-size: max(calc(var(--space-s) * 2.75), var(--tap-min)); border-radius: var(--radius-s); text-decoration: none; color: var(--xp-ink); font-weight: 500; }
+.workspace-links a[aria-current="page"] { background: var(--xp-primary-soft); color: var(--xp-primary); font-weight: 600; }
+/* The tint is the current-tab indicator; a heavier label would only cost the label its room. */
+.workspace-tabs a[aria-current="page"] { font-weight: 550; }
+.icon-links a { justify-content: center; padding-inline: calc(var(--space-s) * 0.5); }
+.workspace-rail button { inline-size: 100%; margin-block-start: auto; }
+/* The TP section strip. Shell-owned since #58: every module with its own sections uses it. It is a
+   bounded horizontal scroller, so a long section list costs one row of chrome instead of two while
+   the overflow gate stays honest about escaping content. */
+.workspace-section-strip { min-inline-size: 0; border-block-end: 1px solid var(--xp-border); }
+.workspace-section-strip .section-navigation { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: var(--space-2xs); margin: 0; padding: 0; }
+.workspace-section-strip .section-navigation h2 { display: none; }
+.workspace-section-strip .section-navigation a { flex: 0 0 auto; min-inline-size: 44px; min-block-size: 44px; }
+.workspace-topnav { padding: calc(var(--space-s) * 0.5) calc(var(--space-s) * 1); border-block-end: 1px solid var(--xp-border); background: var(--xp-surface); }
+.workspace-topnav .workspace-links { flex-direction: row; }
+.workspace-tabs { position: absolute; z-index: 20; inset-inline: 0; inset-block-end: 0; padding: calc(var(--space-s) * 0.5) max(calc(var(--space-s) * 1), var(--xp-safe-right)) var(--xp-bottom-safe-area) max(calc(var(--space-s) * 1), var(--xp-safe-left)); background: var(--xp-surface-raised); border-block-start: 1px solid var(--xp-border); }
+.workspace-tabs .workspace-links { flex-direction: row; justify-content: space-around; gap: 0; }
+.workspace-tabs a { flex: 1; flex-direction: column; gap: 0; font-size: 12px; min-block-size: 56px; }
+.workspace[data-bottom-owner="overlay"] .workspace-tabs { visibility: hidden; }
+.route-panes { display: grid; grid-template-columns: minmax(0, 1fr); min-block-size: 100%; }
+.route-panes[data-has-list="true"] { grid-template-columns: minmax(240px, .65fr) minmax(0, 1.35fr); block-size: 100%; }
+.route-panes[data-inspector="true"] { grid-template-columns: minmax(0, 1fr) 336px; }
+.route-panes[data-inspector="true"][data-has-list="true"] { grid-template-columns: minmax(240px, .65fr) minmax(0, 1.35fr) 336px; }
+.route-list { min-inline-size: 0; overflow: auto; overscroll-behavior: contain; border-inline-end: 1px solid var(--xp-border); }
+.route-detail { display: flex; flex-direction: column; min-inline-size: 0; min-block-size: 0; overflow: auto; overscroll-behavior: contain; }
+.pane-body { flex: 1; min-block-size: 0; padding: calc(var(--space-s) * 1.5); }
+.pane-body > .conversation { block-size: 100%; }
+/* The shell reserves viewport space for a form's heading, actions and supporting disclosure. */
+.pane-form-scroll { max-block-size: calc(100dvh - 28rem); }
+.workspace[data-device-class="M"] .pane-form-scroll { max-block-size: calc(100dvh - 24rem); }
+/* A saved status consumes another line in the short landscape pane. */
+.workspace[data-device-class="TL"] form:has([role="status"]:not(:empty)) .pane-form-scroll { max-block-size: calc(100dvh - 30rem); }
+.route-inspector { padding: calc(var(--space-s) * 1.5); overflow: auto; overscroll-behavior: contain; border-inline-start: 1px solid var(--xp-border); background: var(--xp-surface); }
+.route-inspector h2 { font-size: 15px; font-weight: 650; padding-block-end: calc(var(--space-s) * 1); border-block-end: 1px solid var(--xp-border); }
+.route-inspector p, .route-inspector dt { color: var(--xp-muted); font-size: 14px; }
+.route-inspector dd { margin: calc(var(--space-s) * 0.25) 0 calc(var(--space-s) * 1.25); }
+.workspace:not([data-device-class="M"]) .back-to-list { display: none; }
+.workspace[data-device-class="M"] .route-panes { grid-template-columns: minmax(0, 1fr); }
+.workspace[data-device-class="M"] .pane-body { padding: calc(var(--space-s) * 1); }
+.workspace[data-device-class="TP"] .workspace-heading span { display: none; }
+.workspace[data-device-class="TP"] .route-panes[data-has-list="true"] { grid-template-columns: clamp(320px, 45%, 360px) minmax(0, 1fr); }
+.workspace[data-device-class="TL"][data-expanded="true"] .workspace-sidebar { flex-basis: 176px; }
+.workspace[data-device-class="TL"][data-expanded="true"] .route-panes[data-has-list="true"] { grid-template-columns: 240px minmax(0, 1fr); }
+.device-preview { overflow: auto; min-block-size: 100dvh; background: var(--xp-surface); color: var(--xp-ink); font-family: var(--xp-font-sans); }
+.device-preview iframe { display: block; border: 0; outline: 1px solid var(--xp-border); margin-inline: auto; max-inline-size: none; }
+.device-switcher { display: flex; align-items: center; gap: calc(var(--space-s) * 0.5); font-size: 13px; }
+.device-switcher select { font: inherit; color: var(--xp-ink); background: var(--xp-surface-raised); border: 1px solid var(--xp-border); border-radius: var(--radius-s); padding: calc(var(--space-s) * 0.5); min-block-size: 44px; }
+/* Compact controls and developer tooling are separate from app chrome. */
+.workspace { --xp-tab-height: 72px; --xp-row-height: 64px; }
+.workspace svg, .device-switcher svg { width: 18px; height: 18px; flex-shrink: 0; stroke-width: 1.75; }
+.workspace .icon-button { display: grid; place-items: center; flex: 0 0 var(--xp-control-height); inline-size: var(--xp-control-height); block-size: var(--xp-control-height); min-block-size: var(--xp-control-height); padding: 0; border: 0; background: transparent; border-radius: var(--radius-s); }
+.workspace-header { min-block-size: 64px; padding: var(--space-3xs) var(--space-s); gap: var(--space-xs); }
+.workspace-heading { min-inline-size: 0; flex-wrap: wrap; gap: var(--space-3xs) var(--space-s); }
+.workspace-heading strong { font-size: 15px; font-weight: 600; }
+.workspace-heading span { font-size: 12px; }
+.workspace-tools { flex-shrink: 0; gap: var(--space-3xs); }
+.workspace .xp-segmented { display: flex; max-inline-size: 100%; padding: 2px; background: var(--xp-surface-muted); }
+.workspace .xp-segmented__item { flex: 1 0 auto; border: 0; padding: var(--space-2xs); font-size: 14px; color: var(--xp-muted); background: transparent; }
+.workspace .xp-segmented__item:hover:not([data-state="checked"]) { background: var(--xp-surface-muted); }
+.workspace .xp-segmented__item[data-state="checked"] { color: var(--xp-surface); background: var(--xp-ink); box-shadow: none; }
+.workspace-rail { flex-basis: 64px; padding: var(--space-3xs); }
+.workspace-sidebar { flex-basis: 256px; }
+.workspace-rail button { align-self: center; }
+.workspace-links a { min-block-size: 44px; padding: var(--space-2xs); gap: var(--space-xs); }
+.workspace-tabs { block-size: calc(var(--xp-tab-height) + var(--xp-bottom-safe-area)); padding: var(--space-3xs) var(--space-2xs) var(--xp-bottom-safe-area); }
+/* Five dock destinations since the calendar landed (#57): Work and Copilot reach the phone through
+   the More sheet, so the dock keeps Overview, Calendar, Inbox, Settings and Kit. At 320px a fifth of
+   the dock is 55px, so the tabs spend nothing on inline padding and keep their 12px labels whole. */
+.workspace-tabs a { min-inline-size: 0; min-block-size: 56px; gap: var(--space-3xs); padding-inline: 0; font-size: 12px; }
+/* The dock marks its current destination with colour and a filled background, so the label does not
+   also have to grow: a bolder 12px word is a pixel wider than a fifth of a 320px dock. */
+.workspace-tabs a[aria-current="page"] { font-weight: 500; }
+.workspace-tabs .workspace-links { gap: 0; }
+.workspace-tabs .workspace-links > button { display: flex; flex: 1; flex-direction: column; justify-content: center; align-items: center; gap: var(--space-3xs); min-inline-size: 0; min-block-size: 56px; border: 0; border-radius: var(--radius-s); background: transparent; color: var(--xp-ink); font: inherit; font-size: 12px; cursor: pointer; }
+.workspace-tabs .workspace-links > button[aria-current] { background: var(--xp-primary-soft); color: var(--xp-primary); font-weight: 650; }
+.workspace .workspace-module-switch { display: flex; align-items: center; gap: var(--space-xs); min-block-size: var(--xp-control-height); border: 0; background: transparent; color: var(--xp-ink); font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; }
+/* The rail carries no inner scrollport of its own, unlike the sidebar (line 75). */
+.workspace-rail { min-block-size: 0; overflow-y: auto; }
+/* The phone's overview strip: one row of the module's own screens, paged rather than scrolled
+   so a thumb reaches every entry without a swipe that competes with the route (#61). */
+.home-section-strip .section-navigation { display: flex; gap: var(--space-xs); margin: 0; overflow-x: auto; }
+.home-section-strip .section-navigation h2 { display: none; }
+.home-section-strip .section-navigation a { flex-shrink: 0; min-inline-size: 44px; min-block-size: 44px; }
+.home-section-strip .section-navigation { overflow: visible; }
+.home-section-strip .section-navigation[data-section-pager] { display: grid; align-items: center; }
+.home-section-strip .section-navigation[data-section-pager] a { min-inline-size: 0; justify-content: center; white-space: nowrap; }
+/* Seven destinations plus a module's own section tree stack above the workspace context, so the
+   packed rhythm is the sidebar's default rather than a per-module exception. The navigation keeps
+   its own bounded scrollport (line 75) and the context stays below it, so a footer is never clipped. */
+.workspace-sidebar > p { margin-block-end: var(--space-xs); }
+.workspace-sidebar-navigation > .workspace-links { gap: 0; }
+.workspace-sidebar .section-navigation { margin-block-start: var(--space-xs); gap: 0; }
+.workspace[data-device-class="DS"] .workspace-sidebar nav { gap: 0; }
+.workspace-context { flex-shrink: 0; }
+.section-navigation-links { display: contents; }
+/* Issues 60 and 102: DS budgets two independent windows in whole rows. Growing the module
+   list cannot consume the section tree or footer. DW retains its roomier rhythm. */
+.workspace[data-device-class="DS"] .workspace-sidebar-navigation {
+  container-type: size;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.workspace[data-device-class="DS"] .workspace-sidebar-navigation > .workspace-links {
+  flex: 0 1 auto; min-block-size: 0; max-block-size: round(down, 50cqh, 32px);
+  overflow-y: auto; overscroll-behavior: contain; scroll-snap-type: y mandatory;
+}
+.workspace[data-device-class="DS"] .workspace-sidebar .section-navigation {
+  flex: 1; min-block-size: 0; grid-template-rows: auto minmax(0, 1fr); align-content: start;
+}
+.workspace[data-device-class="DS"] .workspace-sidebar .section-navigation-links {
+  display: flex; flex-direction: column; align-self: start;
+  block-size: round(down, 100%, 32px); min-block-size: 0;
+  overflow-y: auto; overscroll-behavior: contain; scroll-snap-type: y mandatory;
+}
+.workspace[data-device-class="DS"] .workspace-sidebar-navigation a {
+  flex: 0 0 32px; block-size: 32px; min-block-size: 24px;
+  padding-block: 0; white-space: nowrap; scroll-snap-align: start;
+}
+.workspace[data-device-class="DS"] .workspace-sidebar-navigation a span {
+  min-inline-size: 0; overflow: hidden; text-overflow: ellipsis;
+}
+.pane-body { position: relative; }
+.pane-actions { position: absolute; inset-block-start: var(--space-s); inset-inline-end: var(--space-s); }
+.workspace .pane-actions button { display: grid; place-items: center; inline-size: var(--xp-control-height); block-size: var(--xp-control-height); min-block-size: var(--xp-control-height); padding: 0; border: 0; background: transparent; border-radius: var(--radius-s); }
+.pane-body:has(.pane-actions) > :is(.route-surface, .hd) > header { padding-inline-end: calc(var(--xp-control-height) + var(--space-xs)); min-block-size: var(--xp-control-height); }
+.workspace[data-device-class="M"] { --xp-row-height: 72px; }
+.workspace[data-device-class="M"] .workspace-heading { flex-direction: column; gap: 0; }
+.workspace[data-device-class="M"] .workspace-content { margin-block-end: calc(var(--xp-tab-height) + var(--xp-bottom-safe-area)); }
+.device-preview { block-size: 100dvh; overflow: hidden; }
+.preview-canvas { block-size: 100dvh; overflow: auto; }
+.device-switcher { position: fixed; z-index: 30; inset-inline-end: var(--space-2xs); inset-block-end: var(--space-2xs); display: flex; align-items: center; gap: var(--space-3xs); padding-inline-start: var(--space-2xs); font: 12px/1.5 var(--xp-font-sans); color: var(--xp-ink); background: var(--xp-surface-raised); border: 1px solid var(--xp-border); border-radius: var(--radius-m); }
+.device-switcher select { font: inherit; border: 0; border-radius: var(--radius-m); padding: var(--space-2xs); min-block-size: 44px; }
+.device-switcher :focus-visible { outline: 2px solid var(--xp-focus); outline-offset: var(--space-3xs); }
+.workspace[data-device-class="M"] ~ .device-switcher { inset-block-end: calc(72px + var(--xp-safe-bottom) + var(--space-2xs)); }
+.workspace[data-bottom-owner="overlay"] ~ .device-switcher { visibility: hidden; }
+
+/* Wide workspaces use tighter contextual spacing without changing route anatomy. */
+.workspace[data-device-class="DW"] { --xp-row-height: 56px; }
+.workspace[data-device-class="DW"] :is(.pane-body, .route-inspector) { padding: var(--space-s); }
+.workspace[data-device-class="DW"] .route-surface { gap: var(--space-s); }
+.workspace[data-device-class="DW"] .hd-thread-scroll { padding-block: var(--space-s); }
+.workspace[data-device-class="DW"] .section-navigation { margin-block-start: var(--space-s); }
+.workspace[data-device-class="DW"] .route-inspector h2 { color: var(--xp-ink); font-size: 13px; font-weight: 650; margin-block: 0 var(--space-xs); padding-block-end: var(--space-2xs); border-block-end: 1px solid var(--xp-border); }
+.workspace[data-device-class="DW"] .route-inspector dd { margin-block-end: var(--space-xs); }
+
+/* Standalone lab surfaces (e.g. /motion) get the viewport from the shell layer; content sizes itself with container units. */
+.xp-viewport-lab { block-size: 100svh; block-size: 100dvh; container-type: size; overflow: auto; }
+
+/* Safe areas the shell spends on its own chrome. env() is 0 on hardware without cutouts. */
+.workspace-header {
+  padding-block-start: calc(var(--space-3xs) + var(--xp-safe-top));
+  padding-inline: max(var(--space-s), var(--xp-safe-left)) max(var(--space-s), var(--xp-safe-right));
+}
+.workspace-rail { padding-block: calc(var(--space-3xs) + var(--xp-safe-top)) calc(var(--space-3xs) + var(--xp-safe-bottom)); padding-inline-start: max(var(--space-3xs), var(--xp-safe-left)); }
+.workspace[data-device-class="DS"] .workspace-sidebar {
+  /* DS is the only class where the sidebar itself touches the window edge. */
+  padding-block-start: calc(var(--space-s) * 1.25 + var(--xp-safe-top));
+  padding-inline-start: max(calc(var(--space-s) * 1), var(--xp-safe-left));
+}
+.workspace:not([data-device-class="M"]) .workspace-content { padding-block-end: var(--xp-safe-bottom); }
+
+/* The update toast is a body-level sibling of the shell, so the shell places it clear
+   of the mobile tab bar. Its own styles live in src/pwa/pwa.css. */
+.workspace[data-device-class="M"] ~ .pwa-toast { inset-block-end: calc(72px + var(--xp-safe-bottom) + var(--space-s)); }
+
+
+/* Motion wiring (#71). @xp/motion owns transforms; CSS owns only declarative state changes. */
+.route-stage { display: grid; grid-template-columns: minmax(0, 1fr); min-block-size: 100%; overflow: clip; }
+.route-pane { grid-area: 1 / 1; min-inline-size: 0; }
+/* Auth is a secondary module on phones, available from More rather than a fifth work tab. */
+.workspace-tabs .auth-nav-entry { display: none; }
+.route-pane:has(.settings-form) { contain: layout paint; }
+/* In-route paging (#57): the same two-pane stage as a route change, at module scope. */
+.pager-stage { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); min-block-size: 0; overflow: clip; }
+.pager-pane { grid-area: 1 / 1; display: grid; grid-template-rows: minmax(0, 1fr); min-inline-size: 0; min-block-size: 0; }
+.list-arrival { display: contents; }
+.route-stage:has([data-copilot-screen="conversation"]) { block-size: 100%; min-block-size: 0; }
+.route-pane:has([data-copilot-screen="conversation"]), .route-panes:has([data-copilot-screen="conversation"]) { block-size: 100%; min-block-size: 0; }
+.pane-body:has(> [data-copilot-screen="conversation"]) { overflow: hidden; }
+.headline-clip { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.headline-clip > [data-word] { display: inline-block; }
+
+/* Hover is a capability, not a width. Touch never inherits it. */
+@media (hover: hover) and (pointer: fine) {
+  :is(.workspace, .workspace-sheet, .more-popover, .section-overflow) :is(button, a) { transition: background-color var(--xp-dur-press) var(--xp-ease-out); }
+  :is(.workspace, .workspace-sheet, .more-popover, .section-overflow) :is(button, a):not(:where(.sheet-grip)):hover { background: var(--xp-surface-muted); }
+  .workspace-links a[aria-current="page"]:hover { background: var(--xp-primary-soft); }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Name the property: a bare duration leaves transition-property at `all`, and on a coarse
+     pointer there is no hover rule to narrow it, so every control would declare a spatial
+     transition it never wanted. */
+  :is(.workspace, .workspace-sheet, .more-popover, .section-overflow) :is(button, a) { transition: background-color 80ms var(--xp-ease-out); }
+}
+
+/* Sheets and the anchored menu sit in the top layer, outside .workspace, under the same control contract. */
+.workspace-sheet, .more-popover, .section-overflow { color: var(--xp-ink); font: 14px/1.5 var(--xp-font-sans); }
+:is(.workspace-sheet, .more-popover, .section-overflow) * { box-sizing: border-box; }
+:is(.workspace-sheet, .more-popover, .section-overflow) :is(button, input, select, textarea) { min-inline-size: 0; font: inherit; min-block-size: max(var(--tap-min), var(--xp-control-height)); border: 1px solid var(--xp-border); border-radius: var(--radius-s); background: var(--xp-surface-raised); color: var(--xp-ink); padding: var(--space-3xs) var(--space-xs); }
+:is(.workspace-sheet, .more-popover, .section-overflow) :is(button, a) { touch-action: manipulation; }
+:is(.workspace-sheet, .more-popover, .section-overflow) button { cursor: pointer; }
+:is(.workspace-sheet, .more-popover, .section-overflow) :is(button, a):active { background: var(--xp-primary-soft); }
+:is(.workspace-sheet, .more-popover, .section-overflow) :focus-visible { outline: 2px solid var(--xp-focus); outline-offset: 2px; }
+:is(.workspace-sheet, .more-popover, .section-overflow) svg { width: 18px; height: 18px; flex-shrink: 0; stroke-width: 1.75; }
+:is(.workspace-sheet, .more-popover, .section-overflow) .icon-button { display: grid; place-items: center; flex: 0 0 var(--xp-control-height); inline-size: var(--xp-control-height); block-size: var(--xp-control-height); min-block-size: var(--xp-control-height); padding: 0; border: 0; background: transparent; border-radius: var(--radius-s); }
+
+.workspace-sheet { position: fixed; inset: 0; inline-size: 100%; max-inline-size: none; block-size: 100%; max-block-size: none; margin: 0; padding: 0; border: 0; background: transparent; overflow: hidden; }
+.workspace-sheet:not([open]) { display: none; }
+.workspace-sheet::backdrop { background: color-mix(in srgb, var(--xp-shadow-color) 58%, transparent); }
+.sheet-surface { position: absolute; display: grid; background: var(--xp-surface-raised); border: 1px solid var(--xp-border); box-shadow: var(--xp-shadow-l); overflow: hidden; }
+.workspace-sheet[data-axis="y"] .sheet-surface { inset-inline: 0; inset-block-end: 0; block-size: min(90dvh, var(--sheet-block-limit, 32rem)); grid-template-areas: "grip" "header" "body"; grid-template-rows: auto auto minmax(0, 1fr); border-start-start-radius: var(--radius-l); border-start-end-radius: var(--radius-l); }
+.workspace-sheet[data-axis="y"]:has(.cal-settings-legend) .sheet-surface { block-size: min(90dvh, 40rem); }
+.workspace-sheet[data-axis="x"] .sheet-surface { inset-block: 0; inset-inline-end: 0; inline-size: min(88vw, 22rem); grid-template-areas: "grip header" "body body"; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+.workspace-sheet .sheet-grip { grid-area: grip; display: grid; place-items: center; border: 0; border-radius: var(--radius-s); background: transparent; padding: 0; }
+.workspace-sheet[data-axis="y"] .sheet-grip { inline-size: 100%; block-size: var(--xp-control-height); min-block-size: var(--xp-control-height); }
+.workspace-sheet[data-axis="x"] .sheet-grip { inline-size: var(--xp-control-height); min-inline-size: var(--xp-control-height); block-size: 100%; }
+.sheet-grip > span { display: block; border-radius: var(--radius-s); background: var(--xp-border); }
+.workspace-sheet[data-axis="y"] .sheet-grip > span { inline-size: 40px; block-size: 4px; }
+.workspace-sheet[data-axis="x"] .sheet-grip > span { inline-size: 4px; block-size: 40px; }
+.sheet-header { grid-area: header; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: var(--space-3xs) var(--space-xs); padding: var(--space-2xs) var(--space-s) var(--space-xs); border-block-end: 1px solid var(--xp-border); }
+/* The actions keep their width; the title gives way. At a large spacing scale the actions grow
+   and an untruncated title would otherwise run underneath them. */
+.sheet-header h2 { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 16px; font-weight: 650; }
+.sheet-actions { flex-shrink: 0; }
+/* The description gets the full width on its own row: with actions beside the heading it would
+   otherwise be squeezed into a narrow column and wrap into four short lines in a drawer. */
+.sheet-header p { grid-column: 1 / -1; grid-row: 2; color: var(--xp-muted); font-size: 13px; }
+.sheet-actions { grid-area: 1 / 2 / auto / auto; display: flex; align-items: center; gap: var(--space-3xs); }
+.sheet-body { grid-area: body; overflow: auto; padding: var(--space-xs) var(--space-s) max(var(--space-s), env(safe-area-inset-bottom, 0px)); }
+.sheet-body .section-navigation { margin-block-start: var(--space-s); }
+.sheet-body :is(h2, strong) { color: var(--xp-ink); }
+.sheet-body h2 { font-size: 1rem; }
+.sheet-body :is(p, dt) { color: var(--xp-muted); font-size: 14px; }
+.sheet-body dd { margin: var(--space-3xs) 0 var(--space-s); }
+
+/* The layer is bounded by the viewport, not by its content: whatever the module contributes below
+   primary navigation, the box ends above the bottom edge and the rest of the list scrolls inside it.
+   Its distance from the top is written once, because a bound that repeated the offset as a second
+   literal would silently stop matching the box the first time either number moved. */
+.more-popover, .section-overflow { --more-popover-offset: 64px; --more-popover-row: 44px; position: fixed; inset: auto; inset-block-start: var(--more-popover-offset); inset-inline-end: var(--space-s); margin: 0; padding: var(--space-2xs) var(--space-xs); inline-size: min(20rem, calc(100% - var(--space-l))); max-block-size: calc(100dvh - var(--more-popover-offset) - var(--space-s)) ; overflow: auto; border: 1px solid var(--xp-border); border-radius: var(--radius-m); background: var(--xp-surface-raised); box-shadow: var(--xp-shadow-l); }
+.more-popover .section-navigation { margin-block-start: var(--space-s); }
+.module-list-sections { padding: var(--space-xs); border-block-end: 1px solid var(--xp-border); background: var(--xp-surface); }
+.module-list-sections > .section-navigation { display: flex; align-items: center; gap: var(--space-3xs); margin: 0; }
+.module-list-sections > .section-navigation a { min-inline-size: 0; padding-inline: var(--space-2xs); font-size: .8125rem; white-space: nowrap; }
+.module-list-sections .module-section-trigger { margin-inline-start: auto; flex-shrink: 0; }
+.module-section-popover { inset-inline-end: auto; }
+.more-popover[data-home-menu] { max-block-size: calc(100dvh - 80px); scrollbar-gutter: stable; scrollbar-width: thin; scrollbar-color: var(--xp-border) transparent; }
+
+/* Issue #41: the configurator's layout switches. They live on the root element because a
+   preview frame is a separate document the panel reconfigures by writing into it, and
+   because every default below is the shell's existing behaviour when no attribute is set. */
+.workspace-rail .workspace-links a span { display: none; }
+:root[data-xp-rail="labels"] .workspace-rail { flex-basis: 184px; }
+:root[data-xp-rail="labels"] .workspace-rail .workspace-links a span { display: inline; }
+:root[data-xp-rail="labels"] .workspace-rail .icon-links a { justify-content: flex-start; padding-inline: var(--space-2xs); }
+/* A labelled rail already carries primary navigation, so the sidebar must not repeat it
+   verbatim next to it; the sidebar keeps its section navigation and workspace context. */
+:root[data-xp-rail="labels"] .workspace:is([data-device-class="TL"], [data-device-class="DW"]) .workspace-sidebar-navigation > .workspace-links { display: none; }
+/* Without that list the context block's auto margin would leave a tall void above it. */
+:root[data-xp-rail="labels"] .workspace:is([data-device-class="TL"], [data-device-class="DW"]) .workspace-context { margin-block-start: 0; }
+:root[data-xp-sidebar="compact"] .workspace-sidebar { flex-basis: 68px; align-items: center; }
+:root[data-xp-sidebar="compact"] .workspace-sidebar > :is(.workspace-brand, .workspace-context),
+:root[data-xp-sidebar="compact"] .workspace-sidebar-navigation > .section-navigation { display: none; }
+:root[data-xp-sidebar="compact"] .workspace-sidebar .workspace-links { inline-size: 100%; }
+:root[data-xp-sidebar="compact"] .workspace-sidebar .workspace-links a { justify-content: center; }
+:root[data-xp-sidebar="compact"] .workspace-sidebar .workspace-links a span { display: none; }
+:root[data-xp-sidebar="hidden"] .workspace-sidebar { display: none; }
+/* Labels in the rail plus a compact sidebar leaves a track with nothing in it: the rail already
+   carries the labelled destinations and the compact rules hide everything else. Collapse it. */
+:root[data-xp-rail="labels"][data-xp-sidebar="compact"] .workspace:is([data-device-class="TL"], [data-device-class="DW"]) .workspace-sidebar { display: none; }
+.pane-body > :is(.route-surface, .hd) { max-inline-size: var(--xp-content-max, none); margin-inline: auto; }
+/* The configurator's motion switch, on the declarative half. @xp/motion's own bindings read the
+   same attribute (src/shell/motion.tsx), so one switch governs both halves. Sheets and the
+   anchored menu live in the top layer, outside .workspace, and are covered here too. */
+:root[data-xp-motion="off"] :is(.workspace, .workspace-sheet, .more-popover, .section-overflow, .kit-dialog, .kit-floating, .kit-scrim, .kit-toast),
+:root[data-xp-motion="off"] :is(.workspace, .workspace-sheet, .more-popover, .section-overflow, .kit-dialog, .kit-floating, .kit-scrim, .kit-toast) * {
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+  scroll-behavior: auto !important;
+}
+:root[data-xp-motion="reduced"] :is(.workspace, .workspace-sheet, .more-popover, .section-overflow, .kit-dialog, .kit-floating, .kit-toast) :is(button, a) { transition: background-color 80ms var(--xp-ease-out); }
+/* A sidebar entry on a fine pointer takes its height from its label rather than from a 44px touch
+   target a mouse does not need. At 768px the DS sidebar now carries up to fourteen links and the
+   workspace footer below them, and all of it has to be visible without a scroll; the desktop
+   minimum target is 24px (#57 + #58). */
+/* DS is excluded: #60 gives that class 32px rows and windows rounded down to whole rows, and a
+   34px row inside a window sized in 32px steps can never be scrolled fully into view under
+   mandatory snapping. The venue's tenth section sat 14px under the edge and stayed there. */
+.workspace:is([data-device-class="TL"], [data-device-class="DW"]) .workspace-sidebar :is(.workspace-links a, .section-navigation a) { min-block-size: 34px; padding-block: var(--space-3xs); }
+/* The layer ends on a whole row. Its height came from the viewport less a fixed offset, which
+   lands mid-row for most viewports: with eleven destinations and a module's sections the bottom
+   edge drew "Saved" at 21 of its 34px, scrollable and reachable but reading as breakage (#58,
+   #101). The row is the touch height by default and the fine-pointer height on these classes. */
+.workspace:is([data-device-class="TL"], [data-device-class="DS"], [data-device-class="DW"]) .more-popover { --more-popover-row: 34px; }
+/* The layer holds the module list and, on a route that has them, that module's sections. Each list
+   is its own scrollport sized in whole rows, the way the DS sidebar is, so the bottom edge never
+   draws half a row. The budget comes from the viewport, not from a container query: `container-type:
+   size` sizes an element as if it had no contents, and on this auto-height fixed popover it
+   collapsed the layer to 21px with both lists at zero (#101). Each list takes half the space, so the
+   two together plus the layer's own chrome always fit inside its bound. */
+.more-popover { --more-popover-space: calc(100dvh - var(--more-popover-offset) - var(--space-s) - 2 * var(--space-2xs)); }
+.more-popover:popover-open { display: flex; flex-direction: column; }
+.more-popover:popover-open > .workspace-links,
+.more-popover:popover-open .section-navigation-links {
+  /* Rows tile without gaps, so a window that is a whole number of rows ends on a row boundary. */
+  flex: 0 1 auto; min-block-size: 0; gap: 0; overflow-y: auto; overscroll-behavior: contain;
+  max-block-size: round(down, calc(var(--more-popover-space) / 2), var(--more-popover-row));
+}
+.more-popover:popover-open > .section-navigation { flex: 0 1 auto; min-block-size: 0; display: grid; grid-template-rows: auto minmax(0, 1fr); }
+/* The same fine-pointer row as the sidebar, in the layer, and gated on the same three classes:
+   TP opens this layer too and is a touch class, where 44px is the floor. The layer carries the
+   sidebar's own two lists, so a row that is a 34px entry in one and a touch target in the other
+   is the same row measured twice (#58). It is also the unit the layer rounds its windows to. */
+.workspace:is([data-device-class="TL"], [data-device-class="DS"], [data-device-class="DW"]) .more-popover :is(.workspace-links a, .section-navigation a) { min-block-size: 34px; padding-block: var(--space-3xs); }
+/* The docked strip: a module's own section list under the top bar, on the classes that declare one.
+   These five rules were deleted with the layer rewrite and nothing replaced them, which left the
+   strip a run of inline text with its heading showing and no 44px floor on a touch class (#101). */
+.section-strip, .workspace-topnav[data-sections] { min-inline-size: 0; padding: 0; border-block-end: 1px solid var(--xp-border); }
+/* Gallery sections retain their wrapping layout. Route sections instead expose a bounded tab
+   set and an anchored overflow menu, so tablet navigation always occupies one row. */
+:is(.section-strip, .workspace-topnav[data-sections]) .section-navigation { display: flex; flex-wrap: wrap; gap: var(--space-2xs); margin: 0; padding: var(--space-2xs) var(--space-s); }
+:is(.section-strip, .workspace-topnav[data-sections]) .section-navigation h2 { display: none; }
+:is(.section-strip, .workspace-topnav[data-sections]) .section-navigation a { flex: 0 0 auto; min-block-size: 44px; }
+:is(.section-strip, .workspace-topnav[data-sections]) .section-navigation[data-bounded] { flex-wrap: nowrap; }
+.section-overflow-trigger { display: inline-flex; align-items: center; gap: var(--space-2xs); flex: 0 0 auto; }
+.section-overflow { inset-inline-end: auto; }
+.section-overflow:popover-open { display: grid; }
+
+/* Shared skin geometry. Class owns the control floor; route content never reads width. */
+.workspace:is([data-device-class="M"], [data-device-class="TP"]) { --xp-control-height: 44px; }
+.workspace[data-device-class="TL"] { --xp-control-height: 40px; }
+.workspace:is([data-device-class="DS"], [data-device-class="DW"]) { --xp-control-height: 36px; }
+.workspace:is([data-device-class="TL"], [data-device-class="DS"], [data-device-class="DW"]) .workspace-header { min-block-size: 56px; }
+.workspace:is([data-device-class="DS"], [data-device-class="DW"]) .workspace-header { border-block-end: 0; }
+.workspace:is([data-device-class="DS"], [data-device-class="DW"]) .route-panes[data-has-list="true"] { border-block-start: 1px solid var(--xp-border); }
+.workspace-sidebar .section-navigation h2 { margin: 8px 0; padding-block-start: 8px; border-block-start: 1px solid var(--xp-border); border-block-end: 0; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: var(--xp-muted); }
+.workspace-sidebar .section-navigation a { font-size: 14px; font-weight: 500; }
+.workspace-sidebar .section-navigation a[aria-current] { background: var(--xp-primary-soft); color: var(--xp-primary); font-weight: 600; }
+.workspace-rail .icon-links a { inline-size: 36px; min-block-size: 36px; block-size: 36px; align-self: center; }
+:root[data-xp-rail="labels"] .workspace-rail .icon-links a { inline-size: 100%; }
+/* A landscape tablet can have desktop anatomy and still need touch-sized chrome. */
+@media (pointer: coarse) {
+  :root[data-xp-class], .workspace[data-device-class] { --xp-control-height: 44px; }
+  .workspace-rail .icon-links a { min-inline-size: 44px; min-block-size: 44px; block-size: 44px; }
+}
+.route-inspector :is(.kit-card, .home-link) { box-shadow: var(--xp-shadow-s); }
+:is(.workspace, .workspace-sheet, .kit-floating, .kit-dialog) :is(input, select, textarea):focus-visible { outline: none; border-color: var(--xp-primary); box-shadow: 0 0 0 3px var(--xp-primary-soft); }
+@media (forced-colors: active) {
+  :is(.workspace, .workspace-sheet, .kit-floating, .kit-dialog) :is(input, select, textarea):focus-visible { outline: 2px solid Highlight; outline-offset: 2px; }
+}
+@media (hover: hover) and (pointer: fine) {
+  :is(.workspace, .workspace-sheet) :is(.icon-button, .pane-actions button, .sheet-grip):hover:not(:disabled) { background: var(--xp-surface-muted); }
+}
+:is(.workspace, .workspace-sheet) :is(.icon-button, .pane-actions button, .sheet-grip):active:not(:disabled) { background: var(--xp-primary-soft); }
+:is(.workspace, .workspace-sheet, .more-popover, .section-overflow) :is(.icon-button, .pane-actions button, .sheet-grip):disabled { background: transparent; color: var(--xp-muted); border: 0; }
+
+/* Two mounted glyphs preserve continuity when the resolved system preference changes. */
+.theme-switcher svg { grid-area: 1 / 1; transition: opacity 200ms var(--xp-ease-out), transform 200ms var(--xp-ease-out); }
+.theme-switcher .theme-sun { opacity: 1; transform: rotate(0); }
+.theme-switcher .theme-moon { opacity: 0; transform: rotate(-90deg); }
+.theme-switcher[aria-pressed="true"] .theme-sun { opacity: 0; transform: rotate(90deg); }
+.theme-switcher[aria-pressed="true"] .theme-moon { opacity: 1; transform: rotate(0); }
+@media (prefers-reduced-motion: reduce) {
+  .theme-switcher svg { transform: none !important; transition: opacity 80ms var(--xp-ease-out); }
+}
+:root:is([data-xp-motion="off"], [data-xp-motion="reduced"]) .theme-switcher svg { transform: none !important; transition: opacity 80ms var(--xp-ease-out); transition-duration: 80ms !important; }
+:is(.section-strip, .workspace-topnav[data-sections]) .section-overflow a { padding: var(--space-xs); border-radius: var(--radius-s); color: var(--xp-ink); text-decoration: none; }

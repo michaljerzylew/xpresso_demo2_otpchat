@@ -1,0 +1,35 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "decision-band",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "content",
+    "exportName": "DecisionBand",
+    "sourceVariants": 14,
+    "presets": 14,
+    "compositions": ["center/plain", "center/stage", "split/media", "panel/stats"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 48, "moduleMaxSvh": 70 },
+    "TP": { "form": "band", "targetFloorPx": 44 },
+    "TL": { "form": "grid-2", "targetFloorPx": 44 },
+    "DS": { "form": "grid-2" },
+    "DW": { "form": "grid-2", "maxWidthRem": 80 }
+  },
+  "whyPolymorphic": "One semantic decision owner preserves every action, proof item and media seat while CSS-native forms tighten hierarchy on compact classes and restore split, stage or statistics composition on wide classes.",
+  "interaction": {
+    "oneDominantAction": true,
+    "deterministicEmailStates": true,
+    "semanticMediaNeverHidden": true,
+    "internalScroll": false
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title"],
+  "budgets": { "mobile_screens": 0.7, "touchTargetCoarse": 44, "mobileTargetPx": 48, "horizontalOverflow": "none" },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

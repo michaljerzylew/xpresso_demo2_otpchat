@@ -1,0 +1,51 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "disclosure-group",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "read",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "DisclosureGroup"
+  },
+  "fluid": false,
+  "engine": "css",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=disclosure-group"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": true,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": true
+  },
+  "forms": {
+    "M": {
+      "form": "stack"
+    },
+    "TP": {
+      "form": "stack"
+    },
+    "TL": {
+      "form": "grid-2"
+    },
+    "DS": {
+      "form": "grid-2"
+    },
+    "DW": {
+      "form": "grid-2"
+    }
+  },
+  "whyPolymorphic": "Touch classes compress long walls into disclosures while wider classes expose parallel reading lanes."
+}

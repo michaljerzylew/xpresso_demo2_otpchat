@@ -1,0 +1,18 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "mock-showcase",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": { "kind": "content", "exportName": "MockShowcase", "sourceVariants": 4, "presets": ["product-proof", "community-proof-bento", "paired-product-dialogues", "four-view-dashboard"], "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }, "dependencies": ["AdaptiveOverlay"] },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": { "M": { "form": "sheet" }, "TP": { "form": "sheet" }, "TL": { "form": "grid-2" }, "DS": { "form": "grid-2" }, "DW": { "form": "grid-2" } },
+  "whyPolymorphic": "The same runtime system model projects to a compact inspectable summary and a wide preview plus narrative composition.",
+  "interaction": { "oneStateOwner": true, "systemUiIsCode": true, "overlayFocusReturn": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s"],
+  "budgets": { "horizontalOverflow": "owned-tabs-only", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

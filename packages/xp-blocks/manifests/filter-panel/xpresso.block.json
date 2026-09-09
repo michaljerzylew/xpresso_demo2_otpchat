@@ -1,0 +1,41 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "filter-panel",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "overlay",
+  "contract": {
+    "kind": "content",
+    "exportName": "FilterPanel",
+    "sourceVariants": 5,
+    "presets": ["catalog-basics", "accordion-search", "advanced", "fashion", "property"],
+    "stateOwner": "CategoryFilter"
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "sheet", "targetFloorPx": 48, "moduleMaxSvh": 90 },
+    "TP": { "form": "sheet", "targetFloorPx": 44, "moduleMaxSvh": 90 },
+    "TL": { "form": "drawer-side", "targetFloorPx": 44 },
+    "DS": { "form": "inspector", "targetFloorPx": 44 },
+    "DW": { "form": "inspector", "maxWidthRem": 18 }
+  },
+  "whyPolymorphic": "One typed facet tree preserves controls, draft transactions and announcements while compact classes use bounded overlays and wall classes use a persistent inspection rail.",
+  "interaction": {
+    "oneStateOwner": true,
+    "transactionalDraft": true,
+    "focusReturn": true,
+    "keyboardInset": true,
+    "interactiveDisclosures": true
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--xp-keyboard-inset"],
+  "budgets": {
+    "horizontalOverflow": "none",
+    "mobilePrimaryAction": "visible",
+    "mobileTargetPx": 48,
+    "tabletTargetPx": 44
+  },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

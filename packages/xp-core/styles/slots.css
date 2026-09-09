@@ -1,0 +1,18 @@
+@layer xp.shell {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .xp-slot {
+    container: xp-slot / inline-size;
+    min-inline-size: 0;
+  }
+
+  .xp-slot-track {
+    min-inline-size: 0;
+    grid-template-columns: minmax(min(100%, var(--slot-min, var(--slot-s1-max))), 1fr);
+  }
+
+  .xp-inner-container {
+    container-type: inline-size;
+    min-inline-size: 0;
+  }
+}

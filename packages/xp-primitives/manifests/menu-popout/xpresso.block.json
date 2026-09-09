@@ -1,0 +1,52 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "menu-popout",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "overlay",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "MenuPopout"
+  },
+  "fluid": false,
+  "engine": "swap",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=menu-popout"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": false,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "Menu items remain invariant while the containing overlay role follows input and screen context."
+  },
+  "forms": {
+    "M": {
+      "form": "sheet"
+    },
+    "TP": {
+      "form": "popover"
+    },
+    "TL": {
+      "form": "popover"
+    },
+    "DS": {
+      "form": "popover"
+    },
+    "DW": {
+      "form": "popover"
+    }
+  },
+  "whyPolymorphic": "One item model becomes a reachable sheet on mobile and a compact anchored surface elsewhere."
+}

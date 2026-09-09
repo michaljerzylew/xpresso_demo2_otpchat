@@ -1,0 +1,35 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "status-strip",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "glance",
+  "contract": {
+    "kind": "content",
+    "exportName": "StatusStrip",
+    "sourceVariants": 5,
+    "presets": 5,
+    "compositions": ["single-service", "service-incidents", "pipeline-run", "monitor-accordion", "system-services"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "strip", "targetFloorPx": 48 },
+    "TP": { "form": "strip", "targetFloorPx": 48 },
+    "TL": { "form": "grid-2", "targetFloorPx": 44 },
+    "DS": { "form": "strip" },
+    "DW": { "form": "pane", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One ordered four-state temporal model preserves every status tick while compact forms offer a scrollable scrub band and wide forms restore full strips with pinned detail.",
+  "interaction": {
+    "oneStateOwner": true,
+    "singleExpandedService": true,
+    "keyboardScrub": true,
+    "coarsePointerDetail": true
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label"],
+  "budgets": { "horizontalOverflow": "contained-scroll", "mobileTargetPx": 48 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

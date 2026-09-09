@@ -1,0 +1,132 @@
+# ==========================================
+# Operator Boilerplate - .gitignore
+# ==========================================
+
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+._*
+.Spotlight-V100
+.Trashes
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*.class
+*.so
+.Python
+
+# Python Environments & Distributions
+.venv/
+venv/
+ENV/
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+!packages/*/**/lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.manifest
+*.spec
+
+# Testing & Linting Caches
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.ruff_cache/
+
+# Agent Workspaces & Ephemeral Metadata
+# Ignore all agent runtimes, handoffs, briefings, and execution logs
+.agents/*
+# Explicitly track OpenAI Codex skill discovery symlink when created
+!.agents/skills
+
+# Editor & IDE Configs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+*.sublime-project
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# Temporary & Log Files
+*.log
+*.tmp
+*.temp
+*.bak
+
+# Archives & Upstream Distribution Bundles
+*.zip
+*.tar.gz
+*.tgz
+
+# JavaScript / frontend build output and caches
+node_modules/
+.wrangler/
+*.tsbuildinfo
+.next/
+.turbo/
+.cache/
+.parcel-cache/
+out/
+coverage/
+
+# Keys, certificates, local databases
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.db
+
+# Media and design sources (link them, do not commit them)
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.psd
+*.ai
+*.sketch
+*.fig
+
+# Model weights
+*.gguf
+*.safetensors
+*.ckpt
+*.onnx
+*.pt
+*.pth
+
+# Local design references: licensed third-party material, outside the repo contract (ADR 0008)
+shadcn_templates/
+visual-inspirations/
+BOILERPLATE_GOAL.md
+
+# Local Chrome motion measurements and screenshots
+apps/web/evidence/

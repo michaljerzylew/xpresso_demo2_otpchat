@@ -1,0 +1,30 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "pricing",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "compare",
+  "contract": {
+    "kind": "content",
+    "exportName": "PlanPicker",
+    "sourceVariants": 20,
+    "presets": 6,
+    "compositions": ["split-offer", "plan-cards", "plan-selector", "comparison-matrix", "plan-bands", "plan-accordion"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 48 },
+    "TP": { "form": "stack", "targetFloorPx": 48 },
+    "TL": { "form": "grid-2", "targetFloorPx": 44 },
+    "DS": { "form": "grid-4", "targetFloorPx": 44 },
+    "DW": { "form": "grid-4", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One semantic plan collection becomes a touch-native selected-plan workspace in compact classes and restores cards, bands or full matrices when the local slot can support comparison.",
+  "interaction": { "planSelection": true, "billingState": true, "accordionState": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title"],
+  "budgets": { "mobile_screens": 2.4, "touchTargetCoarse": 44, "mobileTargetPx": 48, "horizontalOverflow": "local-matrix-only" },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

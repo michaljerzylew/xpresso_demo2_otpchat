@@ -1,0 +1,31 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "story-pager",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "content",
+    "exportName": "StoryPager",
+    "sourceVariants": 4,
+    "presets": ["process-deck", "scroll-scene", "device-scroll", "workflow-steps"],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "pager", "targetFloorPx": 48 },
+    "TP": { "form": "pager", "targetFloorPx": 48 },
+    "TL": { "form": "pane", "targetFloorPx": 44 },
+    "DS": { "form": "pane", "targetFloorPx": 44 },
+    "DW": { "form": "inspector", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One ordered story core moves from a thumb-driven pager to list-detail and tall-slot scene forms while keeping progress and every proof reachable.",
+  "interaction": { "oneStateOwner": true, "manualMotionOnly": true, "boundaryControls": true, "keyboardSelection": true, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "local-only", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

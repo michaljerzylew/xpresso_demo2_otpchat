@@ -1,0 +1,23 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "nav-model",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "navigate",
+  "contract": { "kind": "headless", "exportName": "NavModel", "sourceVariants": 25 },
+  "fluid": false,
+  "engine": "swap",
+  "forms": {
+    "M": { "form": "tab-bar" },
+    "TP": { "form": "tab-bar" },
+    "TL": { "form": "nav-rail" },
+    "DS": { "form": "drawer-side" },
+    "DW": { "form": "pane" }
+  },
+  "whyPolymorphic": "One destination graph supplies each structural renderer and forces explicit widget relocation rather than sidebar amputation.",
+  "interaction": { "activeDestination": true, "groupOrderInvariant": true },
+  "tokens": ["--xp-class", "--tap-min", "--xp-bottom-clearance"],
+  "budgets": { "destinationsReachableTaps": 2 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "Renderer grouping roles differ by form while destination labels, ordering, current state and badges remain invariant." }
+}

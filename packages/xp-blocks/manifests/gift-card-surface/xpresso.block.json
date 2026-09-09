@@ -1,0 +1,32 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "gift-card-surface",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "GiftCardSurface",
+    "publicChildren": ["LivePreview"],
+    "sourceVariants": 2,
+    "presets": ["delivery-purchase", "live-designer"],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 44 },
+    "TP": { "form": "pane", "targetFloorPx": 44 },
+    "TL": { "form": "pane", "targetFloorPx": 44 },
+    "DS": { "form": "pane", "targetFloorPx": 44 },
+    "DW": { "form": "inspector", "maxWidthRem": 92 }
+  },
+  "whyPolymorphic": "One gift configuration owner preserves values, validation and submission while compact classes prioritize touch rails and a preview dock and wide classes expose bounded simultaneous regions.",
+  "interaction": { "oneStateOwner": true, "liveBinding": true, "validatedMinorUnits": true, "uploadHost": true, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "local-rails-only", "remoteMedia": 0, "mobileTargetPx": 44, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "kpi-deck",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "compare",
+  "contract": {
+    "kind": "content",
+    "exportName": "KpiDeck",
+    "sourceVariants": 22,
+    "presets": 22,
+    "compositions": ["metric-grid", "comparison-panel", "instrument-overview", "distribution-panel", "health-panel"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "grid-2", "targetFloorPx": 48, "moduleMaxSvh": 75 },
+    "TP": { "form": "grid-2", "targetFloorPx": 48 },
+    "TL": { "form": "grid-3", "targetFloorPx": 44 },
+    "DS": { "form": "grid-4" },
+    "DW": { "form": "grid-6", "maxWidthRem": 80 }
+  },
+  "whyPolymorphic": "Metric values remain primary while chart accents discretely demote from full evidence to compact summaries as the owning slot narrows; detailed series relocate into one class-native overlay without hiding a measurement.",
+  "interaction": {
+    "oneStateOwner": true,
+    "fixtureOwnedActions": true,
+    "focusReturn": true,
+    "nonHoverDataAccess": true
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-stat-value"],
+  "budgets": { "mobile_screens": 0.75, "touchTargetCoarse": 48, "horizontalOverflow": "none" },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

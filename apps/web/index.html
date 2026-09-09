@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- viewport-fit=cover hands the display cutouts to the shell's safe-area padding. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Device-class workspace demo: overview, inbox and settings in five shell forms." />
+    <!--
+      Browser-chrome colour per mode. Both values are filled at start-up from the
+      theme tokens (src/pwa/theme-color.ts), because a literal colour here would
+      duplicate the token set and drift from it.
+    -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="xpresso_demo2_otpchat" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/pwa/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/pwa/apple-touch-icon-180.png" />
+    <!-- Inter is local and precached; no fonts.gstatic.com or fonts.googleapis.com requests. -->
+    <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <title>xpresso_demo2_otpchat</title>
+    <script>
+      // Run before styles or the app: manual choice wins over system preference.
+      (() => {
+        let preference = "system";
+        try {
+          const saved = localStorage.getItem("xp-theme-mode");
+          if (saved === "light" || saved === "dark" || saved === "system") preference = saved;
+        } catch { /* Storage is optional. */ }
+        const root = document.documentElement;
+        root.dataset.themePreference = preference;
+        root.dataset.theme = preference === "system"
+          ? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : preference;
+      })();
+    </script>
+    <link rel="stylesheet" href="/src/styles/globals.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

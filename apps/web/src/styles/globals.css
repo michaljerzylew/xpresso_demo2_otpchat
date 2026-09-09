@@ -1,0 +1,28 @@
+/* Issue #74: only the CSS this app renders reaches the bundle.
+   The vendored packages ship every xpresso skin (`xp-blocks/styles/blocks.css`
+   alone is 550 KB, `xp-shells/styles/shells.css` 602 KB). This app renders its
+   own shell plus three primitives, so the block and shell skins stay on disk for
+   the design kit and out of the CSS graph. `source(none)` replaces automatic
+   detection with the explicit list below, so a vendored file can no longer add
+   utilities the app never asks for. */
+@import "tailwindcss" source(none);
+@import "@xp/core/core.css";
+@import "@xp/core/tailwind-theme.css";
+@import "@xp/primitives/styles.css";
+@import "@xp/shells/regions.css";
+@import "../shell/shell.css";
+@import "../routes/routes.css";
+@import "../configurator/configurator.css";
+@import "../pwa/pwa.css";
+@import "@xp/theme/theme.css";
+@import "@xp/theme/tailwind.css";
+@import "./theme.css";
+
+/* Utility candidates come from the code Vite actually bundles: this app and the
+   packages whose components it renders. Everything here styles with semantic
+   classes, so the utility layer stays near-empty by design, not by accident. */
+@source "../";
+@source "../../../../packages/xp-core/src";
+@source "../../../../packages/xp-primitives/src";
+@source "../../../../packages/xp-runtime/src";
+@source "../../../../packages/xp-motion/src";

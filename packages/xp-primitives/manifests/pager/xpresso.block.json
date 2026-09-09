@@ -1,0 +1,51 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "pager",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "Pager"
+  },
+  "fluid": false,
+  "engine": "css",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=pager"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": true,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": true
+  },
+  "forms": {
+    "M": {
+      "form": "pager"
+    },
+    "TP": {
+      "form": "pager"
+    },
+    "TL": {
+      "form": "pager"
+    },
+    "DS": {
+      "form": "pager"
+    },
+    "DW": {
+      "form": "pager"
+    }
+  },
+  "whyPolymorphic": "A uniform full-screen sequence is intentionally width-agnostic and preserves native scroll snapping."
+}

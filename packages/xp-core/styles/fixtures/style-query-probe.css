@@ -1,0 +1,7 @@
+@layer xp.block {
+  @container style(--xp-class: M) { [data-xp-form-probe] { --xp-probe-form: rail; } }
+  @container style(--xp-class: TP) { [data-xp-form-probe] { --xp-probe-form: grid-2; } }
+  @container style(--xp-class: TL) { [data-xp-form-probe] { --xp-probe-form: cluster; } }
+  @container style(--xp-class: DS) { [data-xp-form-probe] { --xp-probe-form: grid-4; } }
+  @container style(--xp-class: DW) { [data-xp-form-probe] { --xp-probe-form: band; } }
+}

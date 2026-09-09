@@ -1,0 +1,49 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "meeting-shell",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "block",
+    "exportName": "MeetingShell",
+    "controllerName": "MeetingSessionController",
+    "sourceVariants": 3,
+    "presets": ["stage-focus", "meeting-app"],
+    "semanticOwners": 1,
+    "panelVector": ["none", "participants", "chat"],
+    "identityCounts": [4, 10, 7],
+    "streamCounts": [4, 4, 4],
+    "placementCounts": [4, 13, 10]
+  },
+  "fluid": true,
+  "engine": "swap",
+  "slotRange": { "min": "S1", "max": "S6" },
+  "formOverrides": {
+    "M": { "form": "rail", "anatomy": "stage-peer-snaprail", "targetFloorPx": 48 },
+    "TP": { "form": "grid-2", "anatomy": "stage-touch-deck", "targetFloorPx": 48 },
+    "TL": { "form": "pane", "anatomy": "stage-right-filmstrip", "targetFloorPx": 48 },
+    "DS": { "form": "pane", "anatomy": "compact-stage-support", "targetFloorPx": 32 },
+    "DW": { "form": "grid-4", "anatomy": "wide-stage-gallery", "targetFloorPx": 32 }
+  },
+  "whyPolymorphic": "One stable stream and command graph changes interaction species by class while preserving every track, panel draft, roster query and focus intent.",
+  "interaction": {
+    "singleControllerOwner": true,
+    "singleStreamCollection": true,
+    "singlePanelPresentation": true,
+    "priorityDock": true,
+    "endConfirmation": true,
+    "editableShortcutSuppression": true,
+    "keyboardPipAlternative": true
+  },
+  "tokens": ["--xp-class", "--tap-min", "--role-body", "--space-xs-s", "--space-s-m"],
+  "budgets": {
+    "coarseTargetPx": 48,
+    "fineTargetPx": 32,
+    "requiredSlots": [240, 320, 480, 720, 1024],
+    "identities": 21,
+    "placements": 27
+  },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

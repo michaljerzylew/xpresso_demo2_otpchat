@@ -1,0 +1,32 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "release-list",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "ReleaseList",
+    "sourceVariants": 1,
+    "presets": ["current-releases"],
+    "oneSemanticOwner": true,
+    "noFabricatedDates": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "stack", "inputPhysics": "touch-platform-lead", "targetFloorPx": 48 },
+    "TP": { "form": "grid-2", "inputPhysics": "touch-platform-lead", "targetFloorPx": 44 },
+    "TL": { "form": "pane", "inputPhysics": "touch-pointer", "targetFloorPx": 44 },
+    "DS": { "form": "pane", "inputPhysics": "keyboard-pointer", "targetFloorPx": 24 },
+    "DW": { "form": "pane", "inputPhysics": "keyboard-pointer", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One ReleaseList state owner preserves two release families, four real artifacts and five availability facts while compact cards become priority columns without a duplicate platform shelf or fabricated Chrome and Linux binaries.",
+  "interaction": { "oneStateOwner": true, "platformOverride": true, "downloadFeedback": true, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "none", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 24 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

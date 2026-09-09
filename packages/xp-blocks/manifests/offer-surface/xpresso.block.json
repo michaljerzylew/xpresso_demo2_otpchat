@@ -1,0 +1,42 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "offer-surface",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "overlay",
+  "contract": {
+    "kind": "commerce",
+    "exportName": "OfferSurface",
+    "sourceVariants": 5,
+    "presets": ["capture-side", "coupon-band", "capture-background", "chance-wheel", "deadline-coupon"],
+    "stateOwner": "OfferSurface",
+    "overlayOwner": "AdaptiveOverlay",
+    "wheelOwner": "IntrinsicWheel",
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "sheet", "inputPhysics": "bottom-sheet", "targetFloorPx": 44 },
+    "TP": { "form": "sheet", "targetFloorPx": 44 },
+    "TL": { "form": "dialog", "targetFloorPx": 44 },
+    "DS": { "form": "dialog", "targetFloorPx": 44 },
+    "DW": { "form": "dialog", "targetFloorPx": 44, "maxWidthRem": 58 }
+  },
+  "whyPolymorphic": "One offer decision and mutation owner changes overlay physics across five device classes while local container geometry preserves capture, coupon, wheel and deadline tasks without duplicate renderers.",
+  "interaction": {
+    "oneStateOwner": true,
+    "hostAuthoritativeWheel": true,
+    "absoluteDeadline": true,
+    "dismissReasons": true,
+    "copyState": true,
+    "suppressionState": true,
+    "reminderState": true,
+    "hiddenTwins": false
+  },
+  "tokens": ["--tap-min", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "forbidden", "remoteMedia": 0, "mobileTargetPx": 44, "wheelSectors": 7, "wheelOutcomes": 4, "countdownUnits": 4 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

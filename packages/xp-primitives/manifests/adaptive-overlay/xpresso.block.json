@@ -1,0 +1,52 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "adaptive-overlay",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "overlay",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "AdaptiveOverlay"
+  },
+  "fluid": false,
+  "engine": "swap",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=adaptive-overlay"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": false,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "Dialog, sheet and popover roles differ intentionally while their named content stays equivalent."
+  },
+  "forms": {
+    "M": {
+      "form": "sheet"
+    },
+    "TP": {
+      "form": "sheet"
+    },
+    "TL": {
+      "form": "popover"
+    },
+    "DS": {
+      "form": "popover"
+    },
+    "DW": {
+      "form": "popover"
+    }
+  },
+  "whyPolymorphic": "Overlay geometry follows intent and device posture instead of shrinking one desktop modal."
+}

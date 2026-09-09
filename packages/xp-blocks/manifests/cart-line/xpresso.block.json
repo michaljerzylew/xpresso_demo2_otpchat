@@ -1,0 +1,30 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "cart-line",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "content",
+    "exportName": "CartLine",
+    "sourceVariants": 3,
+    "presets": ["cart-page", "cart-drawer", "compact-overlay"],
+    "stateOwner": "CartSurface"
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "band", "targetFloorPx": 48 },
+    "TP": { "form": "band", "targetFloorPx": 48 },
+    "TL": { "form": "band", "targetFloorPx": 48 },
+    "DS": { "form": "band", "targetFloorPx": 44 },
+    "DW": { "form": "band", "targetFloorPx": 44 }
+  },
+  "whyPolymorphic": "One semantic product line retains identity, price, quantity and declared actions while its owned tracks recompose for local slot width and device input class.",
+  "interaction": { "oneStateOwner": true, "keyboardOperable": true, "directQuantityInput": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m"],
+  "budgets": { "horizontalOverflow": "none", "mobileTargetPx": 48, "tabletTargetPx": 48 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

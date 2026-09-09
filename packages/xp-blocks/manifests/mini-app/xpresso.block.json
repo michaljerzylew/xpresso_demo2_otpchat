@@ -1,0 +1,31 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "mini-app",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "MiniApp",
+    "sourceVariants": 6,
+    "presets": ["performance-brief", "payment-method", "wallet-control", "schedule-agenda", "profile-wizard", "analytics-overview"],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "stack", "inputPhysics": "swipe-sheet-sticky-actions", "targetFloorPx": 44 },
+    "TP": { "form": "stack", "inputPhysics": "swipe-sheet-segmented", "targetFloorPx": 44 },
+    "TL": { "form": "grid-2", "inputPhysics": "touch-popover-segmented", "targetFloorPx": 44 },
+    "DS": { "form": "grid-2", "inputPhysics": "keyboard-pointer", "targetFloorPx": 24 },
+    "DW": { "form": "grid-2", "inputPhysics": "keyboard-pointer", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One MiniApp state owner preserves selection, fields, filters, disclosure and form progress while device class changes interaction physics and local S1-S6 space changes continuous geometry.",
+  "interaction": { "oneStateOwner": true, "keyboardSelection": true, "touchSelection": true, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "owned-navigation-rails-only", "remoteMedia": 0, "mobileTargetPx": 44, "desktopTargetPx": 24 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

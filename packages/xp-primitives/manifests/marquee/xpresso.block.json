@@ -1,0 +1,51 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "marquee",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "glance",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "Marquee"
+  },
+  "fluid": false,
+  "engine": "css",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=marquee"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": true,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": true
+  },
+  "forms": {
+    "M": {
+      "form": "marquee"
+    },
+    "TP": {
+      "form": "marquee"
+    },
+    "TL": {
+      "form": "marquee"
+    },
+    "DS": {
+      "form": "marquee"
+    },
+    "DW": {
+      "form": "marquee"
+    }
+  },
+  "whyPolymorphic": "The sanctioned proof drift stays width-agnostic and becomes a static wrapping set under reduced motion."
+}

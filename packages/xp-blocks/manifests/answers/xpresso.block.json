@@ -1,0 +1,61 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "answers",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "content",
+    "exportName": "Answers",
+    "sourceVariants": 19,
+    "presets": [
+      "plain-disclosure",
+      "qualified-answer-wall",
+      "framed-answer-wall",
+      "category-chip-disclosure",
+      "split-tone-answer-wall",
+      "searchable-answer-wall",
+      "dual-lane-disclosure",
+      "category-rail-detail",
+      "support-aside-disclosure",
+      "masonry-answer-wall",
+      "editorial-photo-disclosure",
+      "resource-answer-rail",
+      "category-tile-disclosure",
+      "ui-proof-answers",
+      "portrait-panel-disclosure",
+      "active-answer-rail",
+      "featured-answer-teaser",
+      "dark-support-disclosure",
+      "light-support-disclosure"
+    ],
+    "oneSemanticOwner": true,
+    "mediaResolver": {
+      "required": true,
+      "fixtureKeysAreNotUrls": true
+    }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "disclosure", "targetFloorPx": 48 },
+    "TP": { "form": "disclosure", "targetFloorPx": 48 },
+    "TL": { "form": "pane", "targetFloorPx": 44 },
+    "DS": { "form": "grid-2", "targetFloorPx": 44 },
+    "DW": { "form": "grid-3", "maxWidthRem": 90 }
+  },
+  "whyPolymorphic": "One typed answer owner changes disclosure, categorized, wall, support, media, guided, proof and teaser geometry across five classes and six local slot bands without changing record identity, order or escape reachability.",
+  "interaction": {
+    "oneStateOwner": true,
+    "manualCompactAccess": true,
+    "boundaryControls": true,
+    "keyboardSelection": true,
+    "touchSelection": true,
+    "hiddenTwins": false
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "owned-browser-only", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

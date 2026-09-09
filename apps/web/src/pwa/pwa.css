@@ -1,0 +1,57 @@
+/* Issue #39. Semantic tokens only; the shell layer owns viewport geometry and safe areas. */
+.pwa-toast {
+  position: fixed;
+  z-index: 40;
+  inset-inline: var(--space-s);
+  inset-block-end: calc(var(--xp-safe-bottom, 0px) + var(--space-s));
+  margin-inline: auto;
+  max-inline-size: var(--measure-narrow);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-xs);
+  font: 14px/1.5 var(--xp-font-sans);
+  color: var(--xp-ink);
+  background: var(--xp-surface-raised);
+  border: 1px solid var(--xp-border);
+  border-radius: var(--radius-m);
+  box-shadow: var(--xp-shadow-m);
+  overscroll-behavior: contain;
+}
+
+.pwa-toast-actions { display: flex; gap: var(--space-3xs); }
+
+.pwa-toast button {
+  min-block-size: 44px;
+  min-inline-size: 44px;
+  padding: var(--space-3xs) var(--space-xs);
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+  color: var(--xp-ink);
+  background: var(--xp-surface-muted);
+  border: 1px solid var(--xp-border);
+  border-radius: var(--radius-s);
+}
+
+.pwa-toast button:first-child {
+  color: var(--xp-on-primary);
+  background: var(--xp-primary);
+  border-color: var(--xp-primary);
+}
+
+.pwa-toast :focus-visible { outline: 2px solid var(--xp-focus); outline-offset: var(--space-3xs); }
+
+.pwa-install { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3xs); }
+.pwa-install p { color: var(--xp-muted); font-size: 13px; }
+
+.pwa-install-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding-inline-start: var(--space-m);
+  list-style: decimal;
+  color: var(--xp-ink);
+}

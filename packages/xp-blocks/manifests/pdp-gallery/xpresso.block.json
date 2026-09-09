@@ -1,0 +1,30 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "pdp-gallery",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "content",
+    "exportName": "PdpGallery",
+    "sourceVariants": 10,
+    "forms": ["pager", "rail", "grid-2"],
+    "stateOwner": "ProductOverviewCore"
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "pager", "targetFloorPx": 48 },
+    "TP": { "form": "pager", "targetFloorPx": 48 },
+    "TL": { "form": "rail", "targetFloorPx": 44 },
+    "DS": { "form": "rail", "targetFloorPx": 24 },
+    "DW": { "form": "grid-2", "targetFloorPx": 24 }
+  },
+  "whyPolymorphic": "One selected product-media state becomes a compact pager, a touch or pointer rail, or a wide supporting grid without duplicating the product record.",
+  "interaction": { "selectionState": true, "keyboardNavigation": true, "nativeRail": true, "autoplay": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m"],
+  "budgets": { "horizontalOverflow": "local-only", "touchTargetCoarse": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "trust-burst",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "content",
+    "exportName": "TrustBurst",
+    "sourceVariants": 11,
+    "presets": [
+      "proof-stage",
+      "platform-wall",
+      "stat-band",
+      "channel-switcher",
+      "reward-mosaic",
+      "metric-deck",
+      "metric-panel",
+      "evidence-split",
+      "conversion-split",
+      "globe-network"
+    ],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "rail", "targetFloorPx": 48 },
+    "TP": { "form": "grid-2", "targetFloorPx": 48 },
+    "TL": { "form": "pane", "targetFloorPx": 44 },
+    "DS": { "form": "grid-3", "targetFloorPx": 44 },
+    "DW": { "form": "grid-4", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One trust evidence owner preserves eleven exact proof anatomies while compact rails, dense peer grids, split proof scenes and a deterministic globe replace source towers and amputated mobile evidence.",
+  "interaction": {
+    "oneStateOwner": true,
+    "manualCompactAccess": true,
+    "keyboardSelection": true,
+    "touchSelection": true,
+    "autoplay": false,
+    "hiddenTwins": false
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "owned-rail-only", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

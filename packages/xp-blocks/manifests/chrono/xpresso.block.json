@@ -1,0 +1,45 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "chrono",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "content",
+    "exportName": "Chrono",
+    "sourceVariants": 5,
+    "modes": ["tracking", "history", "axis", "changelog"],
+    "presets": ["order-tracking", "company-history", "process-axis", "career-axis", "release-changelog"],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true, "localizedHolds": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "disclosure", "targetFloorPx": 48 },
+    "TP": { "form": "disclosure", "targetFloorPx": 48 },
+    "TL": { "form": "rail", "targetFloorPx": 44 },
+    "DS": { "form": "pane", "targetFloorPx": 44 },
+    "DW": { "form": "pane", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One chronological record owner changes among compact disclosures, finite rails and wide panes while preserving record, action, progress and media identity.",
+  "slots+": {
+    "relocations": [
+      { "part": "groupNavigator", "target": "appbar-context", "when": ["M", "TP", "TL"] },
+      { "part": "groupNavigator", "target": "context-pane", "when": ["DS", "DW"] }
+    ]
+  },
+  "interaction": {
+    "oneStateOwner": true,
+    "finiteControls": true,
+    "keyboardSelection": true,
+    "touchSelection": true,
+    "reducedMotion": true,
+    "hiddenTwins": false
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "owned-rails-only", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

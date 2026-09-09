@@ -1,0 +1,30 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "product-list",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "content",
+    "exportName": "ProductCollection",
+    "sourceVariants": 9,
+    "presets": 5,
+    "compositions": ["tile", "vertical", "marketplace", "row"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "rail", "targetFloorPx": 48 },
+    "TP": { "form": "rail", "targetFloorPx": 48 },
+    "TL": { "form": "grid-2", "targetFloorPx": 44 },
+    "DS": { "form": "grid-3", "targetFloorPx": 44 },
+    "DW": { "form": "grid-3", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "Product cards retain one semantic collection while compact classes become touch-native snap rails and larger classes recover source-specific grids, rows, bento and deal strips.",
+  "interaction": { "wishlistState": true, "galleryState": true, "railNavigation": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title"],
+  "budgets": { "mobile_screens": 1.6, "touchTargetCoarse": 44, "mobileTargetPx": 48, "horizontalOverflow": "local-only" },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

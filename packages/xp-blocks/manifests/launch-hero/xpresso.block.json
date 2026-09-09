@@ -1,0 +1,31 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "launch-hero",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "LaunchHero",
+    "sourceVariants": 6,
+    "presets": ["testimonial-marquee", "media-story-split", "finance-proof-field", "community-grid", "launch-countdown", "community-countdown-card"],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "stack", "inputPhysics": "touch-cover-snap-proof", "targetFloorPx": 44 },
+    "TP": { "form": "stack", "inputPhysics": "touch-proof-stack", "targetFloorPx": 44 },
+    "TL": { "form": "grid-2", "inputPhysics": "touch-split", "targetFloorPx": 44 },
+    "DS": { "form": "grid-2", "inputPhysics": "keyboard-pointer-proof-stage", "targetFloorPx": 24 },
+    "DW": { "form": "grid-2", "inputPhysics": "keyboard-pointer-proof-stage", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One LaunchHero owner preserves capture, story selection and countdown truth while device class changes proof interaction and local S1-S6 space changes continuous geometry.",
+  "interaction": { "oneStateOwner": true, "keyboardSelection": true, "touchSelection": true, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "owned-proof-rails-only", "remoteMedia": 0, "mobileTargetPx": 44, "desktopTargetPx": 24 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

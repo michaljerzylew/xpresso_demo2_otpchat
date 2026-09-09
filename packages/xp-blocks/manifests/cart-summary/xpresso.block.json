@@ -1,0 +1,30 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "cart-summary",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "compare",
+  "contract": {
+    "kind": "content",
+    "exportName": "CartSummary",
+    "sourceVariants": 3,
+    "presets": ["cart-page", "cart-drawer", "compact-overlay"],
+    "stateOwner": "CartSurface"
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "band", "targetFloorPx": 48 },
+    "TP": { "form": "band", "targetFloorPx": 48 },
+    "TL": { "form": "band", "targetFloorPx": 48 },
+    "DS": { "form": "pane", "targetFloorPx": 44 },
+    "DW": { "form": "pane", "targetFloorPx": 44 }
+  },
+  "whyPolymorphic": "One calculated pricing state feeds either a compact current-action band or a full summary stack; only the host-declared projection mounts.",
+  "interaction": { "oneStateOwner": true, "liveAnnouncements": true, "stickyRegionArbitration": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--xp-safe-bottom"],
+  "budgets": { "horizontalOverflow": "none", "mobilePrimaryAction": "visible", "mobileTargetPx": 48 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

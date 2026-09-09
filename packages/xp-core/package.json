@@ -1,0 +1,37 @@
+{
+  "name": "@xp/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./core.css": "./styles/index.css",
+    "./tokens.css": "./tokens/dist/xp-tokens.css",
+    "./tailwind-theme.css": "./tokens/dist/xp-tokens.theme.css",
+    "./algebra": "./src/algebra.tsx",
+    "./tracks": "./src/tracks.ts",
+    "./page-assembly": "./manifests/validate-page-assembly.mjs",
+    "./block-schema.json": "./schemas/block-1.1.schema.json",
+    "./style-query-probe.css": "./styles/fixtures/style-query-probe.css",
+    "./style-query-probe-fallback.css": "./styles/dist/style-query-probe.fallback.css"
+  },
+  "scripts": {
+    "build": "pnpm tokens:build && pnpm styles:build && pnpm typecheck",
+    "lint:blocks": "tsx lint/lint-blocks.mjs ../xp-blocks",
+    "lint:test": "tsx --test lint/tests/*.test.mjs",
+    "manifests:check": "tsx manifests/check-manifests.mjs ../xp-blocks",
+    "manifests:test": "tsx --test manifests/tests/*.test.mjs",
+    "tokens:build": "tsx tokens/build-tokens.mjs",
+    "tokens:test": "tsx --test tokens/tests/gates.test.mjs",
+    "styles:build": "tsx styles/build-styles.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "pnpm tokens:test && pnpm lint:test && pnpm manifests:test && pnpm typecheck"
+  },
+  "peerDependencies": {
+    "react": ">=19"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.18",
+    "ajv": "8.20.0",
+    "postcss": "8.5.26"
+  }
+}

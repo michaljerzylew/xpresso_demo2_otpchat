@@ -1,0 +1,52 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "priority-overflow-bar",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "navigate",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "PriorityOverflowBar"
+  },
+  "fluid": false,
+  "engine": "swap",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=priority-overflow-bar"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": false,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "Visible and overflow actions share names and order while their containing surface changes presentation."
+  },
+  "forms": {
+    "M": {
+      "form": "sheet"
+    },
+    "TP": {
+      "form": "popover"
+    },
+    "TL": {
+      "form": "popover"
+    },
+    "DS": {
+      "form": "popover"
+    },
+    "DW": {
+      "form": "popover"
+    }
+  },
+  "whyPolymorphic": "Measured capacity keeps high-priority actions visible and routes only the tail to an input-native overlay."
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "detail-sections",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "read",
+  "contract": {
+    "kind": "content",
+    "exportName": "DetailSections",
+    "sourceVariants": 10,
+    "forms": ["accordion", "disclosure", "grid-2"],
+    "stateOwner": "ProductOverviewCore"
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "accordion", "targetFloorPx": 48 },
+    "TP": { "form": "accordion", "targetFloorPx": 48 },
+    "TL": { "form": "disclosure", "targetFloorPx": 44 },
+    "DS": { "form": "disclosure", "targetFloorPx": 24 },
+    "DW": { "form": "grid-2", "targetFloorPx": 24 }
+  },
+  "whyPolymorphic": "Secondary product evidence stays one ordered semantic collection while compact forms disclose it progressively and wide forms spend space on parallel readable regions.",
+  "interaction": { "disclosure": true, "allPayloadReachable": true, "purchaseState": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m"],
+  "budgets": { "horizontalOverflow": "none", "touchTargetCoarse": 44 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

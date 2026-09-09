@@ -1,0 +1,31 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "product-review-rail",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "ProductReviewRail",
+    "sourceVariants": 1,
+    "presets": ["product-proof"],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "rail", "targetFloorPx": 44 },
+    "TP": { "form": "grid-2", "targetFloorPx": 44 },
+    "TL": { "form": "grid-2", "targetFloorPx": 44 },
+    "DS": { "form": "grid-2", "targetFloorPx": 44 },
+    "DW": { "form": "grid-2", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One finite ProductReviewRail preserves the four apparatus records and six controls while the mobile form stages one proof vertically and larger classes pair product evidence with the field report.",
+  "interaction": { "oneStateOwner": true, "keyboardSelection": true, "touchSelection": true, "autoplay": false, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "none", "remoteMedia": 0, "mobileTargetPx": 44, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

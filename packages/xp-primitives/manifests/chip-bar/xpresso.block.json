@@ -1,0 +1,51 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "chip-bar",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "ChipBar"
+  },
+  "fluid": false,
+  "engine": "css",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=chip-bar"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": true,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": true
+  },
+  "forms": {
+    "M": {
+      "form": "rail"
+    },
+    "TP": {
+      "form": "rail"
+    },
+    "TL": {
+      "form": "cluster"
+    },
+    "DS": {
+      "form": "cluster"
+    },
+    "DW": {
+      "form": "cluster"
+    }
+  },
+  "whyPolymorphic": "Compact devices scroll filters horizontally while wider surfaces expose a wrapping control cluster."
+}

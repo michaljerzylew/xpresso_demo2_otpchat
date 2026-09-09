@@ -1,0 +1,51 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "gravity-rail",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "glance",
+  "contract": {
+    "kind": "content",
+    "exportName": "GravityRail",
+    "sourceVariants": 9,
+    "presets": [
+      "framed-mono-wrap",
+      "hairline-color-grid",
+      "soft-mosaic",
+      "dual-card-marquee",
+      "bare-color-wall",
+      "split-vertical-partners",
+      "split-identity-orbit",
+      "split-staggered-pyramid",
+      "split-muted-mosaic"
+    ]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "band", "logoFieldMaxPx": 160, "moduleMaxSvh": 30 },
+    "TP": { "form": "band" },
+    "TL": { "form": "band" },
+    "DS": { "form": "band" },
+    "DW": { "form": "band", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One semantic identity model becomes bounded proof grids, weighted mosaics, counter rows, vertical lanes, or an orbit without duplicating partner ownership.",
+  "interaction": {
+    "singlePauseOwner": true,
+    "partnerLinks": false,
+    "sharedMotionState": true
+  },
+  "adjacency": {
+    "exposes": ["proof"],
+    "projectionEligibility": {
+      "capability": "proof",
+      "eligiblePresets": ["framed-mono-wrap", "hairline-color-grid", "soft-mosaic", "dual-card-marquee", "bare-color-wall"],
+      "standalonePresets": ["split-vertical-partners", "split-identity-orbit", "split-staggered-pyramid", "split-muted-mosaic"]
+    }
+  },
+  "tokens": ["--role-label", "--role-card-title", "--space-xs-s", "--space-s-m", "--tap-min"],
+  "budgets": { "mobile_screens": 0.3, "touchTargetCoarse": 44, "mobileSpeedPxPerSecondMax": 40, "js_gz_kb": 8 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

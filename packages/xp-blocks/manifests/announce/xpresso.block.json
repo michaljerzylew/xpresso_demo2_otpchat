@@ -1,0 +1,31 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "announce",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "glance",
+  "contract": {
+    "kind": "content",
+    "exportName": "Announce",
+    "sourceVariants": 12,
+    "presets": ["promo-art", "promo-deadline", "promo-capture", "ticker", "notice", "coupon", "capture", "consent-detailed", "consent-compact", "upsell"],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "sheet", "targetFloorPx": 44 },
+    "TP": { "form": "sheet", "targetFloorPx": 44 },
+    "TL": { "form": "popover", "targetFloorPx": 44 },
+    "DS": { "form": "band", "targetFloorPx": 24 },
+    "DW": { "form": "band", "maxWidthRem": 120 }
+  },
+  "whyPolymorphic": "One Announce owner preserves twelve exact message, decision, form, timer, ticker and media tuples while native compact overlays and complete desktop bars adapt without duplicated state or amputated actions.",
+  "interaction": { "oneStateOwner": true, "keyboardSelection": true, "touchSelection": true, "autoplay": false, "hiddenTwins": false },
+  "tokens": ["--xp-announce-height", "--xp-bottom-owner-height", "--tap-min", "--space-xs-s", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "none", "remoteMedia": 0, "mobileTargetPx": 44, "desktopTargetPx": 24 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

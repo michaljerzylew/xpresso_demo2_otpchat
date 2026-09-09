@@ -1,0 +1,23 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "compare-journey",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "compare",
+  "contract": {
+    "kind": "content",
+    "exportName": "CompareJourney",
+    "sourceVariants": 1,
+    "presets": ["paired-routes"],
+    "ladder": { "M": "bounded-editor", "TP": "bounded-editor", "TL": "inline-groups", "DS": "inline-groups", "DW": "inline-groups" }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "whyPolymorphic": "One query and route selection owner moves the editor into a bounded compact overlay while preserving two peer choices in both direction groups.",
+  "engine": "swap",
+  "interaction": { "oneStateOwner": true, "boundedQueryOverlay": true, "independentRouteGroups": true, "focusReturn": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-s-m", "--xp-keyboard-inset"],
+  "budgets": { "horizontalOverflow": "none", "mobileTargetPx": 48, "tabletTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

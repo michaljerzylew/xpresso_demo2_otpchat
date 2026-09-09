@@ -1,0 +1,45 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "dashboard-dropdown",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "overlay",
+  "contract": {
+    "kind": "content",
+    "exportName": "DashboardDropdown",
+    "sourceVariants": 23,
+    "menuPresets": 15,
+    "popoutPresets": 8,
+    "profiles": ["M1", "M2", "M3", "M4", "P1", "P2", "P3", "P4", "P5"]
+  },
+  "fluid": false,
+  "forms": {
+    "M": { "form": "takeover", "targetFloorPx": 48 },
+    "TP": { "form": "sheet", "targetFloorPx": 44 },
+    "TL": { "form": "drawer-side", "targetFloorPx": 44 },
+    "DS": { "form": "popover" },
+    "DW": { "form": "popover" }
+  },
+  "whyPolymorphic": "One typed state owner preserves menu or content semantics while AdaptiveOverlay selects native action sheet, listbox, drawer, takeover, popover or pane forms.",
+  "engine": "swap",
+  "interaction": {
+    "oneOverlayOwner": true,
+    "dirtyDismissGuard": true,
+    "keyboardInset": true,
+    "focusReturn": true,
+    "reorderAnnouncement": true,
+    "popoutRoleMenu": false
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-s", "--role-body", "--xp-keyboard-inset"],
+  "budgets": {
+    "horizontalOverflow": "none",
+    "mobilePrimaryAction": "visible",
+    "mobileTargetPx": 48,
+    "tabletTargetPx": 44
+  },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "Menu variants use APG menu, radio, listbox, combobox and ordered-list roles while true Popouts preserve native application semantics."
+  }
+}

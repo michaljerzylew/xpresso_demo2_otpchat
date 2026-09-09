@@ -1,0 +1,35 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "settings-surface",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "content",
+    "exportName": "SettingsSurface",
+    "sourceVariants": 7,
+    "presets": 7,
+    "compositions": ["profile", "notifications", "workspace", "connectors", "members", "security", "billing"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 48, "moduleMaxSvh": 100 },
+    "TP": { "form": "stack", "targetFloorPx": 48 },
+    "TL": { "form": "grid-2", "targetFloorPx": 44 },
+    "DS": { "form": "grid-2" },
+    "DW": { "form": "grid-2", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One settings schema keeps section, field, collection and action ownership stable while compact classes use native pushed subpages and wide classes restore persistent rail and pane composition.",
+  "interaction": {
+    "oneStateOwner": true,
+    "oneActiveSection": true,
+    "dirtyState": true,
+    "internalScroll": true
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title"],
+  "budgets": { "mobile_screens": 2, "touchTargetCoarse": 48, "horizontalOverflow": "none" },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

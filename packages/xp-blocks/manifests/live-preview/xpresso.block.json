@@ -1,0 +1,30 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "live-preview",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "LivePreview",
+    "sourceVariants": 1,
+    "presets": ["gift-card-editor"],
+    "oneSemanticOwner": true
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "band", "targetFloorPx": 44 },
+    "TP": { "form": "band", "targetFloorPx": 44 },
+    "TL": { "form": "pane", "targetFloorPx": 44 },
+    "DS": { "form": "pane", "targetFloorPx": 44 },
+    "DW": { "form": "pane", "maxWidthRem": 42 }
+  },
+  "whyPolymorphic": "The same controlled cover, recipient, amount and message projection becomes a compact expandable dock for touch forms and a bounded supporting pane for wider forms.",
+  "interaction": { "controlled": true, "focusReturn": true, "escapeClose": true, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m"],
+  "budgets": { "horizontalOverflow": "none", "remoteMedia": 0, "mobileTargetPx": 44, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

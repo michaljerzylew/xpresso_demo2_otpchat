@@ -1,0 +1,48 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "credentials-unit",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "block",
+    "exportName": "CredentialsUnit",
+    "sourceVariants": 6,
+    "presets": [
+      "email-with-shortcuts",
+      "email-with-social-pair",
+      "trial-identity-with-social-pair",
+      "email-with-social-trio"
+    ],
+    "semanticOwners": 1,
+    "fieldCounts": [2, 2, 2, 3, 2, 2],
+    "alternativeCounts": [4, 4, 2, 2, 3, 2]
+  },
+  "fluid": true,
+  "engine": "css",
+  "slotRange": { "min": "S1", "max": "S6" },
+  "formOverrides": {
+    "M": { "form": "stack", "recovery": "overlay" },
+    "TP": { "form": "stack", "recovery": "overlay" },
+    "TL": { "form": "stack", "recovery": "overlay" },
+    "DS": { "form": "stack", "recovery": "inline" },
+    "DW": { "form": "stack", "recovery": "inline" }
+  },
+  "whyPolymorphic": "Credentials remain one continuous form owner across local slot widths while only provider wrapping, sticky action geometry and recovery presentation adapt.",
+  "interaction": {
+    "persistentLabels": true,
+    "passwordReveal": true,
+    "firstInvalidFocus": true,
+    "pendingSubmissionLock": true,
+    "recoveryFocusReturn": true
+  },
+  "tokens": ["--xp-class", "--tap-min", "--role-body", "--space-xs-s", "--space-s-m"],
+  "budgets": {
+    "coarseTargetPx": 44,
+    "fineTargetPx": 24,
+    "providerWrap": "whole-control",
+    "heldDwSlots": [240, 320, 420, 560, 720, 960]
+  },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

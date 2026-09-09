@@ -1,0 +1,31 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "review-center",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "ReviewCenter",
+    "sourceVariants": 4,
+    "presets": ["analytics-ledger", "split-summary", "photo-proof", "review-workbench"],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "stack", "inputPhysics": "sheet-load-more", "targetFloorPx": 44 },
+    "TP": { "form": "stack", "inputPhysics": "sheet-load-more", "targetFloorPx": 44 },
+    "TL": { "form": "grid-2", "inputPhysics": "dialog-pager", "targetFloorPx": 44 },
+    "DS": { "form": "grid-2", "inputPhysics": "dialog-pager", "targetFloorPx": 44 },
+    "DW": { "form": "grid-2", "inputPhysics": "dialog-pager", "maxWidthRem": 96 }
+  },
+  "whyPolymorphic": "One ReviewCenter state owner preserves filters, cursor, votes, editor target and upload queue while compact registers prioritize the first review and wide registers expose the aggregate and stream as two working regions.",
+  "interaction": { "oneStateOwner": true, "keyboardSelection": true, "touchSelection": true, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "owned-evidence-rail-only", "remoteMedia": 0, "mobileTargetPx": 44, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

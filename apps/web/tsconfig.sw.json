@@ -1,0 +1,15 @@
+{
+  "//": "The service worker runs in a worker global scope; DOM and WebWorker libs cannot share one program.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "WebWorker"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": [],
+    "tsBuildInfoFile": "./node_modules/.cache/tsconfig.sw.tsbuildinfo"
+  },
+  "include": ["src/pwa/sw.ts"]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "form-surface",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "content",
+    "exportName": "FormSurface",
+    "sourceVariants": 9,
+    "presets": 9,
+    "compositions": ["profile-grid", "section-workspace", "tabs", "checkout-steps", "wizard"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "css",
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 48, "moduleMaxSvh": 100 },
+    "TP": { "form": "stack", "targetFloorPx": 48 },
+    "TL": { "form": "grid-2", "targetFloorPx": 44 },
+    "DS": { "form": "grid-2" },
+    "DW": { "form": "grid-2", "maxWidthRem": 80 }
+  },
+  "whyPolymorphic": "One native form owner keeps fields, selections, validation and stage actions coherent while compact classes use a bounded workflow canvas and wide classes restore persistent navigation and efficient field grids.",
+  "interaction": {
+    "oneStateOwner": true,
+    "oneActiveSection": true,
+    "stageOwnedActions": true,
+    "internalScroll": true
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title"],
+  "budgets": { "mobile_screens": 1, "touchTargetCoarse": 48, "horizontalOverflow": "none" },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

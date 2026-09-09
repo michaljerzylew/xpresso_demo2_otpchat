@@ -1,0 +1,18 @@
+# Normalise line endings: LF in the repo, native on checkout
+* text=auto eol=lf
+
+# Documentation is not "code" for language stats
+CHANGELOG.md linguist-documentation
+docs/** linguist-documentation
+skills/** linguist-documentation
+
+# Binaries: never diff, never normalise
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.pdf binary
+*.zip binary
+*.woff binary
+*.woff2 binary

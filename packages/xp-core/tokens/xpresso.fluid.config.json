@@ -1,0 +1,341 @@
+{
+  "$doc": "L0 metric config — the ONLY place numbers live. Segments = the 5 class bands of core §2.2 (window px). Poles in px are converted to rem (16) and to cqi/vi slopes. Type: 'flat' ≤1.15×, 'gentle' ≤1.5×, 'steep' ≤2.5× within a segment (WCAG 1.4.4 cap on type). Space is exempt from the 2.5× cap but must be monotone across the whole 320→2000 range.",
+  "remBase": 16,
+  "segments": [
+    {
+      "class": "M",
+      "min": 320,
+      "max": 599
+    },
+    {
+      "class": "TP",
+      "min": 600,
+      "max": 839
+    },
+    {
+      "class": "TL",
+      "min": 840,
+      "max": 1199
+    },
+    {
+      "class": "DS",
+      "min": 1200,
+      "max": 1599
+    },
+    {
+      "class": "DW",
+      "min": 1600,
+      "max": 2000
+    }
+  ],
+  "detection": {
+    "$doc": "The sole discrete class exception: coarse portrait windows at 840–899 resolve TP.",
+    "portraitCoarseTie": {
+      "min": 840,
+      "max": 899,
+      "class": "TP"
+    }
+  },
+  "type": {
+    "$doc": "body size (px) and modular ratio at each segment's min/max pole; steps -2..5 = body × ratio^step. Continuity: max of segment N == min of segment N+1 (no jump unless the form jumps too).",
+    "steps": [
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "poles": {
+      "M": {
+        "min": {
+          "size": 16,
+          "ratio": 1.2
+        },
+        "max": {
+          "size": 17,
+          "ratio": 1.2
+        }
+      },
+      "TP": {
+        "min": {
+          "size": 17,
+          "ratio": 1.2
+        },
+        "max": {
+          "size": 17.5,
+          "ratio": 1.22
+        }
+      },
+      "TL": {
+        "min": {
+          "size": 17.5,
+          "ratio": 1.22
+        },
+        "max": {
+          "size": 18,
+          "ratio": 1.25
+        }
+      },
+      "DS": {
+        "min": {
+          "size": 18,
+          "ratio": 1.25
+        },
+        "max": {
+          "size": 18.5,
+          "ratio": 1.28
+        }
+      },
+      "DW": {
+        "min": {
+          "size": 18.5,
+          "ratio": 1.28
+        },
+        "max": {
+          "size": 19.5,
+          "ratio": 1.333
+        }
+      }
+    },
+    "slopeClass": {
+      "-2": "flat",
+      "-1": "flat",
+      "0": "flat",
+      "1": "gentle",
+      "2": "gentle",
+      "3": "steep",
+      "4": "steep",
+      "5": "steep"
+    }
+  },
+  "space": {
+    "$doc": "space-s = the rhythm unit; grows with the window (gentle overall: 16px @320 → 26px @2000) — width buys air, never shrinks it. Multipliers give the scale; pairs interpolate min-of-A → max-of-B (Utopia one-up pairs + custom).",
+    "unit": {
+      "M": [
+        16,
+        17
+      ],
+      "TP": [
+        17,
+        18
+      ],
+      "TL": [
+        18,
+        20
+      ],
+      "DS": [
+        20,
+        23
+      ],
+      "DW": [
+        23,
+        26
+      ]
+    },
+    "scale": {
+      "3xs": 0.25,
+      "2xs": 0.5,
+      "xs": 0.75,
+      "s": 1,
+      "m": 1.5,
+      "l": 2,
+      "xl": 3,
+      "2xl": 4,
+      "3xl": 6,
+      "4xl": 8
+    },
+    "pairs": [
+      [
+        "3xs",
+        "2xs"
+      ],
+      [
+        "2xs",
+        "xs"
+      ],
+      [
+        "xs",
+        "s"
+      ],
+      [
+        "s",
+        "m"
+      ],
+      [
+        "m",
+        "l"
+      ],
+      [
+        "l",
+        "xl"
+      ],
+      [
+        "xl",
+        "2xl"
+      ],
+      [
+        "2xl",
+        "3xl"
+      ],
+      [
+        "3xl",
+        "4xl"
+      ],
+      [
+        "s",
+        "l"
+      ],
+      [
+        "m",
+        "xl"
+      ],
+      [
+        "l",
+        "2xl"
+      ],
+      [
+        "xl",
+        "3xl"
+      ]
+    ]
+  },
+  "radius": {
+    "unit": {
+      "M": [
+        8,
+        9
+      ],
+      "TP": [
+        9,
+        10
+      ],
+      "TL": [
+        10,
+        10
+      ],
+      "DS": [
+        10,
+        11
+      ],
+      "DW": [
+        11,
+        12
+      ]
+    },
+    "scale": {
+      "s": 0.5,
+      "m": 1,
+      "l": 1.6,
+      "xl": 2.4
+    }
+  },
+  "measure": {
+    "$doc": "prose measure in ch — fixed, not fluid (readability), but declared here so blocks never write literals",
+    "narrow": 45,
+    "body": 64,
+    "wide": 72
+  },
+  "floors": {
+    "tapCoarse": 44,
+    "tapFine": 24,
+    "gapMin": 8
+  },
+  "density": {
+    "$doc": "AMENDMENT 2026-08-16 (from ProofBand demo): density is NOT a multiplier on the space scale (that made desktop tighter than mobile on marketing blocks). It is an opt-in axis for app-register surfaces: a shell/section sets --xp-density-mode: compact|comfortable|spacious and app blocks read --space-*-d (density-adjusted twins). Marketing/glance blocks never read the -d twins.",
+    "modes": {
+      "compact": 0.8,
+      "comfortable": 1,
+      "spacious": 1.2
+    }
+  },
+  "rails": {
+    "$doc": "content rail max-widths in rem (page-level reading/composition rails); blocks reference --rail-*, never literals",
+    "content": 80,
+    "wide": 100
+  },
+  "slots": {
+    "$doc": "Canonical root-slot upper boundaries S1–S5 and S6 floor; T bands are legal only for inner named containers.",
+    "root": {
+      "s1Max": 20,
+      "s2Max": 26,
+      "s3Max": 34,
+      "s4Max": 42,
+      "s5Max": 56,
+      "s6Min": 56
+    },
+    "inner": {
+      "t1Max": 10,
+      "t2Max": 15,
+      "t3Max": 20
+    }
+  },
+  "roles": {
+    "$doc": "Semantic type roles -> step per class segment. Blocks bind --role-*, NEVER raw steps. Mobile demotes display roles (native-app register: iOS section header ~22px, StickyMobile h1 24 / body 13). A role's step may only rise with the class (monotone gate).",
+    "display": {
+      "M": 3,
+      "TP": 4,
+      "TL": 4,
+      "DS": 5,
+      "DW": 5
+    },
+    "section-title": {
+      "M": 2,
+      "TP": 3,
+      "TL": 3,
+      "DS": 4,
+      "DW": 4
+    },
+    "card-title": {
+      "M": 1,
+      "TP": 1,
+      "TL": 1,
+      "DS": 2,
+      "DW": 2
+    },
+    "lead": {
+      "M": 0,
+      "TP": 0,
+      "TL": 1,
+      "DS": 1,
+      "DW": 1
+    },
+    "body": {
+      "M": 0,
+      "TP": 0,
+      "TL": 0,
+      "DS": 0,
+      "DW": 0
+    },
+    "stat-value": {
+      "M": 1,
+      "TP": 1,
+      "TL": 2,
+      "DS": 2,
+      "DW": 2
+    },
+    "label": {
+      "M": -1,
+      "TP": -1,
+      "TL": -1,
+      "DS": 0,
+      "DW": 0
+    },
+    "caption": {
+      "M": -2,
+      "TP": -2,
+      "TL": -2,
+      "DS": -1,
+      "DW": -1
+    },
+    "action": {
+      "M": 0,
+      "TP": 0,
+      "TL": 0,
+      "DS": 0,
+      "DW": 0
+    }
+  }
+}

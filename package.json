@@ -1,0 +1,20 @@
+{
+  "name": "xpresso_demo2_otpchat",
+  "private": true,
+  "packageManager": "pnpm@10.30.0",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10 <11"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @xp/core build && pnpm --filter @xp/theme build && pnpm --filter @xp/motion build && pnpm --filter web dev",
+    "build": "pnpm -r build",
+    "qa": "pnpm -r build && node scripts/qa/capture.mjs",
+    "qa:perceive": "bash scripts/qa/perceiver.sh"
+  },
+  "devDependencies": {
+    "tsx": "4.20.6",
+    "typescript": "5.9.2",
+    "wrangler": "4.129.0"
+  }
+}

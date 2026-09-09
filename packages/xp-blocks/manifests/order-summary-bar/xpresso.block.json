@@ -1,0 +1,31 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "order-summary-bar",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "compare",
+  "contract": {
+    "kind": "content",
+    "exportName": "OrderSummaryBar",
+    "sourceVariants": 4,
+    "forms": ["band", "pane"],
+    "dependencies": ["CartSummaryModel", "CalculatedCart", "StickyActionBar"],
+    "stateOwner": "CheckoutFlow"
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "band", "targetFloorPx": 48 },
+    "TP": { "form": "band", "targetFloorPx": 48 },
+    "TL": { "form": "pane", "targetFloorPx": 44 },
+    "DS": { "form": "pane", "targetFloorPx": 44 },
+    "DW": { "form": "pane", "targetFloorPx": 44 }
+  },
+  "whyPolymorphic": "One calculated order projection becomes a compact disclosure band or a persistent context pane without creating a second purchase action or pricing owner.",
+  "interaction": { "oneStateOwner": true, "summaryDisclosureOnly": true, "noCommitAction": true, "liveAmounts": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--xp-safe-bottom"],
+  "budgets": { "horizontalOverflow": "none", "touchTargetCoarse": 48 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "Compact classes mount a disclosure band; wall classes mount the same calculated rows as a context pane." }
+}

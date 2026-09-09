@@ -1,0 +1,39 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "multi-step-form",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "content",
+    "exportName": "MultiStepForm",
+    "sourceVariants": 2,
+    "presets": ["registration-top", "rule-rail"],
+    "bodyKinds": ["form", "choice-form", "review", "success"],
+    "dependencies": ["WizardShell", "StepPane", "FieldGroup", "ChoiceSet"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "top-bar", "workflowForm": "app-bar-pane", "targetFloorPx": 48 },
+    "TP": { "form": "tabs", "workflowForm": "chip-pane", "targetFloorPx": 48 },
+    "TL": { "form": "nav-rail", "workflowForm": "rail-pane", "targetFloorPx": 44 },
+    "DS": { "form": "pane", "workflowForm": "progress-pane", "targetFloorPx": 44 },
+    "DW": { "form": "inspector", "workflowForm": "progress-pane-context", "targetFloorPx": 44 }
+  },
+  "whyPolymorphic": "One fixture-driven renderer preserves registration and rule-builder bodies while WizardShell swaps progress, pane and decoration placement across five native forms.",
+  "interaction": {
+    "oneWorkflowOwner": true,
+    "oneActivePane": true,
+    "controlledFieldValues": true,
+    "visitedNavigationOnly": true,
+    "validationGuard": true,
+    "processingLock": true,
+    "dirtyExitGuard": true
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title"],
+  "budgets": { "mobile_screens": 1, "touchTargetCoarse": 48, "horizontalOverflow": "none", "remoteMedia": 0 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "WizardShell mounts exactly one active StepPane and changes progress chrome by device class." }
+}

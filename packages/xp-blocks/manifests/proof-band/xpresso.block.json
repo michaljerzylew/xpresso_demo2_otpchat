@@ -1,0 +1,18 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "proof-band",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "read",
+  "contract": { "kind": "content", "exportName": "ProofBand", "sourceVariants": 4, "presets": ["founding-proof", "proof-reasons", "portrait-overlap", "portrait-stat-proof"], "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true } },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": { "M": { "form": "band" }, "TP": { "form": "band" }, "TL": { "form": "pane" }, "DS": { "form": "pane" }, "DW": { "form": "pane" } },
+  "whyPolymorphic": "Proof, identity and metric ownership remains singular while compact bands become grouped proof panes on larger devices.",
+  "interaction": { "oneStateOwner": true, "mediaKeysAreIdentities": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s"],
+  "budgets": { "horizontalOverflow": "none", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

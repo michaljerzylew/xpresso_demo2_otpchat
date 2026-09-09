@@ -1,0 +1,52 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "modal-intents",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "overlay",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "ModalSurface"
+  },
+  "fluid": false,
+  "engine": "swap",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=modal-intents"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": false,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "Presentation roles vary by intent and class; title, description, body and actions stay equivalent."
+  },
+  "forms": {
+    "M": {
+      "form": "sheet"
+    },
+    "TP": {
+      "form": "sheet"
+    },
+    "TL": {
+      "form": "dialog"
+    },
+    "DS": {
+      "form": "dialog"
+    },
+    "DW": {
+      "form": "dialog"
+    }
+  },
+  "whyPolymorphic": "Confirm, pick, edit and search share one contract but receive task-appropriate containment per class."
+}

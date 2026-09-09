@@ -1,0 +1,23 @@
+{
+  "name": "@xp/theme",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./presets": "./src/presets.ts",
+    "./presets/*.json": "./presets/*.json",
+    "./theme.css": "./dist/theme.css",
+    "./tailwind.css": "./dist/tailwind.css"
+  },
+  "scripts": {
+    "build": "tsc --noEmit && tsx build.mts",
+    "test": "vitest run"
+  },
+  "dependencies": { "@xp/core": "workspace:*" },
+  "devDependencies": {
+    "postcss": "8.5.26",
+    "vitest": "3.2.4",
+    "jsdom": "26.1.0"
+  }
+}

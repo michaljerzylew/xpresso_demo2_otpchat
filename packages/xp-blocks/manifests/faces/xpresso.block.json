@@ -1,0 +1,32 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "faces",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "content",
+    "exportName": "Faces",
+    "sourceVariants": 20,
+    "presets": 20,
+    "compositions": ["directory", "filtered-directory", "rail", "portrait-mosaic", "collective", "spotlight", "portrait-selector", "identity-marquee"],
+    "oneSemanticOwner": true,
+    "mediaSeats": 126
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "sheet", "targetFloorPx": 48 },
+    "TP": { "form": "rail", "targetFloorPx": 48 },
+    "TL": { "form": "grid-4", "targetFloorPx": 44 },
+    "DS": { "form": "grid-4", "targetFloorPx": 44 },
+    "DW": { "form": "grid-5", "maxWidthRem": 100 }
+  },
+  "whyPolymorphic": "One people collection changes from compact browse plus person detail to touch overlays, manual rails, mosaics and wide detail-rich directories without duplicating identities or serializing desktop cards on phones.",
+  "interaction": { "personDetail": true, "manualRail": true, "groupFilter": true, "selectionState": true, "autoplay": false, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "mobile_screens": 1.3, "touchTargetCoarse": 44, "mobileTargetPx": 48, "horizontalOverflow": "local-rail-only" },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

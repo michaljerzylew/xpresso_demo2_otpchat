@@ -1,0 +1,33 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "upload-unit",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "conversion",
+    "exportName": "UploadUnit",
+    "publicChildren": ["FileList"],
+    "sourceVariants": 7,
+    "presets": ["basic-single", "project-assets", "multi-source", "avatar", "workspace-assets", "upload-manager", "review-media"],
+    "oneSemanticOwner": true,
+    "adapterSources": ["device", "link", "camera", "library", "drive"],
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "stack", "inputPhysics": "touch-action-and-labelled-sources", "targetFloorPx": 44 },
+    "TP": { "form": "pane", "inputPhysics": "compact-zone-and-chips", "targetFloorPx": 44 },
+    "TL": { "form": "pane", "inputPhysics": "touch-zone-and-fields", "targetFloorPx": 44 },
+    "DS": { "form": "stack", "inputPhysics": "keyboard-dropzone-and-rows", "targetFloorPx": 44 },
+    "DW": { "form": "pane", "inputPhysics": "two-region-dropzone-and-rows", "maxWidthRem": 76 }
+  },
+  "whyPolymorphic": "One controlled queue preserves validation, progress and source state while UploadUnit changes input physics by device class and FileList changes rows versus chips from its own local slot.",
+  "interaction": { "oneStateOwner": true, "keyboardPicker": true, "touchPicker": true, "captureFallback": true, "paste": true, "drag": true, "adapterBackedSources": true, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "local-file-list-only", "remoteMedia": 0, "mobileTargetPx": 44, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

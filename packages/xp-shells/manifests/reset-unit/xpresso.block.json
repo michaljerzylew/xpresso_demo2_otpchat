@@ -1,0 +1,39 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "reset-unit",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "block",
+    "exportName": "ResetUnit",
+    "sourceVariants": 6,
+    "presets": ["set-new-password"],
+    "semanticOwners": 1,
+    "fieldCounts": [3, 3, 2, 2, 2, 2],
+    "controller": "ResetUnit"
+  },
+  "fluid": true,
+  "engine": "css",
+  "slotRange": { "min": "S1", "max": "S6" },
+  "formOverrides": {
+    "M": { "form": "stack", "targetFloorPx": 44 },
+    "TP": { "form": "stack", "targetFloorPx": 44 },
+    "TL": { "form": "stack", "targetFloorPx": 44 },
+    "DS": { "form": "stack", "targetFloorPx": 24 },
+    "DW": { "form": "stack", "targetFloorPx": 24 }
+  },
+  "whyPolymorphic": "One reset state owner keeps the email, two password values, reveals, rules, token and result while AuthShell changes host anatomy and relocates the same live guidance collection on DW.",
+  "interaction": {
+    "singleFormOwner": true,
+    "newPasswordAutocomplete": true,
+    "persistentLabels": true,
+    "pendingSubmissionLock": true,
+    "sameOriginPostFallback": true,
+    "expiredTokenRoute": true
+  },
+  "tokens": ["--xp-class", "--tap-min", "--role-body", "--space-xs-s", "--space-s-m"],
+  "budgets": { "coarseTargetPx": 44, "fineTargetPx": 24, "heldDwSlots": [240, 320, 420, 560, 720, 960], "photoSeats": 1, "photoHeld": 1 },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

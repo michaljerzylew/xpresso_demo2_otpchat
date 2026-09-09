@@ -1,0 +1,40 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "setup-checklist",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "content",
+    "exportName": "SetupChecklist",
+    "sourceVariants": 4,
+    "presets": ["guided-compact", "guided-task-overlays", "status-timeline", "status-tabs"],
+    "dependencies": ["AdaptiveOverlay", "FieldGroup", "SegmentedControl", "StickyActionBar"],
+    "oneStateOwner": true,
+    "oneOpenDisclosure": true,
+    "statusCardinality": { "complete": 3, "running": 1, "pending": 1 }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "accordion", "nativeForm": "accordion-timeline", "targetFloorPx": 48 },
+    "TP": { "form": "tabs", "nativeForm": "touch-pane", "targetFloorPx": 48 },
+    "TL": { "form": "grid-2", "nativeForm": "bounded-paired-tracks", "targetFloorPx": 44 },
+    "DS": { "form": "pane", "nativeForm": "bounded-desktop", "targetFloorPx": 44 },
+    "DW": { "form": "inspector", "nativeForm": "wide-bounded", "targetFloorPx": 44 }
+  },
+  "whyPolymorphic": "One ordered setup owner changes navigation density and internal track allocation while retaining one checklist, one action owner, and complete task content.",
+  "interaction": {
+    "oneStateOwner": true,
+    "keyboardReachable": true,
+    "touchReachable": true,
+    "focusVisible": true,
+    "liveAnnouncements": true,
+    "overlayIntent": "edit"
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--role-label", "--role-card-title"],
+  "budgets": { "mobile_screens": 1, "touchTargetCoarse": 48, "horizontalOverflow": "none" },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "The one semantic owner changes disclosure, timeline, and bounded split anatomy by native device class without hidden twins." }
+}

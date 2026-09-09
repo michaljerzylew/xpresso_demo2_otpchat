@@ -1,0 +1,51 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "sticky-action-bar",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "StickyActionBar"
+  },
+  "fluid": false,
+  "engine": "css",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=sticky-action-bar"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": true,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": true
+  },
+  "forms": {
+    "M": {
+      "form": "strip"
+    },
+    "TP": {
+      "form": "strip"
+    },
+    "TL": {
+      "form": "band"
+    },
+    "DS": {
+      "form": "band"
+    },
+    "DW": {
+      "form": "band"
+    }
+  },
+  "whyPolymorphic": "Primary actions stay thumb-reachable on touch classes and return inline when width makes pinning wasteful."
+}

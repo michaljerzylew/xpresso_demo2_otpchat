@@ -1,0 +1,51 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "auth-shell",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "shell",
+    "exportName": "AuthShell",
+    "sourceVariants": 6,
+    "presets": [
+      "centered-quick-entry",
+      "product-proof-split",
+      "graphic-trust-split",
+      "trial-proof-split",
+      "centered-social-card",
+      "ambient-trust-split"
+    ],
+    "semanticOwners": 1,
+    "proofPolicy": "D-M1 proof records are code-owned; delivered marks and exact named portraits are canonical."
+  },
+  "fluid": false,
+  "engine": "swap",
+  "forms": {
+    "M": { "form": "sheet", "anatomy": "compact-pane", "inputPhysics": "touch-overlay", "targetFloorPx": 44 },
+    "TP": { "form": "pane", "anatomy": "portrait-card", "inputPhysics": "touch-overlay", "targetFloorPx": 44 },
+    "TL": { "form": "grid-2", "anatomy": "compact-split", "inputPhysics": "touch-overlay", "targetFloorPx": 44 },
+    "DS": { "form": "grid-2", "anatomy": "balanced-split", "inputPhysics": "inline-recovery", "targetFloorPx": 24 },
+    "DW": { "form": "pane", "anatomy": "wide-split", "inputPhysics": "inline-recovery", "targetFloorPx": 24 }
+  },
+  "whyPolymorphic": "The same authentication owner becomes a compact disclosure-led pane, portrait card, or full proof split so device class changes hierarchy and recovery physics without duplicating credentials.",
+  "interaction": {
+    "singleCredentialOwner": true,
+    "compactProofDisclosure": true,
+    "wideProofPane": true,
+    "recoveryFocusReturn": true,
+    "pendingSubmissionLock": true
+  },
+  "tokens": ["--xp-class", "--tap-min", "--role-body", "--role-section-title", "--space-s-m"],
+  "budgets": {
+    "coarseTargetPx": 44,
+    "fineTargetPx": 24,
+    "proofOwners": 1,
+    "continuousHeldDwSlots": [240, 320, 420, 560, 720, 960]
+  },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "M and TP use one proof disclosure; TL, DS and DW use one complementary proof pane. The credential owner and accessible names remain singular."
+  }
+}

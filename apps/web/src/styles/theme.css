@@ -1,0 +1,38 @@
+/* Component colours are owned by the theme-aware vendored packages. */
+:root,
+.xp-app-shell {
+  font-family: var(--xp-font-sans);
+  font-optical-sizing: auto;
+}
+
+/* Product geometry stays stable across classes; theme multipliers remain supported. */
+:root {
+  --radius-s: calc(.5rem * var(--xp-radius-scale, 1));
+  --radius-m: calc(.75rem * var(--xp-radius-scale, 1));
+  --radius-l: calc(1rem * var(--xp-radius-scale, 1));
+}
+
+.xp-overlay-title { font-size: 1rem; }
+
+.xp-segmented { padding: 2px; gap: 2px; border: 1px solid var(--xp-border); background: var(--xp-surface-muted); }
+.xp-segmented__item { color: var(--xp-muted); background: transparent; }
+.xp-segmented__item:hover:not([data-state="checked"]) { color: var(--xp-muted); background: var(--xp-surface-muted); }
+.xp-segmented__item[data-state="checked"] { color: var(--xp-surface); background: var(--xp-ink); box-shadow: none; }
+
+body {
+  margin: 0;
+  color: var(--xp-ink);
+  background: var(--xp-surface);
+}
+
+[data-xp-control]:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--xp-focus);
+  outline-offset: var(--space-3xs);
+}
+
+.theme-mode {
+  padding: var(--space-m-d);
+  max-inline-size: var(--measure-narrow);
+}

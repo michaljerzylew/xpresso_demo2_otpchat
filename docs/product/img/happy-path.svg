@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="300" viewBox="0 0 1180 300" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial" font-size="14">
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#57606a"/></marker></defs>
+  <rect width="1180" height="300" fill="#ffffff"/>
+  <text x="20" y="34" font-size="20" font-weight="700" fill="#1f2328">One unit of work, entirely on GitHub (gh CLI only, no Actions)</text>
+  <g stroke="#57606a" stroke-width="1.5" marker-end="url(#a)">
+    <line x1="200" y1="120" x2="228" y2="120"/><line x1="408" y1="120" x2="436" y2="120"/><line x1="616" y1="120" x2="644" y2="120"/><line x1="824" y1="120" x2="852" y2="120"/><line x1="1032" y1="120" x2="1060" y2="120"/>
+  </g>
+  <g>
+    <rect x="20" y="70" width="180" height="100" rx="10" fill="#ddf4ff" stroke="#54aeff"/>
+    <text x="110" y="98" text-anchor="middle" font-weight="700" fill="#0969da">1. Issue</text>
+    <text x="110" y="120" text-anchor="middle" fill="#1f2328">type · P0-P3 · area</text>
+    <text x="110" y="138" text-anchor="middle" fill="#1f2328">milestone · AC · Ready</text>
+    <text x="110" y="158" text-anchor="middle" fill="#57606a" font-size="12">scripts/new_issue.sh</text>
+    <rect x="228" y="70" width="180" height="100" rx="10" fill="#fff8c5" stroke="#d4a72c"/>
+    <text x="318" y="98" text-anchor="middle" font-weight="700" fill="#7d4e00">2. Branch + push</text>
+    <text x="318" y="120" text-anchor="middle" fill="#1f2328">type/#N-slug</text>
+    <text x="318" y="138" text-anchor="middle" fill="#1f2328">pre-push secret scan</text>
+    <text x="318" y="158" text-anchor="middle" fill="#57606a" font-size="12">.githooks/pre-push</text>
+    <rect x="436" y="70" width="180" height="100" rx="10" fill="#fbefff" stroke="#c297ff"/>
+    <text x="526" y="98" text-anchor="middle" font-weight="700" fill="#6639ba">3. Pull Request</text>
+    <text x="526" y="120" text-anchor="middle" fill="#1f2328">template · Closes #N</text>
+    <text x="526" y="138" text-anchor="middle" fill="#1f2328">"Tested locally"</text>
+    <text x="526" y="158" text-anchor="middle" fill="#57606a" font-size="12">Status: In review</text>
+    <rect x="644" y="70" width="180" height="100" rx="10" fill="#ffebe9" stroke="#ff8182"/>
+    <text x="734" y="98" text-anchor="middle" font-weight="700" fill="#a40e26">4. Foreign review</text>
+    <text x="734" y="120" text-anchor="middle" fill="#1f2328">another agent</text>
+    <text x="734" y="138" text-anchor="middle" fill="#1f2328">VERDICT: APPROVED</text>
+    <text x="734" y="158" text-anchor="middle" fill="#57606a" font-size="12">review COMMENT + inline</text>
+    <rect x="852" y="70" width="180" height="100" rx="10" fill="#dafbe1" stroke="#4ac26b"/>
+    <text x="942" y="98" text-anchor="middle" font-weight="700" fill="#116329">5. Report + squash</text>
+    <text x="942" y="120" text-anchor="middle" fill="#1f2328">execution report on Issue</text>
+    <text x="942" y="138" text-anchor="middle" fill="#1f2328">1 commit on main</text>
+    <text x="942" y="158" text-anchor="middle" fill="#57606a" font-size="12">branch deleted · Done</text>
+    <rect x="1060" y="70" width="100" height="100" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+    <text x="1110" y="104" text-anchor="middle" font-weight="700" fill="#1f2328">6. Release</text>
+    <text x="1110" y="126" text-anchor="middle" fill="#1f2328" font-size="12">CHANGELOG</text>
+    <text x="1110" y="142" text-anchor="middle" fill="#1f2328" font-size="12">tag + notes</text>
+    <text x="1110" y="158" text-anchor="middle" fill="#57606a" font-size="12">release.sh</text>
+  </g>
+  <g fill="#57606a" font-size="13">
+    <text x="20" y="215">Board (Project v2): Backlog → Ready → In progress → In review → Blocked → Done.  Labels: type:* · P0-P3 · area:* · status:* · risk:*.</text>
+    <text x="20" y="240">Truth order: README → docs/ → Issues + Project + Milestones → Pull Requests → Releases + CHANGELOG → Discussions → RULES.md + skill.</text>
+    <text x="20" y="265">Free plan: zero workflows. Tests, audits and secret scans run locally and are pasted into the PR. Anything that needs the web UI is out of contract.</text>
+  </g>
+</svg>

@@ -1,0 +1,41 @@
+.auth-shell { block-size: 100dvh; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; background: var(--xp-surface); color: var(--xp-ink); font: .875rem/1.5 var(--xp-font-sans); padding: var(--space-s) var(--space-m); box-sizing: border-box; }
+.auth-top, .auth-top-tools, .auth-footer { display: flex; align-items: center; justify-content: space-between; gap: var(--space-xs); }
+.auth-top { padding-block-end: var(--space-s); }
+.auth-logo { display: inline-flex; gap: var(--space-xs); align-items: center; color: var(--xp-ink); text-decoration: none; font-weight: 700; letter-spacing: .06em; min-block-size: 44px; }
+.auth-logo svg { color: var(--xp-primary); inline-size: 24px; }
+.auth-top .icon-button { min-inline-size: 44px; min-block-size: 44px; display: grid; place-items: center; color: var(--xp-ink); background: transparent; border: 0; border-radius: var(--radius-s); }
+.auth-stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-block-size: 0; gap: var(--space-m); }
+.auth-brand { display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-m); padding: var(--space-xl); border-radius: var(--radius-l); background: var(--xp-surface-muted); border: 1px solid var(--xp-border); overflow: auto; }
+.auth-brand-label { color: var(--xp-primary); font-weight: 550; }
+.auth-brand h2 { font-size: 2.5rem; line-height: 1.15; letter-spacing: -.035em; font-weight: 650; margin-block: var(--space-m); }
+.auth-brand p { max-inline-size: 36ch; color: var(--xp-muted); }
+.auth-brand-foot { font-size: .8125rem; }
+.auth-content { min-block-size: 0; min-inline-size: 0; }
+.auth-content .route-stage { block-size: 100%; }
+.auth-content .route-pane { overflow: auto; display: grid; align-items: start; min-block-size: 0; }
+.auth-context-content { display: grid; gap: var(--space-s); max-inline-size: 30rem; }
+.auth-context-content p { margin: 0; color: var(--xp-muted); }
+.auth-context-content nav { display: grid; max-inline-size: 40rem; border-block: 1px solid var(--xp-border); }
+.auth-context-content nav a { display: flex; gap: var(--space-s); justify-content: space-between; color: var(--xp-ink); text-decoration: none; min-block-size: 44px; align-items: center; }
+.auth-context-content nav a span { color: var(--xp-muted); font-size: .8125rem; }
+.auth-person { display: flex; align-items: center; gap: var(--space-xs); }
+.auth-footer { padding-block-start: var(--space-xs); color: var(--xp-muted); font-size: .8125rem; }
+.auth-footer a { color: var(--xp-ink); min-block-size: 44px; display: flex; align-items: center; cursor: pointer; }
+.auth-shell :is(a, button):focus-visible { outline: 2px solid var(--xp-focus); outline-offset: 3px; }
+.auth-shell[data-device-class="M"] { padding: max(var(--space-xs), env(safe-area-inset-top)) var(--space-s) max(var(--space-xs), env(safe-area-inset-bottom)); }
+.auth-shell[data-device-class="M"] .auth-stage, .auth-shell[data-device-class="TP"] .auth-stage { grid-template-columns: minmax(0, 1fr); }
+.auth-shell[data-device-class="M"] .auth-content .route-pane { align-items: stretch; }
+.auth-shell[data-device-class="M"] .auth-footer { flex-wrap: wrap; }
+.auth-shell[data-device-class="TL"] .auth-stage { grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); }
+.auth-shell[data-device-class="TL"] .auth-brand { padding: var(--space-m); }
+.auth-shell[data-device-class="TL"] .auth-brand h2 { font-size: 2rem; }
+.auth-shell[data-device-class="DS"] .auth-brand { padding: var(--space-m); }
+.auth-shell[data-device-class="DW"] .auth-stage { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); max-inline-size: 1600px; inline-size: 100%; justify-self: center; }
+/* DW's panel is 818x897: at the DS measures its content filled 480px of it and left a quarter of the
+   width and two 84px bands empty, which reads as a stretched DS pane. DW gets its own display step
+   and content measure so the panel is composed for the wide window instead of inheriting DS. */
+.auth-shell[data-device-class="DW"] .auth-brand { padding: var(--space-2xl) var(--space-xl); }
+.auth-shell[data-device-class="DW"] .auth-brand h2 { font-size: 3.25rem; }
+.auth-shell[data-device-class="DW"] .auth-brand p { max-inline-size: 42ch; }
+.auth-shell[data-device-class="DW"] .auth-context-content { max-inline-size: 42rem; }
+@media (hover: hover) and (pointer: fine) { .auth-shell a:hover { color: var(--xp-primary); } }

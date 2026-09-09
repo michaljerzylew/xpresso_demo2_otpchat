@@ -1,0 +1,52 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "data-collection",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "primitive",
+    "exportName": "DataCollection"
+  },
+  "fluid": false,
+  "engine": "swap",
+  "interaction": {
+    "sweepDemo": "/gates/primitives?primitive=data-collection"
+  },
+  "tokens": [
+    "--tap-min",
+    "--gap-min",
+    "--space-s",
+    "--role-body"
+  ],
+  "budgets": {
+    "horizontalOverflow": "declared-scrollers-only",
+    "touchTargetCoarse": 44
+  },
+  "baseline": {
+    "javascriptOff": false,
+    "reducedMotion": true
+  },
+  "a11y": {
+    "treeInvariant": false,
+    "roleExemption": "Table and card roles change by task context while every field remains reachable in row details."
+  },
+  "forms": {
+    "M": {
+      "form": "stack"
+    },
+    "TP": {
+      "form": "grid-2"
+    },
+    "TL": {
+      "form": "disclosure"
+    },
+    "DS": {
+      "form": "grid-4"
+    },
+    "DW": {
+      "form": "grid-5"
+    }
+  },
+  "whyPolymorphic": "Rows become app-native cards on compact devices without amputating the full record contract."
+}

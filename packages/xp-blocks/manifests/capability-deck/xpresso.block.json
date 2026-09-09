@@ -1,0 +1,28 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "capability-deck",
+  "version": "0.2.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "content",
+    "exportName": "CapabilityDeck",
+    "sourceVariants": 25,
+    "presets": [
+      "interface-capabilities", "icon-deck", "accordion-proof", "split-proof", "proof-deck",
+      "switcher", "device-orbit", "integration-map", "alternating-proof", "portrait-proof",
+      "proof-collage", "use-case-carousel", "product-spec", "report-stack", "globe-split", "globe-orbit"
+    ],
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": { "M": { "form": "rail" }, "TP": { "form": "grid-2" }, "TL": { "form": "pane" }, "DS": { "form": "grid-3" }, "DW": { "form": "grid-4" } },
+  "whyPolymorphic": "One typed capability owner changes browse, selected-proof and scene compositions while preserving selection, actions and complete reachable content without hidden renderer twins.",
+  "interaction": { "oneStateOwner": true, "manualMotionOnly": true, "boundaryControls": true, "keyboardSelection": true, "touchSelection": true },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s"],
+  "budgets": { "horizontalOverflow": "owned-rail-only", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

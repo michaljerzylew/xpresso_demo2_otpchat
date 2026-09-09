@@ -1,0 +1,41 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "checkout-flow",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "content",
+    "exportName": "CheckoutFlow",
+    "sourceVariants": 4,
+    "presets": ["cart-payment", "saved-methods", "guided-details", "full-journey"],
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true },
+    "dependencies": ["WizardShell", "StepPane", "CartLine", "OrderSummaryBar", "Field", "ChoiceSet", "StickyActionBar"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "top-bar", "checkoutForm": "active-pane-summary-band", "targetFloorPx": 48 },
+    "TP": { "form": "tabs", "checkoutForm": "active-pane-summary-band", "targetFloorPx": 48 },
+    "TL": { "form": "nav-rail", "checkoutForm": "rail-pane-summary-band", "targetFloorPx": 44 },
+    "DS": { "form": "pane", "checkoutForm": "rail-pane-summary-context", "targetFloorPx": 44 },
+    "DW": { "form": "inspector", "checkoutForm": "rail-pane-summary-context", "targetFloorPx": 44 }
+  },
+  "whyPolymorphic": "One checkout state owner keeps the active stage, calculated order, selected route and payment-only commit coherent while device class swaps progress chrome and summary placement.",
+  "interaction": {
+    "oneWorkflowOwner": true,
+    "oneActivePane": true,
+    "paymentOnlyCommit": true,
+    "stageOwnedActions": true,
+    "calculatedMinorUnits": true,
+    "visitedNavigationOnly": true,
+    "processingLock": true,
+    "stageValidation": true,
+    "acknowledgementEvidence": true
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title", "--xp-safe-bottom"],
+  "budgets": { "mobile_screens": 1, "touchTargetCoarse": 48, "horizontalOverflow": "none", "remoteMedia": 0 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "WizardShell mounts exactly one active checkout StepPane and swaps summary band versus context pane by device class." }
+}

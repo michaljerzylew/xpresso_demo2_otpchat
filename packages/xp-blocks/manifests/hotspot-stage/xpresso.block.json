@@ -1,0 +1,31 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "hotspot-stage",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "browse",
+  "contract": {
+    "kind": "commerce",
+    "exportName": "HotspotStage",
+    "sourceVariants": 1,
+    "presets": ["room-hotspots"],
+    "oneSemanticOwner": true,
+    "mediaResolver": { "required": true, "fixtureKeysAreNotUrls": true }
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "sheet", "targetFloorPx": 48 },
+    "TP": { "form": "sheet", "targetFloorPx": 48 },
+    "TL": { "form": "sheet", "targetFloorPx": 44 },
+    "DS": { "form": "popover", "targetFloorPx": 44 },
+    "DW": { "form": "popover", "maxWidthRem": 90 }
+  },
+  "whyPolymorphic": "One room-and-product owner changes selector and adaptive overlay physics by device class while preserving four product identities and one selected hotspot.",
+  "interaction": { "oneStateOwner": true, "manualCompactAccess": true, "boundaryControls": true, "keyboardSelection": true, "touchSelection": true, "hiddenTwins": false },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-card-title"],
+  "budgets": { "horizontalOverflow": "forbidden", "remoteMedia": 0, "mobileTargetPx": 48, "desktopTargetPx": 44 },
+  "baseline": { "javascriptOff": false, "reducedMotion": true },
+  "a11y": { "treeInvariant": true }
+}

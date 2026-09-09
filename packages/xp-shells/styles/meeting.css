@@ -1,0 +1,357 @@
+.xp-meeting {
+  --meeting-ink: oklch(0.96 0.01 250);
+  --meeting-muted: oklch(0.76 0.02 250);
+  --meeting-surface: oklch(0.16 0.025 255);
+  --meeting-raised: oklch(0.22 0.028 255);
+  --meeting-panel: oklch(0.985 0.004 250);
+  --meeting-panel-ink: oklch(0.19 0.025 255);
+  --meeting-border: oklch(0.39 0.025 255);
+  --meeting-accent: oklch(0.76 0.15 184);
+  --meeting-danger: oklch(0.62 0.22 28);
+  --meeting-focus: oklch(0.82 0.17 92);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-inline-size: 0;
+  min-block-size: min(100dvh, 1000px);
+  block-size: min(100dvh, 1000px);
+  max-block-size: 100dvh;
+  overflow: hidden;
+  color: var(--meeting-ink);
+  background: var(--meeting-surface);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.xp-meeting *, .xp-meeting *::before, .xp-meeting *::after { box-sizing: border-box; }
+.xp-meeting button, .xp-meeting input, .xp-meeting textarea { font: inherit; }
+.xp-meeting button { color: inherit; }
+.xp-meeting :is(button, a, summary),
+.xp-meeting__panel :is(button, a, summary),
+.xp-meeting__overflow :is(button, a, summary),
+.xp-meeting__confirmation :is(button, a, summary),
+.xp-meeting__stream-menu :is(button, a, summary) { min-inline-size: 3rem; min-block-size: 3rem; }
+.xp-meeting :is(input, textarea),
+.xp-meeting__panel :is(input, textarea),
+.xp-meeting__overflow :is(input, textarea),
+.xp-meeting__confirmation :is(input, textarea),
+.xp-meeting__stream-menu :is(input, textarea) { min-block-size: 3rem; }
+.xp-meeting button:focus-visible, .xp-meeting a:focus-visible, .xp-meeting input:focus-visible, .xp-meeting textarea:focus-visible, .xp-meeting summary:focus-visible { outline: 3px solid var(--meeting-focus); outline-offset: 3px; }
+.xp-meeting button:disabled { cursor: not-allowed; opacity: .56; }
+
+.xp-meeting__skip { position: absolute; z-index: 8; inset-block-start: .5rem; inset-inline-start: .5rem; translate: 0 -180%; border-radius: .5rem; padding: .65rem .9rem; color: var(--meeting-panel-ink); background: var(--meeting-panel); font-weight: 750; }
+.xp-meeting__skip:focus { translate: 0; }
+
+.xp-meeting__header, .xp-meeting__stage-meta { position: relative; z-index: 3; display: grid; align-items: center; min-inline-size: 0; border-block-end: 1px solid var(--meeting-border); background: oklch(0.18 0.025 255); }
+.xp-meeting__header { grid-template-columns: auto minmax(0, 1fr) auto; gap: 1rem; padding: .75rem 1rem; }
+.xp-meeting__back, .xp-meeting__meeting-id button { display: grid; place-items: center; min-inline-size: 2.75rem; min-block-size: 2.75rem; border: 0; border-radius: .65rem; color: inherit; background: var(--meeting-raised); text-decoration: none; }
+.xp-meeting__header h1, .xp-meeting__stage-meta h1 { margin: 0; font-size: clamp(1rem, 2cqi, 1.35rem); line-height: 1.2; overflow-wrap: break-word; word-break: normal; }
+.xp-meeting__header p { display: flex; flex-wrap: wrap; gap: .35rem 1rem; margin: .3rem 0 0; color: var(--meeting-muted); font-size: .8rem; }
+.xp-meeting__meeting-id { position: relative; display: flex; align-items: center; gap: .5rem; min-inline-size: 0; color: var(--meeting-muted); font-size: .78rem; }
+.xp-meeting__meeting-id > span { overflow-wrap: break-word; word-break: normal; }
+.xp-meeting__meeting-id small { position: absolute; inset-block-start: calc(100% + .25rem); inset-inline-end: 0; max-inline-size: 16rem; border-radius: .4rem; padding: .3rem .5rem; color: var(--meeting-panel-ink); background: var(--meeting-panel); }
+.xp-meeting__stage-meta { grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; padding: .75rem 1rem; }
+.xp-meeting__stage-meta p { margin: 0; color: var(--meeting-muted); font-size: .8rem; }
+
+.xp-meeting__main { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); align-items: stretch; min-block-size: 0; min-inline-size: 0; overflow: hidden; }
+.xp-meeting__stream-region { min-inline-size: 0; min-block-size: 0; padding: .75rem; overflow: hidden; }
+.xp-meeting__streams { display: grid; min-inline-size: 0; min-block-size: 0; block-size: 100%; gap: .65rem; }
+.xp-meeting__stream { position: relative; min-inline-size: 0; min-block-size: 0; overflow: hidden; border-radius: .8rem; background: oklch(0.1 0.018 255); box-shadow: inset 0 0 0 1px oklch(0.43 0.025 255); }
+.xp-meeting__stream[data-active] { box-shadow: inset 0 0 0 2px var(--meeting-accent); }
+.xp-meeting__stream video { display: block; inline-size: 100%; block-size: 100%; min-block-size: 6rem; object-fit: cover; background: oklch(0.1 0.018 255); }
+.xp-meeting__stream footer { position: absolute; inset-inline: 0; inset-block-end: 0; display: flex; align-items: end; justify-content: space-between; gap: .5rem; padding: 2rem .75rem .65rem; background: linear-gradient(to bottom, transparent, oklch(0.08 0.015 255 / .9)); pointer-events: none; }
+.xp-meeting__participant-name { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .83rem; font-weight: 760; }
+.xp-meeting__media-status { color: var(--meeting-muted); font-size: .7rem; text-align: end; }
+.xp-meeting__focus-stream { position: absolute; inset-block-start: .5rem; inset-inline-end: .5rem; display: grid; place-items: center; min-inline-size: 2.4rem; min-block-size: 2.4rem; border: 0; border-radius: 50%; background: oklch(0.15 0.02 255 / .86); }
+.xp-meeting__stream-actions { position: absolute; inset-block-start: .5rem; inset-inline-start: .5rem; display: flex; gap: .3rem; }
+.xp-meeting__stream-actions > button, .xp-meeting__stream-options { display: grid; place-items: center; min-inline-size: 2.4rem; min-block-size: 2.4rem; border: 0; border-radius: 50%; color: var(--meeting-ink); background: oklch(0.15 0.02 255 / .86); cursor: pointer; }
+.xp-meeting__stream-menu { color: var(--meeting-panel-ink); }
+.xp-meeting__stream-menu ul { display: grid; gap: .25rem; margin: 0; padding: 0; list-style: none; }
+.xp-meeting__stream-menu li button { inline-size: 100%; min-block-size: 2.25rem; border: 0; border-radius: .35rem; padding: .4rem .6rem; color: var(--meeting-panel-ink); background: oklch(0.94 0.008 250); text-align: start; }
+.xp-meeting__stream-state { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: .65rem; padding: 1rem; text-align: center; background: oklch(0.12 0.02 255 / .9); }
+.xp-meeting__stream-state button { min-block-size: 2.75rem; border: 1px solid var(--meeting-border); border-radius: .55rem; padding: .5rem .8rem; background: var(--meeting-raised); }
+
+.xp-meeting__panel { container-type: inline-size; color: var(--meeting-panel-ink); background: var(--meeting-panel); }
+.xp-meeting__panel--inline { z-index: 2; align-self: stretch; display: grid; grid-template-rows: auto minmax(0, 1fr); min-inline-size: 18rem; max-inline-size: 25rem; min-block-size: 0; block-size: auto; max-block-size: 100%; border-inline-start: 1px solid oklch(0.85 0.01 250); overflow: hidden; }
+.xp-meeting__panel--inline > header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-block-end: 1px solid oklch(0.85 0.01 250); padding: .75rem 1rem; }
+.xp-meeting__panel--inline h2 { margin: 0; font-size: 1rem; }
+.xp-meeting__panel--inline > header button { display: grid; place-items: center; min-inline-size: 2.25rem; min-block-size: 2.25rem; border: 0; border-radius: .45rem; color: var(--meeting-panel-ink); background: oklch(0.93 0.008 250); }
+.xp-meeting__panel .xp-overlay-body { padding: 0; }
+.xp-meeting__panel-body { display: grid; align-content: start; gap: 1rem; min-block-size: 0; block-size: 100%; padding: 1rem; overflow: auto; overscroll-behavior: contain; }
+.xp-meeting__field { display: grid; gap: .35rem; min-inline-size: 0; color: oklch(0.31 0.025 255); font-size: .78rem; font-weight: 720; }
+.xp-meeting__field input, .xp-meeting__composer textarea { inline-size: 100%; min-block-size: 2.75rem; border: 1px solid oklch(0.72 0.015 250); border-radius: .55rem; padding: .6rem .7rem; color: var(--meeting-panel-ink); background: white; }
+.xp-meeting__field input[aria-invalid="true"] { border-color: var(--meeting-danger); }
+.xp-meeting__empty { margin: 0; border-radius: .65rem; padding: 1rem; color: oklch(0.35 0.025 255); background: oklch(0.94 0.01 250); }
+.xp-meeting__roster-section { display: grid; gap: .55rem; }
+.xp-meeting__roster-section h3 { display: flex; justify-content: space-between; gap: .75rem; margin: 0; color: oklch(0.34 0.025 255); font-size: .78rem; }
+.xp-meeting__roster-section h3 span { font-weight: 500; }
+.xp-meeting__roster-section ul, .xp-meeting__messages, .xp-meeting__overflow ul { display: grid; gap: .35rem; margin: 0; padding: 0; list-style: none; }
+.xp-meeting__roster-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: .65rem; min-inline-size: 0; border-block-end: 1px solid oklch(0.9 0.008 250); padding: .45rem 0; }
+.xp-meeting__roster-row[data-presence="offline"] { border-style: dashed; }
+.xp-meeting__roster-row img { inline-size: 2.35rem; block-size: 2.35rem; border-radius: 50%; object-fit: cover; }
+.xp-meeting__roster-row > div:nth-child(2) { display: grid; min-inline-size: 0; }
+.xp-meeting__roster-row strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .82rem; }
+.xp-meeting__roster-row span { color: oklch(0.43 0.02 255); font-size: .7rem; }
+.xp-meeting__row-actions { display: flex; gap: .2rem; }
+.xp-meeting__row-actions button { display: grid; place-items: center; min-inline-size: 2rem; min-block-size: 2rem; border: 0; border-radius: .4rem; color: var(--meeting-panel-ink); background: oklch(0.94 0.008 250); }
+.xp-meeting__row-actions .xp-meeting__icon { inline-size: .9rem; }
+.xp-meeting__mute-all, .xp-meeting__invite button, .xp-meeting__composer button, .xp-meeting__messages button { min-block-size: 2.75rem; border: 0; border-radius: .55rem; padding: .55rem .8rem; color: white; background: oklch(0.34 0.11 252); font-weight: 720; }
+.xp-meeting__panel .xp-meeting__mute-all { color: #fff; }
+.xp-meeting__invite { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: .55rem; }
+.xp-meeting__invite p { grid-column: 1 / -1; margin: 0; color: var(--meeting-danger); font-size: .75rem; }
+
+.xp-meeting__chat { grid-template-rows: minmax(0, 1fr) auto; overflow: hidden; }
+.xp-meeting__chat-scroll { display: grid; align-content: start; gap: 1rem; min-block-size: 0; overflow-y: auto; overscroll-behavior: contain; }
+.xp-meeting__messages { align-content: start; overflow: visible; }
+.xp-meeting__messages li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .5rem; max-inline-size: 92%; }
+.xp-meeting__messages li[data-direction="outgoing"] { grid-template-columns: minmax(0, 1fr); justify-self: end; }
+.xp-meeting__messages img { inline-size: 2rem; block-size: 2rem; border-radius: 50%; object-fit: cover; }
+.xp-meeting__messages li > div { border-radius: .75rem; padding: .55rem .7rem; background: oklch(0.93 0.012 250); }
+.xp-meeting__messages li[data-direction="outgoing"] > div { background: oklch(0.9 0.045 193); }
+.xp-meeting__messages strong, .xp-meeting__messages small { display: block; font-size: .67rem; }
+.xp-meeting__messages p { margin: .25rem 0; font-size: .8rem; line-height: 1.4; overflow-wrap: break-word; word-break: normal; }
+.xp-meeting__messages small { color: oklch(0.42 0.02 255); }
+.xp-meeting__messages button { min-block-size: 2rem; margin-block-start: .4rem; font-size: .72rem; }
+.xp-meeting__typing { margin: 0; color: oklch(0.42 0.02 255); font-size: .72rem; }
+.xp-meeting__composer { position: sticky; inset-block-end: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: .55rem; padding-block-start: .55rem; background: var(--meeting-panel); }
+.xp-meeting__composer label { grid-column: 1 / -1; color: oklch(0.31 0.025 255); font-size: .78rem; font-weight: 720; }
+.xp-meeting__composer-error { grid-column: 1 / -1; margin: 0; border-radius: .45rem; padding: .4rem .55rem; color: oklch(0.35 0.17 28); background: oklch(0.94 0.035 28); font-size: .75rem; font-weight: 720; line-height: 1.3; }
+.xp-meeting__composer[data-invalid] textarea { border-color: oklch(0.56 0.2 28); box-shadow: 0 0 0 1px oklch(0.56 0.2 28); }
+.xp-meeting__composer textarea { resize: vertical; }
+
+.xp-meeting__captions { position: absolute; z-index: 5; inset-inline-start: 50%; inset-block-end: 6rem; translate: -50% 0; inline-size: min(42rem, calc(100% - 2rem)); min-block-size: 2.5rem; border-radius: .5rem; padding: .6rem .8rem; color: white; background: oklch(0.08 0.015 255 / .96); font-size: .9rem; line-height: 1.35; text-align: center; }
+.xp-meeting__dock-wrap { position: absolute; z-index: 6; inset-inline: 0; inset-block-end: max(.75rem, env(safe-area-inset-bottom)); display: grid; justify-items: center; pointer-events: none; }
+.xp-meeting[data-inline-panel="true"] .xp-meeting__dock-wrap { inset-inline-end: clamp(288px, max(18rem, 27cqi), 400px); }
+.xp-meeting[data-inline-panel="true"] .xp-meeting__dock { max-inline-size: calc(100% - 1rem); }
+.xp-meeting__dock, .xp-meeting__dock-restore { pointer-events: auto; }
+.xp-meeting__dock { display: flex; align-items: center; justify-content: center; gap: .35rem; max-inline-size: calc(100cqi - 1rem); border: 1px solid var(--meeting-border); border-radius: 1rem; padding: .4rem; background: oklch(0.14 0.022 255); box-shadow: 0 .5rem 1.5rem oklch(0.05 0.01 255 / .35); }
+.xp-meeting__dock-restore { min-block-size: 2.75rem; border: 1px solid var(--meeting-border); border-radius: 2rem; padding: .5rem 1rem; background: var(--meeting-raised); }
+.xp-meeting__control { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: .45rem; min-inline-size: 2.5rem; min-block-size: 2.5rem; border: 0; border-radius: .65rem; padding: .45rem .6rem; background: var(--meeting-raised); font-size: .72rem; font-weight: 690; }
+.xp-meeting__control[data-compact] { grid-template-columns: 1fr; }
+.xp-meeting__control[data-compact] > span { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.xp-meeting__control[aria-pressed="true"] { color: oklch(0.17 0.02 255); background: var(--meeting-accent); }
+.xp-meeting__control[data-meeting-action="end-call"], .xp-meeting__control[data-meeting-action="leave-call"] { color: white; background: var(--meeting-danger); }
+.xp-meeting__icon { inline-size: 1.15rem; block-size: 1.15rem; }
+.xp-meeting__overflow { color: var(--meeting-panel-ink); }
+.xp-meeting__overflow .xp-meeting__control { inline-size: 100%; color: var(--meeting-panel-ink); background: oklch(0.94 0.008 250); }
+.xp-meeting__overflow p { margin: 0; color: oklch(0.42 0.02 255); }
+
+.xp-meeting__confirmation { color: var(--meeting-panel-ink, #18202d); }
+.xp-meeting__confirmation button { min-block-size: 2.75rem; border: 1px solid oklch(0.75 0.015 250); border-radius: .55rem; padding: .6rem .9rem; color: var(--meeting-panel-ink, #18202d); background: white; }
+.xp-meeting__confirmation .xp-meeting__danger { border-color: #a61b2b; color: #fff; background: #a61b2b; }
+.xp-meeting__pip { position: absolute; z-index: 4; inline-size: min(11rem, 32cqi); border: 1px solid var(--meeting-border); border-radius: .75rem; padding: .55rem; color: var(--meeting-ink); background: var(--meeting-raised); }
+.xp-meeting__pip[data-corner="top-left"] { inset-block-start: 1rem; inset-inline-start: max(1.5rem, env(safe-area-inset-left)); }
+.xp-meeting__pip[data-corner="top-right"] { inset-block-start: 1rem; inset-inline-end: max(1.5rem, env(safe-area-inset-right)); }
+.xp-meeting__pip[data-corner="bottom-left"] { inset-block-end: 6.5rem; inset-inline-start: max(1.5rem, env(safe-area-inset-left)); }
+.xp-meeting__pip[data-corner="bottom-right"] { inset-block-end: 6.5rem; inset-inline-end: max(1.5rem, env(safe-area-inset-right)); }
+.xp-meeting__pip > div { display: grid; place-items: center; min-block-size: 5rem; }
+.xp-meeting__pip > div > span { display: grid; place-items: center; inline-size: 2.5rem; block-size: 2.5rem; border-radius: 50%; background: oklch(0.31 0.035 255); }
+.xp-meeting__pip summary { min-block-size: 2rem; cursor: pointer; font-size: .7rem; }
+.xp-meeting__pip details div { display: grid; gap: .25rem; }
+.xp-meeting__pip details button { min-block-size: 2rem; border: 0; border-radius: .35rem; color: var(--meeting-ink); background: oklch(0.31 0.035 255); font-size: .68rem; }
+.xp-meeting__announcer { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
+.xp-meeting--ended { place-items: center; place-content: center; gap: 1rem; padding: 2rem; text-align: center; }
+.xp-meeting--ended h1, .xp-meeting--ended p { margin: 0; }
+
+.xp-meeting[data-device-class="M"] { min-block-size: 0; block-size: 100dvh; max-block-size: 100dvh; }
+.xp-meeting[data-device-class="M"] .xp-meeting__stage-meta { grid-template-columns: minmax(0, 1fr); gap: .25rem; }
+.xp-meeting[data-device-class="M"] .xp-meeting__header { grid-template-columns: auto minmax(0, 1fr); gap: .5rem; padding: .55rem .65rem; }
+.xp-meeting[data-device-class="M"] .xp-meeting__meeting-id { grid-column: 1 / -1; justify-content: space-between; }
+.xp-meeting[data-device-class="M"] .xp-meeting__stream-region { padding: .45rem .45rem 5rem; overflow-y: auto; }
+.xp-meeting[data-device-class="M"] .xp-meeting__streams { grid-template-columns: repeat(3, minmax(64cqi, 1fr)); grid-template-rows: minmax(17rem, 58dvh) minmax(7rem, 22dvh); block-size: auto; overflow-x: auto; scroll-snap-type: inline mandatory; scrollbar-width: none; }
+.xp-meeting[data-device-class="M"] .xp-meeting__stream { scroll-snap-align: start; }
+.xp-meeting[data-device-class="M"] .xp-meeting__stream[data-active] { grid-column: 1 / -1; }
+.xp-meeting[data-device-class="M"] .xp-meeting__stream:not([data-active]) { grid-row: 2; }
+.xp-meeting[data-device-class="M"] .xp-meeting__dock { min-block-size: 3.5rem; border-radius: 1.2rem; padding: .45rem; }
+.xp-meeting[data-device-class="M"] .xp-meeting__control { min-inline-size: 2.75rem; min-block-size: 2.75rem; }
+
+.xp-meeting[data-device-class="TP"] .xp-meeting__stream-region { padding-block-end: 5rem; }
+.xp-meeting[data-device-class="TP"] .xp-meeting__streams { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: minmax(17rem, 2fr) minmax(8rem, 1fr) minmax(8rem, 1fr); }
+.xp-meeting[data-device-class="TP"] .xp-meeting__stream[data-active] { grid-column: 1 / -1; }
+.xp-meeting[data-device-class="TP"] .xp-meeting__control { min-inline-size: 3rem; min-block-size: 3rem; }
+
+.xp-meeting[data-device-class="TL"] .xp-meeting__stream-region { padding-block-end: 5rem; }
+.xp-meeting[data-device-class="TL"] .xp-meeting__streams { grid-template-columns: minmax(0, 1fr) minmax(8rem, 22cqi); grid-template-rows: repeat(3, minmax(0, 1fr)); }
+.xp-meeting[data-device-class="TL"] .xp-meeting__stream[data-active] { grid-row: 1 / -1; }
+.xp-meeting[data-device-class="TL"] .xp-meeting__control { min-inline-size: 3rem; min-block-size: 3rem; }
+
+.xp-meeting[data-device-class="DS"] .xp-meeting__main:has(.xp-meeting__panel--inline), .xp-meeting[data-device-class="DW"] .xp-meeting__main:has(.xp-meeting__panel--inline) { grid-template-columns: minmax(0, 1fr) minmax(18rem, 27cqi); }
+.xp-meeting[data-device-class="DS"] .xp-meeting__stream-region, .xp-meeting[data-device-class="DW"] .xp-meeting__stream-region { padding-block-end: 5rem; }
+.xp-meeting[data-device-class="DS"] .xp-meeting__streams { grid-template-columns: minmax(0, 1fr) minmax(7rem, 20cqi); grid-template-rows: repeat(3, minmax(0, 1fr)); }
+.xp-meeting[data-device-class="DS"] .xp-meeting__stream[data-active] { grid-row: 1 / -1; }
+.xp-meeting[data-device-class="DW"] .xp-meeting__streams { grid-template-columns: minmax(0, 2fr) repeat(3, minmax(8rem, 1fr)); grid-template-rows: minmax(0, 1fr); }
+.xp-meeting[data-device-class="DW"] .xp-meeting__streams[data-layout="grid"] { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); }
+
+@container (max-width: 419px) {
+  .xp-meeting__stream-region { padding-inline: .35rem; }
+  .xp-meeting__dock { gap: .2rem; }
+  .xp-meeting__header { grid-template-columns: auto minmax(0, 1fr); gap: .5rem; padding: .55rem .65rem; }
+  .xp-meeting__meeting-id { grid-column: 1 / -1; justify-content: space-between; }
+  .xp-meeting__header h1 { font-size: .92rem; }
+  .xp-meeting__header p { font-size: .7rem; }
+  .xp-meeting__meeting-id > span { max-inline-size: 11rem; }
+  .xp-meeting__panel-body { padding: .75rem; }
+  .xp-meeting__invite { grid-template-columns: minmax(0, 1fr); }
+  .xp-meeting__invite button { inline-size: 100%; }
+  .xp-meeting__composer { grid-template-columns: minmax(0, 1fr); }
+  .xp-meeting__composer button { inline-size: 100%; }
+  .xp-meeting__roster-row { grid-template-columns: auto minmax(0, 1fr); }
+  .xp-meeting__row-actions { grid-column: 1 / -1; justify-self: end; }
+}
+
+@container (max-width: 279px) {
+  .xp-meeting__stage-meta { grid-template-columns: minmax(0, 1fr); gap: .25rem; }
+  .xp-meeting__meeting-id > span { max-inline-size: 8rem; }
+  .xp-meeting__dock { inline-size: calc(100cqi - .5rem); justify-content: space-between; }
+  .xp-meeting__control { padding-inline: .35rem; }
+  .xp-meeting__media-status { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xp-meeting *, .xp-meeting *::before, .xp-meeting *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+
+@media (forced-colors: active) {
+  .xp-meeting__stream[data-active], .xp-meeting__control[aria-pressed="true"] { outline: 3px solid Highlight; outline-offset: -3px; }
+  .xp-meeting__stream footer { background: Canvas; }
+}
+
+.xp-meeting[data-device-class="M"] :is(button, a, summary),
+.xp-meeting[data-device-class="TP"] :is(button, a, summary),
+.xp-meeting[data-device-class="TL"] :is(button, a, summary),
+.xp-meeting__panel.xp-meeting__panel :is(button, a, summary),
+.xp-meeting__overflow.xp-meeting__overflow :is(button, a, summary),
+.xp-meeting__confirmation.xp-meeting__confirmation :is(button, a, summary),
+.xp-meeting__stream-menu.xp-meeting__stream-menu :is(button, a, summary) { min-inline-size: 3rem; min-block-size: 3rem; }
+.xp-meeting[data-device-class="M"] :is(input, textarea),
+.xp-meeting[data-device-class="TP"] :is(input, textarea),
+.xp-meeting[data-device-class="TL"] :is(input, textarea),
+.xp-meeting__panel.xp-meeting__panel :is(input, textarea),
+.xp-meeting__overflow.xp-meeting__overflow :is(input, textarea),
+.xp-meeting__confirmation.xp-meeting__confirmation :is(input, textarea),
+.xp-meeting__stream-menu.xp-meeting__stream-menu :is(input, textarea) { min-block-size: 3rem; }
+.xp-meeting[data-device-class="M"] .xp-meeting__control,
+.xp-meeting[data-device-class="TP"] .xp-meeting__control,
+.xp-meeting[data-device-class="TL"] .xp-meeting__control,
+.xp-meeting[data-device-class="M"] .xp-meeting__dock-restore,
+.xp-meeting[data-device-class="TP"] .xp-meeting__dock-restore,
+.xp-meeting[data-device-class="TL"] .xp-meeting__dock-restore { min-inline-size: 3rem; min-block-size: 3rem; }
+
+/* Inline support stays usable under root-font stress without letting rem-based chrome consume its bounded DS/DW track. */
+.xp-meeting__panel--inline > header { gap: clamp(8px, 1rem, 16px); padding: clamp(8px, .75rem, 16px) clamp(12px, 1rem, 20px); }
+.xp-meeting__panel--inline h2 { font-size: clamp(16px, 1rem, 24px); line-height: 1.25; }
+.xp-meeting__panel.xp-meeting__panel--inline > header button {
+  min-inline-size: clamp(32px, 3rem, 48px);
+  min-block-size: clamp(32px, 3rem, 48px);
+  font-size: clamp(16px, 1rem, 24px);
+}
+.xp-meeting__panel.xp-meeting__panel--inline .xp-meeting__composer {
+  gap: clamp(6px, .4rem, 10px);
+  padding-block-start: clamp(6px, .4rem, 10px);
+}
+.xp-meeting__panel.xp-meeting__panel--inline .xp-meeting__composer label {
+  font-size: clamp(12px, .75rem, 16px);
+  line-height: 1.25;
+}
+.xp-meeting__panel.xp-meeting__panel--inline .xp-meeting__composer textarea {
+  min-block-size: clamp(40px, 2.75rem, 48px);
+  padding: clamp(7px, .45rem, 10px) clamp(8px, .55rem, 12px);
+  font-size: clamp(13px, .875rem, 16px);
+  line-height: 1.3;
+}
+.xp-meeting__panel.xp-meeting__panel--inline .xp-meeting__composer button {
+  min-inline-size: 32px;
+  min-block-size: clamp(32px, 2.25rem, 48px);
+  padding: clamp(6px, .4rem, 9px) clamp(9px, .6rem, 12px);
+  font-size: clamp(13px, .8rem, 16px);
+  line-height: 1.2;
+}
+
+/* The support surface remains a modal portal, but its geometry and tokens belong to this meeting slot. */
+.xp-meeting__overlay-host { position: absolute; z-index: 20; inset: 0; min-inline-size: 0; overflow: hidden; pointer-events: none; }
+.xp-meeting__overlay-host :is(.xp-overlay-backdrop, .xp-overlay) { position: absolute; pointer-events: auto; }
+.xp-meeting__overlay-host .xp-overlay-backdrop { inset: 0; }
+.xp-meeting__overlay-host .xp-meeting__panel {
+  inline-size: min(100%, var(--slot-s2-max));
+  max-inline-size: 100%;
+  max-block-size: 100%;
+  color: var(--meeting-panel-ink);
+  background: var(--meeting-panel);
+  opacity: 1;
+}
+.xp-meeting__overlay-host .xp-meeting__panel[data-presentation="bottom-sheet"],
+.xp-meeting__overlay-host .xp-meeting__panel[data-presentation="sheet"] { inline-size: 100%; block-size: min(90%, 44rem); }
+.xp-meeting__overlay-host .xp-meeting__panel[data-presentation="side-drawer"],
+.xp-meeting__overlay-host .xp-meeting__panel[data-presentation="pane"],
+.xp-meeting__overlay-host .xp-meeting__panel[data-presentation="inspector-pane"] { inset-block: 0; inset-inline-end: 0; }
+
+/* Root-font stress may enlarge copy, but must not turn labels and actions into one-glyph columns. */
+.xp-meeting__overlay-host .xp-overlay-header { padding: clamp(12px, .75rem, 20px); padding-inline-end: clamp(64px, 4rem, 80px); }
+.xp-meeting__overlay-host .xp-overlay-title { font-size: clamp(18px, 1rem, 26px); line-height: 1.25; }
+.xp-meeting__overlay-host .xp-overlay-header-close {
+  inset-block-start: clamp(8px, .75rem, 16px);
+  inset-inline-end: clamp(8px, .75rem, 16px);
+  min-inline-size: clamp(48px, 3rem, 64px);
+  min-block-size: clamp(48px, 3rem, 64px);
+  font-size: clamp(24px, 1.5rem, 34px);
+}
+.xp-meeting__overlay-host .xp-overlay-body { min-block-size: 0; padding: 0; overflow: hidden; }
+.xp-meeting__overlay-host .xp-meeting__panel-body { gap: clamp(8px, .75rem, 16px); padding: clamp(12px, 1rem, 20px); }
+.xp-meeting__overlay-host .xp-meeting__field { gap: clamp(4px, .35rem, 8px); font-size: clamp(13px, .78rem, 18px); }
+.xp-meeting__overlay-host :is(.xp-meeting__field input, .xp-meeting__composer textarea) {
+  min-block-size: clamp(48px, 3rem, 64px);
+  border-radius: clamp(8px, .55rem, 12px);
+  padding: clamp(9px, .6rem, 14px) clamp(10px, .7rem, 16px);
+  font-size: clamp(14px, .875rem, 20px);
+}
+.xp-meeting__overlay-host .xp-meeting__invite { gap: clamp(8px, .55rem, 14px); }
+.xp-meeting__overlay-host .xp-meeting__roster-section { gap: clamp(8px, .55rem, 14px); }
+.xp-meeting__overlay-host .xp-meeting__roster-section h3 { gap: clamp(8px, .75rem, 16px); font-size: clamp(13px, .78rem, 18px); }
+.xp-meeting__overlay-host .xp-meeting__roster-section ul,
+.xp-meeting__overlay-host .xp-meeting__messages { gap: clamp(6px, .35rem, 10px); }
+.xp-meeting__overlay-host .xp-meeting__roster-row { gap: clamp(8px, .65rem, 14px); padding-block: clamp(7px, .45rem, 11px); }
+.xp-meeting__overlay-host .xp-meeting__roster-row img { inline-size: clamp(38px, 2.35rem, 52px); block-size: clamp(38px, 2.35rem, 52px); }
+.xp-meeting__overlay-host .xp-meeting__roster-row strong { font-size: clamp(14px, .82rem, 19px); }
+.xp-meeting__overlay-host .xp-meeting__roster-row span { font-size: clamp(12px, .7rem, 16px); }
+.xp-meeting__overlay-host .xp-meeting__chat { grid-template-rows: minmax(0, 1fr) auto; overflow: hidden; }
+.xp-meeting__overlay-host .xp-meeting__chat-scroll { gap: clamp(8px, .75rem, 16px); }
+.xp-meeting__overlay-host .xp-meeting__messages li { gap: clamp(8px, .5rem, 12px); }
+.xp-meeting__overlay-host .xp-meeting__messages img { inline-size: clamp(32px, 2rem, 44px); block-size: clamp(32px, 2rem, 44px); }
+.xp-meeting__overlay-host .xp-meeting__messages li > div { padding: clamp(8px, .55rem, 12px) clamp(10px, .7rem, 14px); }
+.xp-meeting__overlay-host .xp-meeting__messages :is(strong, small) { font-size: clamp(11px, .67rem, 15px); }
+.xp-meeting__overlay-host .xp-meeting__messages p { font-size: clamp(13px, .8rem, 18px); }
+.xp-meeting__overlay-host .xp-meeting__typing { font-size: clamp(12px, .72rem, 16px); }
+.xp-meeting__overlay-host .xp-meeting__composer { position: relative; inset-block-end: auto; gap: clamp(8px, .55rem, 14px); padding-block-start: clamp(8px, .55rem, 12px); }
+.xp-meeting__overlay-host .xp-meeting__composer label { font-size: clamp(13px, .78rem, 18px); }
+.xp-meeting__overlay-host .xp-meeting__panel :is(button, a, summary) {
+  min-inline-size: clamp(48px, 3rem, 64px);
+  min-block-size: clamp(48px, 3rem, 64px);
+  padding: clamp(8px, .55rem, 12px) clamp(10px, .8rem, 18px);
+  font-size: clamp(13px, .8rem, 18px);
+}
+
+.xp-meeting[data-device-class="M"] .xp-meeting__header,
+.xp-meeting[data-device-class="M"] .xp-meeting__stage-meta { gap: clamp(4px, .5rem, 12px); padding: clamp(9px, .65rem, 14px); }
+.xp-meeting[data-device-class="M"] :is(.xp-meeting__header h1, .xp-meeting__stage-meta h1) { font-size: clamp(16px, 1rem, 24px); }
+.xp-meeting[data-device-class="M"] :is(.xp-meeting__header p, .xp-meeting__stage-meta p, .xp-meeting__meeting-id) { font-size: clamp(12px, .78rem, 17px); }
+.xp-meeting[data-device-class="M"] .xp-meeting__streams {
+  grid-template-rows: minmax(clamp(272px, 17rem, 420px), 58dvh) minmax(clamp(112px, 7rem, 220px), 22dvh);
+}
+
+/* Root-font stress must preserve the complete coarse-pointer command surface inside the phone viewport. */
+.xp-meeting[data-device-class="M"] .xp-meeting__dock {
+  min-block-size: 58px;
+  gap: clamp(4px, .2rem, 6px);
+  max-inline-size: calc(100cqi - 16px);
+  border-radius: 19px;
+  padding: 6px;
+}
+.xp-meeting[data-device-class="M"] .xp-meeting__dock .xp-meeting__control {
+  min-inline-size: 48px;
+  min-block-size: 48px;
+  gap: 6px;
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: clamp(12px, .72rem, 16px);
+}
+.xp-meeting[data-device-class="M"] .xp-meeting__dock .xp-meeting__icon { inline-size: 20px; block-size: 20px; }

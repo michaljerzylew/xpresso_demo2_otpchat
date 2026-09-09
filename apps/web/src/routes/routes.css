@@ -1,0 +1,61 @@
+.route-surface { gap: calc(var(--space-s) * 2); }
+.route-surface header { display: grid; gap: calc(var(--space-s) * 0.5); }
+.route-surface header p { color: var(--xp-muted); }
+.route-surface header > p:first-child { font-size: 13px; }
+.route-surface h1 { letter-spacing: -.025em; }
+.overview-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.overview-metrics .xp-metric-tile { padding: calc(var(--space-s) * 1) calc(var(--space-s) * 0.5); background: var(--xp-surface); border: 0; border-radius: var(--radius-m); grid-template-columns: minmax(0, 1fr); gap: calc(var(--space-s) * 0.5); }
+.overview-metrics .xp-metric-tile__value { font-size: 24px; color: var(--xp-ink); }
+.overview-metrics .xp-metric-tile__label { color: var(--xp-muted); font-size: 13px; overflow-wrap: normal; word-break: normal; }
+.activity-list a { padding: calc(var(--space-s) * 1) calc(var(--space-s) * 0.5); }
+.activity-list span { color: var(--xp-muted); }
+.settings-form [role="status"] { color: var(--xp-muted); font-size: 13px; }
+.settings-form fieldset + fieldset { padding-block-start: calc(var(--space-s) * 1.5); border-block-start: 1px solid var(--xp-border); }
+.section-navigation { display: grid; gap: calc(var(--space-s) * 0.5); margin-block-start: calc(var(--space-s) * 2); }
+.section-navigation h2 { font-size: 13px; color: var(--xp-muted); font-weight: 500; margin-block-end: calc(var(--space-s) * 0.25); }
+.section-navigation a { display: flex; align-items: center; min-block-size: 44px; padding: var(--space-3xs) var(--space-xs); border-radius: var(--radius-s); text-decoration: none; color: var(--xp-ink); font-size: 14px; }
+.section-navigation a[aria-current] { background: var(--xp-surface-muted); font-weight: 650; }
+.route-surface h1 { font-size: var(--text-step-2); font-weight: 650; }
+.route-surface h2 { font-size: var(--text-step-1); font-weight: 600; }
+.route-surface p { max-inline-size: 65ch; }
+.overview-metrics { --minimum: 160px; gap: var(--space-s); }
+.section-heading { justify-content: space-between; margin-block-end: var(--space-s); }
+.activity-list { list-style: none; padding: 0; margin: 0; }
+.activity-list li { border-block-end: 1px solid var(--xp-border); }
+.activity-list a { display: grid; gap: var(--space-xs); padding-block: var(--space-s); text-decoration: none; color: inherit; }
+.activity-list small { display: inline-flex; align-items: center; gap: var(--space-3xs); font-size: .75rem; font-weight: 500; letter-spacing: .01em; padding: 2px 8px; border-radius: 999px; background: var(--xp-warning-soft); color: var(--xp-warning); }
+.activity-list small[data-status="Closed"] { background: var(--xp-success-soft); color: var(--xp-success); }
+.activity-list small::before { content: ""; flex: 0 0 6px; inline-size: 6px; block-size: 6px; border-radius: 50%; background: currentColor; }
+.settings-form label { display: grid; gap: var(--space-xs); }
+.settings-form :is(input, select) { inline-size: 100%; min-inline-size: 0; }
+.settings-form { display: grid; gap: calc(var(--space-s) * 1); max-inline-size: 672px; }
+.settings-form fieldset { display: grid; gap: calc(var(--space-s) * 1); border: 0; padding: 0; min-inline-size: 0; }
+.settings-form legend { font-weight: 600; margin-block-end: var(--space-s); }
+.settings-form button { justify-self: start; }
+.settings-save { display: grid; gap: var(--space-xs); }
+.settings-form .checkbox-label { display: flex; align-items: center; gap: calc(var(--space-s) * 0.75); min-block-size: 44px; cursor: pointer; }
+.workspace .checkbox-label :is(input, .settings-static-checkbox) { appearance: none; display: grid; place-content: center; position: relative; inline-size: 44px; block-size: 44px; flex: 0 0 44px; padding: 0; border: 0; cursor: pointer; }
+.checkbox-label :is(input, .settings-static-checkbox)::before { content: ""; inline-size: 20px; block-size: 20px; border: 1px solid var(--xp-border); border-radius: var(--radius-s); }
+.checkbox-label :is(input:checked, .settings-static-checkbox)::before { background: var(--xp-primary); border-color: var(--xp-primary); }
+.checkbox-label :is(input:checked, .settings-static-checkbox)::after { content: ""; position: absolute; inset: 15px 18px; inline-size: 7px; block-size: 12px; border: solid var(--xp-on-primary); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.settings-static-control { display: flex; align-items: center; }
+.settings-static-control.xp-segmented__item { justify-content: center; }
+.settings-static-submit { justify-self: start; }
+.workspace .settings-static-submit { background: var(--xp-primary); color: var(--xp-on-primary); border-color: var(--xp-primary); }
+.settings-language { position: relative; }
+.settings-language select { appearance: none; }
+.settings-language::after { content: ""; position: absolute; inset-inline-end: var(--space-xs); inset-block-end: 21px; inline-size: 5px; block-size: 5px; border: solid currentColor; border-width: 0 1px 1px 0; transform: rotate(45deg); pointer-events: none; }
+.settings-form label { gap: calc(var(--space-s) * 0.5); }
+.activity-list a { grid-template-columns: minmax(0, 1fr) auto; gap: calc(var(--space-s) * 0.5); }
+.activity-list strong { grid-column: 1 / -1; }
+@container xp-slot (min-width: 840px) {
+  .activity-list { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .7fr) max-content; column-gap: calc(var(--space-s) * 0.5); }
+  .activity-list li, .activity-list a { grid-column: 1 / -1; grid-template-columns: subgrid; display: grid; }
+  .activity-list a { align-items: center; }
+  .activity-list strong { grid-column: auto; }
+}
+
+
+/* This class travels with inspector content when it is portalled into a sheet. */
+.route-action { display: inline-flex; align-items: center; min-inline-size: 44px; min-block-size: 44px; padding: var(--space-2xs) var(--space-xs); border-radius: var(--radius-s); color: var(--xp-primary); }
+.route-action:focus-visible { outline: 2px solid var(--xp-focus); outline-offset: 2px; }

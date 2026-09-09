@@ -1,0 +1,12 @@
+@layer xp.shell {
+  :root {
+    --xp-bottom-owner-height: 0px;
+    --xp-bottom-safe-area: env(safe-area-inset-bottom, 0px);
+    --xp-bottom-clearance: calc(var(--xp-bottom-owner-height) + var(--xp-bottom-safe-area));
+    --xp-fab-bottom-offset: calc(var(--xp-bottom-clearance) + var(--space-xs));
+    --xp-announce-height: 0px;
+    --xp-navigation-height: 0px;
+    --xp-chrome-top-height: calc(var(--xp-announce-height) + var(--xp-navigation-height));
+    --xp-available-svh: calc(100svh - var(--xp-chrome-top-height) - var(--xp-bottom-clearance));
+  }
+}

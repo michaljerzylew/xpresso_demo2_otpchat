@@ -1,0 +1,42 @@
+{
+  "$schema": "https://xpresso.studio/schemas/block-1.1.json",
+  "name": "wizard-shell",
+  "version": "0.1.0",
+  "formsVocab": "1.1",
+  "job": "act",
+  "contract": {
+    "kind": "content",
+    "exportName": "WizardShell",
+    "definitionExport": "defineWizard",
+    "sourceVariants": 3,
+    "plannedMultiStepSources": 3,
+    "presets": ["product-wizard", "account-wizard", "onboarding-profile"],
+    "dependencies": ["defineStepper", "MorphSlot", "AdaptiveOverlay", "SnapRail", "StickyActionBar", "StepPane"]
+  },
+  "fluid": true,
+  "slotRange": { "min": "S1", "max": "S6" },
+  "engine": "swap",
+  "formOverrides": {
+    "M": { "form": "top-bar", "wizardForm": "app-bar", "targetFloorPx": 48, "progressMaxPx": 96 },
+    "TP": { "form": "tabs", "wizardForm": "chip-strip", "targetFloorPx": 48 },
+    "TL": { "form": "nav-rail", "wizardForm": "rail", "targetFloorPx": 44 },
+    "DS": { "form": "pane", "wizardForm": "rail-pane", "targetFloorPx": 44 },
+    "DW": { "form": "inspector", "wizardForm": "rail-pane-context", "targetFloorPx": 44 }
+  },
+  "whyPolymorphic": "One workflow owner swaps compact app-bar and chip progress into persistent rail and context forms while retaining one active pane and one action owner.",
+  "interaction": {
+    "oneStateOwner": true,
+    "oneActivePane": true,
+    "explicitActionBehavior": true,
+    "navigationPolicies": ["visited", "direct"],
+    "onboardingProfileDirectNavigation": true,
+    "validationGuard": true,
+    "processingLock": true,
+    "focusAfterTransition": true,
+    "historyModes": ["none", "session", "url"]
+  },
+  "tokens": ["--tap-min", "--tap-coarse", "--space-xs-s", "--space-s-m", "--role-label", "--role-card-title"],
+  "budgets": { "mobile_screens": 1, "progressMaxPx": 96, "touchTargetCoarse": 48, "horizontalOverflow": "none" },
+  "baseline": { "javascriptOff": true, "reducedMotion": true },
+  "a11y": { "treeInvariant": false, "roleExemption": "Only the active StepPane is mounted; progress chrome changes native structure by device class." }
+}
