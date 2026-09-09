@@ -72,6 +72,7 @@ htmlcov/
 .env
 .env.*
 !.env.example
+.dev.vars
 
 # Temporary & Log Files
 *.log
