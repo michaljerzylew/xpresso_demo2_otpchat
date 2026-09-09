@@ -50,6 +50,42 @@ Environment & Credentials:
 
 ---
 
+## DOMAIN
+### The Seven Distilled Answers
+1. **What this app is and what it categorically is not**: An ultra-fast, zero-friction AI chat workstation for organization members authenticated via Cloudflare Access OTP and powered by Featherless AI edge streaming; categorically NOT a public multi-tenant SaaS, billing portal, or team collaboration chat room.
+2. **The simplest technical truth of the domain**: A secure edge Server-Sent Events (SSE) pipe relaying OpenAI-compatible LLM completion streams directly into a reactive, IndexedDB-backed conversation state machine across 5 device viewports.
+3. **What friction it removes**: Eliminates API token management by end-users, removes login passwords via Access SSO, cures mobile keyboard/viewport layout glitches on web chat, and eliminates latency via edge routing.
+4. **What it is hard-wired to**: Cloudflare Workers edge runtime (`xs_demo2_chat.milkies.work`), Cloudflare Access identity headers, and the Featherless AI inference API.
+5. **The hidden assumptions**: Production requests always pass through Cloudflare Access (dev environment needs header simulation); the Featherless stream includes `: FEATHERLESS PROCESSING` comment lines that must not crash JSON parsers; LLM reasoning tokens may arrive under `choices[0].delta.reasoning`.
+6. **The shortest executable form**: A single prompt input dispatching `POST /api/chat` and streaming tokens into an active message bubble.
+7. **Where the truth about the domain lives**: In the client-side IndexedDB conversation tree partitioned by user email, while the edge Worker acts as a stateless, authenticated streaming gateway.
+
+### Sourced Job List
+| # | Job Description | Frequency | Source |
+|---|-----------------|-----------|--------|
+| J01 | Prompt AI model and stream response in real-time | Daily | `[operator]` |
+| J02 | Render stream with Markdown, KaTeX math, and code syntax highlighting | Daily | `[operator]` |
+| J03 | Copy generated code snippet with one tap / click | Daily | `[operator]` |
+| J04 | Select AI inference model (default Qwen 2.5 72B, GLM, DeepSeek) | Daily | `[operator]` |
+| J05 | Switch between multiple chat threads / sessions | Daily | `[operator]` |
+| J06 | Automatic login inference via Cloudflare Access headers | Daily | `[operator]` |
+| J07 | Stop ongoing AI generation via AbortController | Daily | `[research: ChatGPT Web UI, 2026-09]` |
+| J08 | Regenerate last AI response with alternative parameters | Daily | `[research: ChatGPT Web UI, 2026-09]` |
+| J09 | Inspect reasoning / thinking tokens from model | Daily | `[research: DeepSeek/Qwen UI, 2026-09]` |
+| J10 | Search conversation history by keyword | Weekly | `[operator]` |
+| J11 | Rename conversation session title | Weekly | `[operator]` |
+| J12 | Pin critical conversation threads to top of list | Weekly | `[operator]` |
+| J13 | Export conversation to Markdown or JSON | Weekly | `[research: ChatGPT Web UI, 2026-09]` |
+| J14 | Archive old conversation sessions | Monthly | `[operator]` |
+| J15 | Delete conversation thread with confirmation | Monthly | `[operator]` |
+| J16 | Install app as standalone PWA on mobile or desktop | Once | `[operator]` |
+| J17 | Switch between Light and Dark visual themes | Monthly | `[domain: Xpresso System]` |
+| J18 | Recover smoothly from network disconnection during streaming | Error | `[domain: Edge Stream Error]` |
+
+*Sourced rows verification*: 18 rows total; 12 `[operator]` (66.7%), 4 `[research]` (22.2%), 2 `[domain]` (11.1%). `[operator]` + `[research]` = 88.9% (exceeds 50% threshold).
+
+---
+
 ## DECISIONS
 | # | What | Why | What was rejected |
 |---|------|-----|-------------------|
@@ -62,16 +98,16 @@ Environment & Credentials:
 
 ## PROGRESS
 - [x] Phase 1: RECON (Bare project generated, git initialized, environment mapped) [1/11]
-- [ ] Phase 2: DOMAIN (7 answers distilled, sourced job list approved) [1/11]
-- [ ] Phase 3: MODEL (Entities, fields, IndexedDB persistence target formalized) [1/11]
-- [ ] Phase 4: COMPOSE (Module registration, route wiring, starter deletion) [1/11]
-- [ ] Phase 5: SHAPE (5-class form implementations, screens registry) [1/11]
-- [ ] Phase 6: SKIN (Theme configuration, PWA assets, icons) [1/11]
-- [ ] Phase 7: BUILD (Thin E2E chat stream, breadth matrix completion) [1/11]
-- [ ] Phase 8: EVIDENCE (Gate script, TypeScript check, unit & browser test sweep) [1/11]
-- [ ] Phase 9: VERIFY (3-pass adversarial review) [1/11]
-- [ ] Phase 10: SHIP (Cloudflare Worker deployment, DNS record, Access OTP application) [1/11]
-- [ ] Phase 11: REPORT (Final release notes, GitHub repo publishing, v1.0.0 tag) [1/11]
+- [x] Phase 2: DOMAIN (7 answers distilled, sourced job list approved) [2/11]
+- [ ] Phase 3: MODEL (Entities, fields, IndexedDB persistence target formalized) [2/11]
+- [ ] Phase 4: COMPOSE (Module registration, route wiring, starter deletion) [2/11]
+- [ ] Phase 5: SHAPE (5-class form implementations, screens registry) [2/11]
+- [ ] Phase 6: SKIN (Theme configuration, PWA assets, icons) [2/11]
+- [ ] Phase 7: BUILD (Thin E2E chat stream, breadth matrix completion) [2/11]
+- [ ] Phase 8: EVIDENCE (Gate script, TypeScript check, unit & browser test sweep) [2/11]
+- [ ] Phase 9: VERIFY (3-pass adversarial review) [2/11]
+- [ ] Phase 10: SHIP (Cloudflare Worker deployment, DNS record, Access OTP application) [2/11]
+- [ ] Phase 11: REPORT (Final release notes, GitHub repo publishing, v1.0.0 tag) [2/11]
 
 ---
 
@@ -103,4 +139,5 @@ Environment & Credentials:
 ---
 
 ## NEXT
-Advance to DOMAIN phase: distill the 7 domain answers and specify the sourced job list.
+Advance to MODEL phase: define entity schemas in apps/web/src/data/graph.ts, persistence architecture, and 7-dimensional surface matrix.
+
