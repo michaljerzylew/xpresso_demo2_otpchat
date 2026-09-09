@@ -150,13 +150,13 @@ Environment & Credentials:
 - [x] Phase 2: DOMAIN (7 answers distilled, sourced job list approved) [2/11]
 - [x] Phase 3: MODEL (Entities, fields, IndexedDB persistence target formalized) [3/11]
 - [x] Phase 4: COMPOSE (Module registration, route wiring, starter deletion) [4/11]
-- [ ] Phase 5: SHAPE (5-class form implementations, screens registry) [4/11]
-- [ ] Phase 6: SKIN (Theme configuration, PWA assets, icons) [4/11]
-- [ ] Phase 7: BUILD (Thin E2E chat stream, breadth matrix completion) [4/11]
-- [ ] Phase 8: EVIDENCE (Gate script, TypeScript check, unit & browser test sweep) [4/11]
-- [ ] Phase 9: VERIFY (3-pass adversarial review) [4/11]
-- [ ] Phase 10: SHIP (Cloudflare Worker deployment, DNS record, Access OTP application) [4/11]
-- [ ] Phase 11: REPORT (Final release notes, GitHub repo publishing, v1.0.0 tag) [4/11]
+- [x] Phase 5: SHAPE (5-class form implementations, screens registry) [5/11]
+- [ ] Phase 6: SKIN (Theme configuration, PWA assets, icons) [5/11]
+- [ ] Phase 7: BUILD (Thin E2E chat stream, breadth matrix completion) [5/11]
+- [ ] Phase 8: EVIDENCE (Gate script, TypeScript check, unit & browser test sweep) [5/11]
+- [ ] Phase 9: VERIFY (3-pass adversarial review) [5/11]
+- [ ] Phase 10: SHIP (Cloudflare Worker deployment, DNS record, Access OTP application) [5/11]
+- [ ] Phase 11: REPORT (Final release notes, GitHub repo publishing, v1.0.0 tag) [5/11]
 
 ---
 
@@ -185,6 +185,18 @@ Environment & Credentials:
   apps/web/src/qa/screens.ts registered chat screen
   pnpm --filter web typecheck -> exit 0
   ```
+- **SHAPE**:
+  ```text
+  apps/web/src/modules/chat/ wired with 5 native device-class forms:
+    - M (<600px): Bottom-sheet session drawer, thumb-friendly composer, safe-area keyboard avoidance
+    - TP (600-839px): Adaptive drawer/split navigation, centered canvas, bottom-sheet inspector
+    - TL (840-1199px): Two-pane split workspace (rail + list + chat), right drawer inspector
+    - DS (1200-1599px): Collapsible sidebar, 72ch centered canvas, Cmd+K palette, keyboard shortcuts
+    - DW (1600px+): Persistent tri-pane flagship (sidebar + canvas + inspector)
+  RoutePanes layout contracts verified
+  pnpm --filter web typecheck -> exit 0
+  bash scripts/check_no_hardcoded_colors.sh -> PASS
+  ```
 
 ---
 
@@ -197,7 +209,8 @@ Environment & Credentials:
 ---
 
 ## NEXT
-Advance to SHAPE phase: Wire 5 device-class forms (M, TP, TL, DS, DW) using RoutePanes and certify responsive behavior.
+Advance to SKIN phase: styling refinement, KaTeX font bundling, PWA manifest and icons regeneration.
+
 
 
 
