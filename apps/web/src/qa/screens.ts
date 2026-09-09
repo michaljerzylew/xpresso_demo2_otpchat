@@ -2,7 +2,7 @@ import { brand } from "../app-modules";
 export type CaptureState = "default" | "sheet-open" | "panel-open" | "empty" | "loading" | "error" | "saved" | "selected" | "not-found";
 export interface QAScreen { id: string; path: string; module: string; name: string; routeFile: string; states: CaptureState[]; }
 export const screens: QAScreen[] = [
-  { id: "start", path: "/", module: "start", name: brand.name, routeFile: "Start.tsx", states: ["default", "sheet-open"] },
+  { id: "chat", path: "/", module: "chat", name: brand.name, routeFile: "Chat.tsx", states: ["default", "sheet-open", "panel-open"] },
   { id: "login", path: "/login", module: "auth", name: `Sign in to ${brand.name}`, routeFile: "Login.tsx", states: ["default", "panel-open", "empty", "loading", "error", "sheet-open"] },
   { id: "register", path: "/register", module: "auth", name: "Create your account", routeFile: "Register.tsx", states: ["default", "panel-open", "empty", "loading", "error", "selected"] },
   { id: "forgot-password", path: "/forgot-password", module: "auth", name: "Recover your account", routeFile: "ForgotPassword.tsx", states: ["default", "panel-open", "empty", "loading", "error", "saved"] },

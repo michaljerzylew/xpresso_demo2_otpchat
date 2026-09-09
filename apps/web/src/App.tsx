@@ -8,7 +8,7 @@ import { Simulator } from "./shell/Simulator";
 import { AuthSessionProvider } from "./modules/auth/session";
 import { SessionGraphProvider } from "./data/session-store";
 import { PwaRuntime } from "./pwa/PwaRuntime";
-import { Start } from "./routes/Start";
+import { Chat } from "./routes/Chat";
 import { Configure } from "./routes/Configure";
 import { Login } from "./routes/Login";
 import { Register } from "./routes/Register";
@@ -28,9 +28,10 @@ export function AppRoutes() {
       <Route path="verify-email" element={<VerifyEmail />} />
     </Route>
     <Route element={<AppShell />}>
-      <Route index element={<Start />} />
+      <Route index element={<Chat />} />
+      <Route path="c/:id" element={<Chat />} />
       <Route path="configure" element={<Configure />} />
-      <Route path="*" element={<RoutePanes><section className="start-screen"><h1>Page not found</h1><Link to="/">Return to start</Link></section></RoutePanes>} />
+      <Route path="*" element={<RoutePanes><section className="chat-empty-state"><h1>Page not found</h1><Link to="/">Return to chat</Link></section></RoutePanes>} />
     </Route>
   </Routes></SessionGraphProvider>;
 }

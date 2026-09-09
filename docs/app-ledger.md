@@ -149,14 +149,14 @@ Environment & Credentials:
 - [x] Phase 1: RECON (Bare project generated, git initialized, environment mapped) [1/11]
 - [x] Phase 2: DOMAIN (7 answers distilled, sourced job list approved) [2/11]
 - [x] Phase 3: MODEL (Entities, fields, IndexedDB persistence target formalized) [3/11]
-- [ ] Phase 4: COMPOSE (Module registration, route wiring, starter deletion) [3/11]
-- [ ] Phase 5: SHAPE (5-class form implementations, screens registry) [3/11]
-- [ ] Phase 6: SKIN (Theme configuration, PWA assets, icons) [3/11]
-- [ ] Phase 7: BUILD (Thin E2E chat stream, breadth matrix completion) [3/11]
-- [ ] Phase 8: EVIDENCE (Gate script, TypeScript check, unit & browser test sweep) [3/11]
-- [ ] Phase 9: VERIFY (3-pass adversarial review) [3/11]
-- [ ] Phase 10: SHIP (Cloudflare Worker deployment, DNS record, Access OTP application) [3/11]
-- [ ] Phase 11: REPORT (Final release notes, GitHub repo publishing, v1.0.0 tag) [3/11]
+- [x] Phase 4: COMPOSE (Module registration, route wiring, starter deletion) [4/11]
+- [ ] Phase 5: SHAPE (5-class form implementations, screens registry) [4/11]
+- [ ] Phase 6: SKIN (Theme configuration, PWA assets, icons) [4/11]
+- [ ] Phase 7: BUILD (Thin E2E chat stream, breadth matrix completion) [4/11]
+- [ ] Phase 8: EVIDENCE (Gate script, TypeScript check, unit & browser test sweep) [4/11]
+- [ ] Phase 9: VERIFY (3-pass adversarial review) [4/11]
+- [ ] Phase 10: SHIP (Cloudflare Worker deployment, DNS record, Access OTP application) [4/11]
+- [ ] Phase 11: REPORT (Final release notes, GitHub repo publishing, v1.0.0 tag) [4/11]
 
 ---
 
@@ -176,6 +176,15 @@ Environment & Credentials:
   pnpm install --frozen-lockfile -> exit 0
   pnpm -r build -> exit 0
   ```
+- **COMPOSE**:
+  ```text
+  apps/web/src/modules/chat/ created (types, models, sse, markdown, store, forms, Chat)
+  apps/web/src/modules/start/ deleted
+  apps/web/src/routes/Start.tsx replaced by routes/Chat.tsx
+  apps/web/src/app-modules.ts registered chat module
+  apps/web/src/qa/screens.ts registered chat screen
+  pnpm --filter web typecheck -> exit 0
+  ```
 
 ---
 
@@ -188,6 +197,7 @@ Environment & Credentials:
 ---
 
 ## NEXT
-Advance to COMPOSE phase: register chat module in apps/web/src/app-modules.ts, define routes and forms, delete starter module.
+Advance to SHAPE phase: Wire 5 device-class forms (M, TP, TL, DS, DW) using RoutePanes and certify responsive behavior.
+
 
 

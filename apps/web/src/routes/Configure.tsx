@@ -29,7 +29,7 @@ function Specimen({ configurator }: { configurator: Configurator }) {
           <button type="button">Discard</button>
         </div>
         <label className="cfg-sample__field">Workspace name
-          <input name="specimen-name" defaultValue="Northwind operations" autoComplete="off" />
+          <input name="specimen-name" defaultValue="OTP Chat workspace" autoComplete="off" />
         </label>
       </div>
       <div className="cfg-sample">
