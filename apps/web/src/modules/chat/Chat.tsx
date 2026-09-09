@@ -32,6 +32,7 @@ function ChatInner() {
     regenerateMessage,
     activeModelId,
     setActiveModelId,
+    sendMessage,
   } = useChatStore();
 
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
@@ -173,7 +174,7 @@ function ChatInner() {
                   type="button"
                   className="chat-prompt-card"
                   onClick={() => {
-                    const store = useChatStore;
+                    sendMessage("Explain the difference between SSE and WebSockets, specifically around HTTP/2 multiplexing and firewall friendliness.");
                   }}
                 >
                   <strong>Code & Architecture</strong>
@@ -182,7 +183,9 @@ function ChatInner() {
                 <button
                   type="button"
                   className="chat-prompt-card"
-                  onClick={() => {}}
+                  onClick={() => {
+                    sendMessage("Derive the quadratic formula step by step and present the final equation in LaTeX.");
+                  }}
                 >
                   <strong>Mathematics & Formulas</strong>
                   <span>Calculate roots of quadratic equation with LaTeX</span>
@@ -190,7 +193,9 @@ function ChatInner() {
                 <button
                   type="button"
                   className="chat-prompt-card"
-                  onClick={() => {}}
+                  onClick={() => {
+                    sendMessage("Draft a high-performance Cloudflare Workers edge caching and SSR architecture.");
+                  }}
                 >
                   <strong>Data & System Design</strong>
                   <span>Draft a Cloudflare Workers edge caching architecture</span>
@@ -198,7 +203,9 @@ function ChatInner() {
                 <button
                   type="button"
                   className="chat-prompt-card"
-                  onClick={() => {}}
+                  onClick={() => {
+                    sendMessage("Write a concise executive brief summarizing our Q3 product delivery and milestones.");
+                  }}
                 >
                   <strong>Creative Writing</strong>
                   <span>Write a concise executive brief for project delivery</span>

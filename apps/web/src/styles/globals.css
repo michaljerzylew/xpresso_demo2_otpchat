@@ -11,6 +11,7 @@
 @import "@xp/primitives/styles.css";
 @import "@xp/shells/regions.css";
 @import "../shell/shell.css";
+@import "../shell/composer.css";
 @import "../routes/routes.css";
 @import "../configurator/configurator.css";
 @import "../pwa/pwa.css";
