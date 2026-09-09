@@ -86,6 +86,55 @@ Environment & Credentials:
 
 ---
 
+## MODEL
+### Backbone Entities & Roles
+1. **`User`**: The authenticated team member.
+   - Fields: `email` (string, PK), `name` (string), `initials` (string), `role` (enum: member | admin), `firstSeenAt` (timestamp), `lastActiveAt` (timestamp).
+   - Source of truth: Inferred dynamically from `Cf-Access-Authenticated-User-Email`.
+2. **`ChatSession`**: A conversation thread.
+   - Fields: `id` (uuid, PK), `userEmail` (FK -> User.email), `title` (string), `model` (string), `systemPrompt` (string, optional), `isPinned` (boolean), `isArchived` (boolean), `createdAt` (timestamp), `updatedAt` (timestamp).
+   - Derived: `messageCount` (int), `lastMessagePreview` (string), `tokenTotal` (int).
+3. **`ChatMessage`**: An individual turn in a conversation.
+   - Fields: `id` (uuid, PK), `sessionId` (FK -> ChatSession.id), `role` (enum: user | assistant | system), `content` (string), `reasoning` (string, optional), `status` (enum: pending | streaming | complete | error), `tokensPrompt` (int, optional), `tokensCompletion` (int, optional), `latencyMs` (int, optional), `createdAt` (timestamp).
+4. **`ModelConfig`**: Available inference models.
+   - Fields: `id` (string, PK), `displayName` (string), `contextWindow` (int), `supportsReasoning` (boolean), `isDefault` (boolean).
+
+### Persistence Architecture
+- **Primary Client Persistence**: IndexedDB (`xpresso_otpchat_db`) via `idb-keyval` / Dexie-pattern, strictly partitioned by `userEmail`.
+- **Edge Backend**: Cloudflare Worker (`/api/chat`) acting as a zero-state, authenticated streaming proxy to Featherless AI.
+- **Cross-Origin & Policy Directive**: Same-origin edge Worker (`connect-src 'self'`). Zero API key exposure to browser.
+
+---
+
+## SURFACE
+### 7-Dimensional Matrix
+- **Entities**: User (1), ChatSession (1), ChatMessage (1), ModelConfig (1). Total: 4.
+- **Actions**:
+  - ChatSession: List, Read, Create, Rename, Pin, Archive, Delete, Search, Export.
+  - ChatMessage: Append, Stream, Stop, Regenerate, Copy Content, View Reasoning.
+  - ModelConfig: Select, Inspect Specs.
+  - User: View Profile, Access Info.
+- **Screens / Views**:
+  1. `chat-workspace`: Primary conversational workspace (`/`).
+  2. `chat-thread`: Focused conversation thread (`/c/:id`).
+  3. `model-selector`: Model selection and parameter config dialog.
+  4. `session-inspector`: Token, model, and message metadata panel.
+  5. `user-profile`: Cloudflare Access identity modal.
+- **Device-Class Forms**:
+  - `M` (<600px): Bottom-sheet session drawer, thumb-friendly composer, safe-area keyboard avoidance.
+  - `TP` (600-839px): Slide-over drawer navigation, full-width stream.
+  - `TL` (840-1199px): Two-pane split workspace (session rail + active chat).
+  - `DS` (1200-1599px): Collapsible sidebar, main chat, toggleable right inspector.
+  - `DW` (1600px+): Persistent tri-pane flagship (sidebar + main chat + token/reasoning inspector).
+- **Themes**: Light & Dark (both contrast certified).
+- **Motion**: Normal & Reduced (instant layout shifts, no animating sheets).
+- **States**: `default`, `empty`, `loading`, `error`, `streaming`, `dialog`, `sheet-open`, `panel-open`.
+
+### Surface Parity Counter
+- **Initial Baseline**: 0 / 25 cells built.
+
+---
+
 ## DECISIONS
 | # | What | Why | What was rejected |
 |---|------|-----|-------------------|
@@ -99,15 +148,15 @@ Environment & Credentials:
 ## PROGRESS
 - [x] Phase 1: RECON (Bare project generated, git initialized, environment mapped) [1/11]
 - [x] Phase 2: DOMAIN (7 answers distilled, sourced job list approved) [2/11]
-- [ ] Phase 3: MODEL (Entities, fields, IndexedDB persistence target formalized) [2/11]
-- [ ] Phase 4: COMPOSE (Module registration, route wiring, starter deletion) [2/11]
-- [ ] Phase 5: SHAPE (5-class form implementations, screens registry) [2/11]
-- [ ] Phase 6: SKIN (Theme configuration, PWA assets, icons) [2/11]
-- [ ] Phase 7: BUILD (Thin E2E chat stream, breadth matrix completion) [2/11]
-- [ ] Phase 8: EVIDENCE (Gate script, TypeScript check, unit & browser test sweep) [2/11]
-- [ ] Phase 9: VERIFY (3-pass adversarial review) [2/11]
-- [ ] Phase 10: SHIP (Cloudflare Worker deployment, DNS record, Access OTP application) [2/11]
-- [ ] Phase 11: REPORT (Final release notes, GitHub repo publishing, v1.0.0 tag) [2/11]
+- [x] Phase 3: MODEL (Entities, fields, IndexedDB persistence target formalized) [3/11]
+- [ ] Phase 4: COMPOSE (Module registration, route wiring, starter deletion) [3/11]
+- [ ] Phase 5: SHAPE (5-class form implementations, screens registry) [3/11]
+- [ ] Phase 6: SKIN (Theme configuration, PWA assets, icons) [3/11]
+- [ ] Phase 7: BUILD (Thin E2E chat stream, breadth matrix completion) [3/11]
+- [ ] Phase 8: EVIDENCE (Gate script, TypeScript check, unit & browser test sweep) [3/11]
+- [ ] Phase 9: VERIFY (3-pass adversarial review) [3/11]
+- [ ] Phase 10: SHIP (Cloudflare Worker deployment, DNS record, Access OTP application) [3/11]
+- [ ] Phase 11: REPORT (Final release notes, GitHub repo publishing, v1.0.0 tag) [3/11]
 
 ---
 
@@ -139,5 +188,6 @@ Environment & Credentials:
 ---
 
 ## NEXT
-Advance to MODEL phase: define entity schemas in apps/web/src/data/graph.ts, persistence architecture, and 7-dimensional surface matrix.
+Advance to COMPOSE phase: register chat module in apps/web/src/app-modules.ts, define routes and forms, delete starter module.
+
 
